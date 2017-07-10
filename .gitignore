@@ -2,3 +2,4 @@ lib/
 out/
 ConsoleApp/target/
 BasicWebApp/target/
+.idea/workspace.xml
