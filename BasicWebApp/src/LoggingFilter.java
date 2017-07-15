@@ -51,6 +51,4 @@ public class LoggingFilter implements javax.servlet.Filter {
             logger.close();
         }
     }
-
-
 }
