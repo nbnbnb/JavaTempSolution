@@ -24,15 +24,13 @@ public class AsyncDispatchServlet extends HttpServlet {
         req.setAttribute("mainThread", Thread.currentThread().getName());
         asyncContext.setTimeout(5000);
         asyncContext.start(new Runnable() {
-
             public void run() {
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-
                 req.setAttribute("workerThread", Thread.currentThread().getName());
-
                 try {
                     PrintWriter writer = resp.getWriter();
                     writer.println("Async Thread Running");
@@ -40,12 +38,8 @@ public class AsyncDispatchServlet extends HttpServlet {
                 } catch (IOException e) {
 
                 }
-
                 asyncContext.complete();
             }
         });
-
-
-        super.doGet(req, resp);
     }
 }

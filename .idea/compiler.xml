@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="BasicWebApp" />
         <module name="ConsoleApp" />
+        <module name="InitializerPlug" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="BasicWebApp" target="1.5" />
       <module name="ConsoleApp" target="1.5" />
+      <module name="InitializerPlug" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

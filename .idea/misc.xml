@@ -43,6 +43,7 @@
       <list>
         <option value="$PROJECT_DIR$/BasicWebApp/pom.xml" />
         <option value="$PROJECT_DIR$/ConsoleApp/pom.xml" />
+        <option value="$PROJECT_DIR$/InitializerPlug/pom.xml" />
       </list>
     </option>
   </component>
