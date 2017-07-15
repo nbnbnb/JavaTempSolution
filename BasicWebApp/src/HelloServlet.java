@@ -21,6 +21,5 @@ public class HelloServlet extends HttpServlet {
         writer.println("Hello World!");
 
         writer.println(new Date());
-
     }
 }
