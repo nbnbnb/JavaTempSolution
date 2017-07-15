@@ -20,7 +20,6 @@ public class SessionListener implements HttpSessionListener, ServletContextListe
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-
     }
 
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
