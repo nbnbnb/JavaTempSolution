@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/BasicWebApp/BasicWebApp.iml" filepath="$PROJECT_DIR$/BasicWebApp/BasicWebApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/ConsoleApp/ConsoleApp.iml" filepath="$PROJECT_DIR$/ConsoleApp/ConsoleApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/InitializerPlug/InitializerPlug.iml" filepath="$PROJECT_DIR$/InitializerPlug/InitializerPlug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study-parent.iml" filepath="$PROJECT_DIR$/study-parent.iml" />
     </modules>
   </component>
 </project>

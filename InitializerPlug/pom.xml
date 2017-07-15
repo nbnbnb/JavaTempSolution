@@ -1,14 +1,25 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>me.zhangjin.study</groupId>
-  <artifactId>study-InitializerPlug</artifactId>
-  <version>0.0.1SNAPSHOT</version>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>me.zhangjin.study</groupId>
+    <artifactId>study-InitializerPlug</artifactId>
+    <version>0.0.1SNAPSHOT</version>
 
-  <dependencies>
+    <parent>
+        <groupId>me.zhangjin.study</groupId>
+        <artifactId>study-parent</artifactId>
+        <version>0.0.1SNAPSHOT</version>
+    </parent>
 
-  </dependencies>
+    <dependencies>
+
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>8.5.15</version>
+        </dependency>
+    </dependencies>
 </project>

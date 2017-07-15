@@ -1,28 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>me.zhangjin.study</groupId>
-  <artifactId>study-BasicWebApp</artifactId>
-  <version>0.0.1SNAPSHOT</version>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>me.zhangjin.study</groupId>
+    <artifactId>study-BasicWebApp</artifactId>
+    <version>0.0.1SNAPSHOT</version>
 
-  <dependencies>
-      <dependency>
-          <groupId>jstl</groupId>
-          <artifactId>jstl</artifactId>
-          <version>1.2</version>
-      </dependency>
-    <dependency>
-        <groupId>taglibs</groupId>
-        <artifactId>standard</artifactId>
-        <version>1.1.2</version>
-    </dependency>
-      <dependency>
-          <groupId>com.hynnet</groupId>
-          <artifactId>sqljdbc4-chs</artifactId>
-          <version>4.0.2206.100</version>
-      </dependency>
-  </dependencies>
+    <parent>
+        <groupId>me.zhangjin.study</groupId>
+        <artifactId>study-parent</artifactId>
+        <version>0.0.1SNAPSHOT</version>
+    </parent>
+
 </project>

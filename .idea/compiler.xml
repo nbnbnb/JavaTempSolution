@@ -15,6 +15,7 @@
       <module name="BasicWebApp" target="1.5" />
       <module name="ConsoleApp" target="1.5" />
       <module name="InitializerPlug" target="1.5" />
+      <module name="study-parent" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
