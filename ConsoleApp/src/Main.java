@@ -21,6 +21,10 @@ public class Main {
 
     public static void Demo() {
 
+        int a = 123;
+        int b = 456;
+        int c = a + b;
+
     }
 }
 
@@ -276,7 +280,7 @@ class ResponsiveUI extends Thread {
         }
     }
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         new ResponsiveUI();
 
         try {
