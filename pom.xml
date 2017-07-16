@@ -43,6 +43,7 @@
         <module>./BasicWebApp</module>
         <module>./ConsoleApp</module>
         <module>./InitializerPlug</module>
+        <module>./Struts2App</module>
     </modules>
 
 </project>
