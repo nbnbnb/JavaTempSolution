@@ -20,7 +20,6 @@
 
 <h5>
     <%= new java.util.Date()%>
-    <c:out value="hello" />
 </h5>
 </body>
 </html>
