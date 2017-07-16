@@ -9,12 +9,14 @@
         <module name="BasicWebApp" />
         <module name="ConsoleApp" />
         <module name="InitializerPlug" />
+        <module name="Struts2App" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="BasicWebApp" target="1.5" />
       <module name="ConsoleApp" target="1.5" />
       <module name="InitializerPlug" target="1.5" />
+      <module name="Struts2App" target="1.5" />
       <module name="study-parent" target="1.5" />
     </bytecodeTargetLevel>
   </component>

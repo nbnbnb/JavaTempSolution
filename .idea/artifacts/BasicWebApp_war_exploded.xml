@@ -10,7 +10,7 @@
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
           <element id="library" level="project" name="Maven: taglibs:standard:1.1.2" />
           <element id="library" level="project" name="Maven: com.hynnet:sqljdbc4-chs:4.0.2206.100" />
-          <element id="library" level="project" name="JAVALIB" />
+          <element id="library" level="project" name="JavaLibs" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="BasicWebApp/web/Web" />
