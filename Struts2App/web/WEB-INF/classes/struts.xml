@@ -8,10 +8,10 @@
     <constant name="struts.devMode" value="true"/>
     <package name="Struct2App" namespace="/" extends="struts-default">
         <action name="Product_input">
-            <result>/jsp/ProductForm.jsp</result>
+            <result>/jsp/Product.jsp</result>
         </action>
         <action name="Product_save">
-            <result>/jsp/ProductDetails.jsp</result>
+            <result>/jsp/Details.jsp</result>
         </action>
     </package>
 </struts>

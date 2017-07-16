@@ -13,11 +13,11 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="BasicWebApp" target="1.5" />
+      <module name="BasicWebApp" target="1.8" />
       <module name="ConsoleApp" target="1.5" />
-      <module name="InitializerPlug" target="1.5" />
-      <module name="Struts2App" target="1.5" />
-      <module name="study-parent" target="1.5" />
+      <module name="InitializerPlug" target="1.8" />
+      <module name="Struts2App" target="1.8" />
+      <module name="study-parent" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
