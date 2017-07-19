@@ -14,4 +14,15 @@
         <version>0.0.1SNAPSHOT</version>
     </parent>
 
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
