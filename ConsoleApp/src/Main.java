@@ -1,3 +1,5 @@
+import me.zhangjin.study.demos.SpringDemo;
+
 /**
  * Created by ZhangJin on 2017/7/8.
  */
@@ -9,6 +11,6 @@ public class Main {
     }
 
     public static void Demo() {
-
+        SpringDemo.getStart();
     }
 }
