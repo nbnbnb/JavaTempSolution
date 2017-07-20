@@ -6,13 +6,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.zhangjin.study</groupId>
     <artifactId>study-parent</artifactId>
-    <version>0.0.1SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
         <junit.version>4.12</junit.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <sqljdbc4.verioin>4.0.2206.100</sqljdbc4.verioin>
     </properties>
 
     <dependencyManagement>
@@ -21,7 +22,6 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <scope>test</scope>
                 <version>${junit.version}</version>
             </dependency>
 
@@ -29,7 +29,7 @@
             <dependency>
                 <groupId>com.hynnet</groupId>
                 <artifactId>sqljdbc4-chs</artifactId>
-                <version>4.0.2206.100</version>
+                <version>${sqljdbc4.verioin}</version>
             </dependency>
 
             <!-- Servlet & Jsp -->
@@ -61,6 +61,23 @@
                 <groupId>org.apache.struts</groupId>
                 <artifactId>struts2-core</artifactId>
                 <version>2.5.12</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>1</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>4.3.9.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>org.springframework.test</artifactId>
+                <version>3.2.1.RELEASE</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
