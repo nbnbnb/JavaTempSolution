@@ -7,11 +7,12 @@
     <groupId>me.zhangjin.study</groupId>
     <artifactId>study-Struts2App</artifactId>
     <version>0.0.1SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <parent>
         <groupId>me.zhangjin.study</groupId>
         <artifactId>study-parent</artifactId>
-        <version>0.0.1SNAPSHOT</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <dependencies>
