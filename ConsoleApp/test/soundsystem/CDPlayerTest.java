@@ -15,11 +15,27 @@ import soundsystem.*;
 public class CDPlayerTest {
 
     @Autowired
-    private  CompactDisc cd;
+    private  CDPlayer cd;
+
+    @Autowired
+    private MediaPlayer md;
+
+    @Autowired
+    private QQPlayer qq;
 
     @Test
     public void cdShouldNotBeNull(){
         assertNotNull(cd);
     }
 
+    @Test
+    public void mediaShouldNotBeNull(){
+        assertNotNull(md);
+    }
+
+    @Test
+    public void qqShouldNotBeNull(){
+        assertNotNull(qq);
+        qq.play();
+    }
 }

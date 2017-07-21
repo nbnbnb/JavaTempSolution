@@ -11,17 +11,19 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="soundsystem"></context:component-scan>
+    <!--设置是否启用自动扫描-->
+    <!--<context:component-scan base-package="soundsystem"></context:component-scan>-->
 
+    <bean id="qqPlayer" class="soundsystem.QQPlayer">
+        <constructor-arg name="artist" value="张学友"></constructor-arg>
+        <constructor-arg name="title" value="遥远的她"></constructor-arg>
+        <property name="tracks">
+            <list>
+                <value>A</value>
+                <value>B</value>
+                <value>C</value>
+            </list>
+        </property>
+    </bean>
 
-    <!--<bean id="compactDisc" class="soundsystem.BlankDisc" c:_0="Sgt. Pepper's Lonely Hearts Club Band" c:_1="The Beatles">-->
-        <!--<constructor-arg>-->
-            <!--<list>-->
-                <!--<value>A</value>-->
-                <!--<value>B</value>-->
-                <!--<value>C</value>-->
-                <!--<value>D</value>-->
-            <!--</list>-->
-        <!--</constructor-arg>-->
-    <!--</bean>-->
 </beans>
