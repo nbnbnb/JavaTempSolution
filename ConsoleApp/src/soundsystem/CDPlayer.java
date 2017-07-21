@@ -6,12 +6,12 @@ import org.springframework.stereotype.Component;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-@Named
-public class CDPlayer implements MediaPlayer {
+@Component
+public class CDPlayer implements CompactDisc {
 
     private CompactDisc cd;
 
-    @Inject
+    @Autowired
     public CDPlayer(CompactDisc cd) {
         this.cd = cd;
     }

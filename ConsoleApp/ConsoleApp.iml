@@ -5,6 +5,10 @@
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/hello/Application.java</file>
+          <file>file://$MODULE_DIR$/src/soundsystem/CDConfig.java</file>
+          <file>file://$MODULE_DIR$/src/soundsystem/CDPlayerConfig.java</file>
+          <file>file://$MODULE_DIR$/src/soundsystem/SoundSystemConfig.java</file>
+          <file>file://$MODULE_DIR$/cd-config.xml</file>
         </fileset>
       </configuration>
     </facet>
@@ -14,6 +18,9 @@
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test/soundsystem" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/resources" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -29,5 +36,6 @@
     <orderEntry type="library" name="Maven: org.springframework:org.springframework.test:3.2.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="library" name="Maven: com.github.stefanbirkner:system-rules:1.16.0" level="project" />
   </component>
 </module>
