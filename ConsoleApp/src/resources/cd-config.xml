@@ -4,14 +4,14 @@
        xmlns:c="http://www.springframework.org/schema/c"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="compactDisc" class="soundsystem.BlankDisc" c:_0="Sgt. Pepper's Lonely Hearts Club Band" c:_1="The Beatles">
-        <constructor-arg>
-            <list>
-                <value>A</value>
-                <value>B</value>
-                <value>C</value>
-                <value>D</value>
-            </list>
-        </constructor-arg>
-    </bean>
+    <!--<bean id="compactDisc" class="soundsystem.BlankDisc" c:_0="Sgt. Pepper's Lonely Hearts Club Band" c:_1="The Beatles">-->
+        <!--<constructor-arg>-->
+            <!--<list>-->
+                <!--<value>A</value>-->
+                <!--<value>B</value>-->
+                <!--<value>C</value>-->
+                <!--<value>D</value>-->
+            <!--</list>-->
+        <!--</constructor-arg>-->
+    <!--</bean>-->
 </beans>
