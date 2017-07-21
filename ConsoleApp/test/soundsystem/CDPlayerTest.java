@@ -14,5 +14,12 @@ import soundsystem.*;
 @ContextConfiguration(classes = SoundSystemConfig.class)
 public class CDPlayerTest {
 
+    @Autowired
+    private  CompactDisc cd;
+
+    @Test
+    public void cdShouldNotBeNull(){
+        assertNotNull(cd);
+    }
 
 }
