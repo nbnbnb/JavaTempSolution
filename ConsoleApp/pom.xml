@@ -12,8 +12,8 @@
         <groupId>me.zhangjin.study</groupId>
         <artifactId>study-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
-
 
     <dependencies>
         <dependency>
@@ -40,6 +40,5 @@
             <groupId>com.github.stefanbirkner</groupId>
             <artifactId>system-rules</artifactId>
         </dependency>
-
     </dependencies>
 </project>
