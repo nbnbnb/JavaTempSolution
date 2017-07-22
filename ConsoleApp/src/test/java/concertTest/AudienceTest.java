@@ -1,11 +1,11 @@
 package concertTest;
 
-import concert.ConcertConfig;
-import concert.Performance;
+import concert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.Assert.assertNotNull;
@@ -21,6 +21,13 @@ public class AudienceTest {
     @Test
     public void performanceShouldNotBeNull() {
         assertNotNull(performance);
+    }
+
+    @Test
+    public void introduceEncoreable() {
+        // 在实现类上添加新功能
+        Encoreable encoreable = (Encoreable) performance;
+        encoreable.performEncore();
     }
 
     @Test
