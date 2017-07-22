@@ -26,4 +26,21 @@
         </property>
     </bean>
 
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>app.properties</value>
+        </property>
+        <property name="fileEncoding">
+            <value>UTF-8</value>
+        </property>
+        <property name="locations">
+            <list>
+                <value>mssql.properties</value>
+                <value>mysql.properties</value>
+            </list>
+        </property>
+    </bean>
+
+
 </beans>

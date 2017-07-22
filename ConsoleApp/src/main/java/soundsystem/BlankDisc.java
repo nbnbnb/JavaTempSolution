@@ -10,7 +10,8 @@ public class BlankDisc implements CompactDisc {
     private String artist;
 
 
-    public BlankDisc(@Value("${disc.title}") String title, @Value("${disc.artist}") String artist) {
+    public BlankDisc(@Value("${disc.title}") String title, // 使用 SpEL 方式
+                     @Value("${disc.artist}") String artist) {   // 使用属性占位符方式
         this.title=title;
         this.artist = artist;
     }
