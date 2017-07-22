@@ -1,4 +1,4 @@
-package me.zhangjin.study.demos;
+package demos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

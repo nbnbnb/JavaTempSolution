@@ -1,4 +1,4 @@
-import me.zhangjin.study.demos.SpringDemo;
+import demos.SpringDemo;
 
 /**
  * Created by ZhangJin on 2017/7/8.

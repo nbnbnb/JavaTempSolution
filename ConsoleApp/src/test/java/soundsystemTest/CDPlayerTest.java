@@ -23,6 +23,8 @@ public class CDPlayerTest {
     @Autowired
     private QQPlayer qq;
 
+    @Autowired BlankDisc bd;
+
     @Test
     public void cdShouldNotBeNull(){
         assertNotNull(cd);
@@ -37,5 +39,11 @@ public class CDPlayerTest {
     public void qqShouldNotBeNull(){
         assertNotNull(qq);
         qq.play();
+    }
+
+    @Test
+    public void bdShouldNotBeNull(){
+        assertNotNull(bd);
+        bd.play();
     }
 }
