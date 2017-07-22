@@ -1,7 +1,7 @@
 package concertTest;
 
-import concert.Audience;
 import concert.ConcertConfig;
+import concert.Performance;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +16,15 @@ import static org.junit.Assert.assertNotNull;
 public class AudienceTest {
 
     @Autowired
-    private Audience audience;
+    private Performance performance;
 
     @Test
-    public void audienceShouldNotBeNull() {
-        assertNotNull(audience);
+    public void performanceShouldNotBeNull() {
+        assertNotNull(performance);
     }
 
     @Test
     public void execActions() {
-        audience.silenceCellPhone();
+        performance.perform();
     }
 }
