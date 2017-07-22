@@ -1,17 +1,16 @@
 package soundsystem;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-
-// @Component
-// 由于有构造函数，此处不能自动装配，所以注释掉 @Component 特性
+@Component
 public class BlankDisc implements CompactDisc {
 
     private String title;
     private String artist;
 
 
-    public BlankDisc(String title, String artist) {
+    public BlankDisc(@Value("${disc.title}") String title, @Value("${disc.artist}") String artist) {
         this.title=title;
         this.artist = artist;
     }
@@ -19,5 +18,6 @@ public class BlankDisc implements CompactDisc {
     @Override
     public void play() {
         System.out.println("This is a Blank Disc");
+        System.out.println("Playing " + title + " by " + artist);
     }
 }
