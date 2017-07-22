@@ -15,6 +15,7 @@ public class Audience {
 
     }
 
+    /*
     @Before("performance()")
     public void silenceCellPhone() {
         System.out.println("Silencing call phones");
@@ -34,6 +35,9 @@ public class Audience {
     public void demandRefund() {
         System.out.println("Demanding a refund");
     }
+    */
+
+    // Around 方法和上面的等价
 
     @Around("performance()")
     public void watchPerformance(ProceedingJoinPoint jp) {
@@ -46,7 +50,6 @@ public class Audience {
         } catch (Throwable throwable) {
             System.out.println("Demand a refund");
         }
-
     }
 
 }

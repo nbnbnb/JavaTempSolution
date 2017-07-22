@@ -1,9 +1,6 @@
 package concertTest;
 
-import concert.Audience;
-import concert.ConcertConfig;
-import concert.TrackCounter;
-import concert.TrackCounterConfig;
+import concert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +15,16 @@ import static org.junit.Assert.*;
 public class TrackCounterTest {
 
     @Autowired
-    private TrackCounter counter;
+    private CDTracker counter;
 
     @Test
-    public void counterShouldNotBeNull() {
+    public void cdTrackerShouldNotBeNull() {
         assertNotNull(counter);
     }
 
     @Test
     public void testTrackCounter(){
-        counter.countTrack(1);
-        assertEquals(1,counter.getPlayCount(1));
+        counter.playTrack(1);
     }
 
 }
