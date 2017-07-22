@@ -3,12 +3,11 @@
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/hello/Application.java</file>
-          <file>file://$MODULE_DIR$/src/soundsystem/CDConfig.java</file>
-          <file>file://$MODULE_DIR$/src/soundsystem/CDPlayerConfig.java</file>
-          <file>file://$MODULE_DIR$/src/soundsystem/SoundSystemConfig.java</file>
-          <file>file://$MODULE_DIR$/cd-config.xml</file>
+        <fileset id="fileset" name="Spring Application Context" removed="false" />
+        <fileset id="fileset2" name="Spring Application Context (2)" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/cd-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/hello/Application.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/soundsystem/SoundSystemConfig.java</file>
         </fileset>
       </configuration>
     </facet>
