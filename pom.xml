@@ -32,6 +32,7 @@
 
         <javax.inject.version>1</javax.inject.version>
 
+        <commons-lang3.verson>3.6</commons-lang3.verson>
     </properties>
 
     <dependencyManagement>
@@ -117,6 +118,11 @@
                 <artifactId>spring-webmvc</artifactId>
                 <version>${springModule.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${springModule.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.aspectj</groupId>
@@ -127,6 +133,12 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>org.springframework.test</artifactId>
                 <version>${org.springframework.test.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.verson}</version>
             </dependency>
 
         </dependencies>
