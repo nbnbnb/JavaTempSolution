@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="BasicWebApp:war exploded">
-    <output-path>$PROJECT_DIR$/BasicWebApp/target/study-BasicWebApp-0.0.1-SNAPSHOT</output-path>
+    <output-path>$PROJECT_DIR$/out/artifacts/BasicWebApp_war_exploded</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -12,9 +12,6 @@
           <element id="library" level="project" name="Maven: taglibs:standard:1.1.2" />
           <element id="library" level="project" name="Maven: me.zhangjin.study:study-InitializerPlug:0.0.1-SNAPSHOT" />
         </element>
-      </element>
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/BasicWebApp/target/study-BasicWebApp-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="BasicWebApp/web/Web" />
     </root>
