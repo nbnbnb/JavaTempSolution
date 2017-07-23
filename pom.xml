@@ -134,9 +134,28 @@
     <modules>
         <module>./BasicWebApp</module>
         <module>./ConsoleApp</module>
-        <module>./InitializerPlug</module>
         <module>./Struts2App</module>
         <module>./Spittr</module>
     </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

@@ -29,7 +29,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 
-        super.configureDefaultServletHandling(configurer);
+        //super.configureDefaultServletHandling(configurer);
 
         configurer.enable(); // 配置静态资源的处理
     }

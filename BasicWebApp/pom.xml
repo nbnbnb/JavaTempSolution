@@ -38,5 +38,11 @@
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>me.zhangjin.study</groupId>
+            <artifactId>study-InitializerPlug</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>
