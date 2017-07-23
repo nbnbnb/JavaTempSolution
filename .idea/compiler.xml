@@ -9,6 +9,7 @@
         <module name="BasicWebApp" />
         <module name="ConsoleApp" />
         <module name="InitializerPlug" />
+        <module name="Spittr" />
         <module name="Struts2App" />
       </profile>
     </annotationProcessing>
@@ -16,6 +17,7 @@
       <module name="BasicWebApp" target="1.8" />
       <module name="ConsoleApp" target="1.8" />
       <module name="InitializerPlug" target="1.8" />
+      <module name="Spittr" target="1.8" />
       <module name="Struts2App" target="1.8" />
       <module name="study-parent" target="1.8" />
     </bytecodeTargetLevel>

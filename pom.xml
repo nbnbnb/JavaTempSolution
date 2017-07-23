@@ -24,10 +24,10 @@
 
         <struts2-core.version>2.5.12</struts2-core.version>
 
-        <spring-context.version>4.3.9.RELEASE</spring-context.version>
-        <spring-web.version>4.3.9.RELEASE</spring-web.version>
-        <org.springframework.test.version>3.2.1.RELEASE</org.springframework.test.version>
 
+        <springModule.version>4.3.9.RELEASE</springModule.version>
+
+        <org.springframework.test.version>3.2.1.RELEASE</org.springframework.test.version>
         <aspectjweaver.version>1.8.10</aspectjweaver.version>
 
         <javax.inject.version>1</javax.inject.version>
@@ -89,22 +89,38 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
-                <version>${spring-context.version}</version>
+                <version>${springModule.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${springModule.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc-portlet</artifactId>
+                <version>${springModule.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-websocket</artifactId>
+                <version>${springModule.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${springModule.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectjweaver.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>org.springframework.test</artifactId>
                 <version>${org.springframework.test.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-web</artifactId>
-                <version>${spring-context.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjweaver</artifactId>
-                <version>${aspectjweaver.version}</version>
             </dependency>
 
         </dependencies>
@@ -115,6 +131,7 @@
         <module>./ConsoleApp</module>
         <module>./InitializerPlug</module>
         <module>./Struts2App</module>
+        <module>./Spittr</module>
     </modules>
 
 </project>
