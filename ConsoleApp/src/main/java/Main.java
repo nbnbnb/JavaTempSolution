@@ -1,4 +1,4 @@
-import demos.SpringDemo;
+import demos.GuavaDemo;
 
 /**
  * Created by ZhangJin on 2017/7/8.
@@ -11,6 +11,6 @@ public class Main {
     }
 
     public static void Demo() {
-        SpringDemo.getStart();
+        GuavaDemo.optionalDemo();
     }
 }

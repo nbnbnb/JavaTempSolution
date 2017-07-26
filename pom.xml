@@ -30,9 +30,9 @@
         <org.springframework.test.version>3.2.1.RELEASE</org.springframework.test.version>
         <aspectjweaver.version>1.8.10</aspectjweaver.version>
 
-
-
         <commons-lang3.verson>3.6</commons-lang3.verson>
+
+        <guava.versioin>22.0</guava.versioin>
     </properties>
 
     <dependencyManagement>
@@ -143,6 +143,12 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.verson}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.versioin}</version>
             </dependency>
 
         </dependencies>
