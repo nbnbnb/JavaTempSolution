@@ -1,8 +1,9 @@
 package concert;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
 public class Audience {
@@ -41,7 +42,6 @@ public class Audience {
 
     @Around("performance()")
     public void watchPerformance(ProceedingJoinPoint jp) {
-
         try {
             System.out.println("Silencing cell phones");
             System.out.println("Taking seats");
