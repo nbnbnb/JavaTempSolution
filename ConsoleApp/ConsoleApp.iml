@@ -17,6 +17,18 @@
           <file>file://$MODULE_DIR$/src/main/resources/cd-config.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/helloworld-config.xml</file>
         </fileset>
+        <fileset id="fileset3" name="Spring Application Context (3)" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/cd-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/helloworld-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/hello/Application.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/concert/ConcertConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/overturn/event/DemoPublisher.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/overturn/ELConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/concert/HelloWorldConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/overturn/PrePostConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/soundsystem/SoundSystemConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/concert/TrackCounterConfig.java</file>
+        </fileset>
       </configuration>
     </facet>
   </component>
