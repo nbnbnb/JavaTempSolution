@@ -5,7 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/BasicWebApp/BasicWebApp.iml" filepath="$PROJECT_DIR$/BasicWebApp/BasicWebApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/ConsoleApp/ConsoleApp.iml" filepath="$PROJECT_DIR$/ConsoleApp/ConsoleApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/Spittr/Spittr.iml" filepath="$PROJECT_DIR$/Spittr/Spittr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBootApp/SpringBootApp.iml" filepath="$PROJECT_DIR$/SpringBootApp/SpringBootApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/Struts2App/Struts2App.iml" filepath="$PROJECT_DIR$/Struts2App/Struts2App.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBootApp/study-SpringBootApp.iml" filepath="$PROJECT_DIR$/SpringBootApp/study-SpringBootApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/study-parent.iml" filepath="$PROJECT_DIR$/study-parent.iml" />
     </modules>
   </component>

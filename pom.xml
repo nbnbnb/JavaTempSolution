@@ -164,6 +164,21 @@
                 <artifactId>jsr250-api</artifactId>
                 <version>1.0</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>ojdbc6</artifactId>
+                <version>11.2.0.3</version>
+            </dependency>
+
+            <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>1.5.6.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -172,6 +187,7 @@
         <module>./ConsoleApp</module>
         <module>./Struts2App</module>
         <module>./Spittr</module>
+        <module>./SpringBootApp</module>
     </modules>
 
     <build>
@@ -199,6 +215,10 @@
                     <!-- 指明编译源代码时使用的字符编码， maven编译的时候默认使用的GBK编码，通过encoding属性设置字符编码，告诉maven这个项目使用UTF-8来编译 -->
                     <encoding>utf8</encoding>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

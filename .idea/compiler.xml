@@ -9,7 +9,9 @@
         <module name="BasicWebApp" />
         <module name="ConsoleApp" />
         <module name="Spittr" />
+        <module name="SpringBootApp" />
         <module name="Struts2App" />
+        <module name="study-SpringBootApp" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
@@ -17,8 +19,10 @@
       <module name="ConsoleApp" target="1.8" />
       <module name="InitializerPlug" target="1.8" />
       <module name="Spittr" target="1.8" />
+      <module name="SpringBootApp" target="1.8" />
       <module name="Struts2App" target="1.8" />
       <module name="study-parent" target="1.8" />
+      <module name="study-SpringBootApp" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
