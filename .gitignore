@@ -2,4 +2,4 @@ lib/
 out/
 target/
 .idea/workspace.xml
-.idea/dataSources/
+.idea/dataSources/**
