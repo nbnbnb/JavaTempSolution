@@ -3,31 +3,21 @@
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="fileset2" name="Spring Application Context (2)" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/cd-config.xml</file>
-          <file>file://$MODULE_DIR$/src/main/java/hello/Application.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/soundsystem/SoundSystemConfig.java</file>
-        </fileset>
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/main/java/hello/Application.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/aware/AwareConfig.java</file>
           <file>file://$MODULE_DIR$/src/main/java/concert/ConcertConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/concert/HelloWorldConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/soundsystem/SoundSystemConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/concert/TrackCounterConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cd-config.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/helloworld-config.xml</file>
-        </fileset>
-        <fileset id="fileset3" name="Spring Application Context (3)" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/cd-config.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/helloworld-config.xml</file>
-          <file>file://$MODULE_DIR$/src/main/java/hello/Application.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/concert/ConcertConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/conditional/ConditionConfig.java</file>
           <file>file://$MODULE_DIR$/src/main/java/overturn/event/DemoPublisher.java</file>
           <file>file://$MODULE_DIR$/src/main/java/overturn/ELConfig.java</file>
           <file>file://$MODULE_DIR$/src/main/java/concert/HelloWorldConfig.java</file>
           <file>file://$MODULE_DIR$/src/main/java/overturn/PrePostConfig.java</file>
           <file>file://$MODULE_DIR$/src/main/java/soundsystem/SoundSystemConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/taskexecutor/TaskExecutorConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/taskscheduler/TaskSchedulerConfig.java</file>
           <file>file://$MODULE_DIR$/src/main/java/concert/TrackCounterConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/resources/cd-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/helloworld-config.xml</file>
         </fileset>
       </configuration>
     </facet>
