@@ -29,10 +29,13 @@ public class Main {
     public static void Demo() {
         try {
 
+            Arrays.sort(null, String.CASE_INSENSITIVE_ORDER);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
+
 
 
