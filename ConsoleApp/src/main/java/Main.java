@@ -1,3 +1,6 @@
+import com.sun.javafx.image.IntPixelGetter;
+import javafx.util.Pair;
+
 import java.lang.reflect.Constructor;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -6,9 +9,8 @@ import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by ZhangJin on 2017/7/8.
@@ -27,12 +29,10 @@ public class Main {
     public static void Demo() {
         try {
 
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
 }
+
 
