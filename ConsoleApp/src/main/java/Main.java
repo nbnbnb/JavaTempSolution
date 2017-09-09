@@ -1,5 +1,9 @@
 import com.sun.javafx.image.IntPixelGetter;
+import demos.JdbcDemo;
 import javafx.util.Pair;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 
 import java.lang.reflect.Constructor;
 import java.time.*;
@@ -29,13 +33,14 @@ public class Main {
     public static void Demo() {
         try {
 
-            Arrays.sort(null, String.CASE_INSENSITIVE_ORDER);
+            JdbcDemo.basicQueryForSQLServer();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
+
 
 
 
