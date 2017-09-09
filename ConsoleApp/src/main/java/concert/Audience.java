@@ -1,6 +1,6 @@
 package concert;
 
-import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
@@ -24,29 +24,37 @@ public class Audience {
     public void performance() {
     }
 
-    /*
+
     @Before("performance())")
-    public void silenceCellPhones() {
+    public void silenceCellPhones(JoinPoint joinPoint) {
+        System.out.println("AspectJ Method Is: " + joinPoint.getSignature().getName());
         System.out.println("Silencing cell phones");
     }
 
     @Before("performance())")
-    public void takeSeats() {
+    public void takeSeats(JoinPoint joinPoint) {
         System.out.println("Taking seats");
     }
 
-    @AfterReturning("performance())")
-    public void applause() {
+    @After("performance()")
+    public void after(JoinPoint joinPoint) {
+        // 在原始方法执行完后执行
+        System.out.println("after aspect executed");
+    }
+
+    @AfterReturning(pointcut = "performance())", returning = "returnVal")
+    public void applause(JoinPoint joinPoint, Object returnVal) {
+        // 在 @After 执行完后执行
         System.out.println("CLAP CLAP CLAP!!!");
+        System.out.println("Result is: " + returnVal);
     }
 
     @AfterThrowing("performance())")
-    public void demandRefund() {
+    public void demandRefund(JoinPoint joinPoint) {
         System.out.println("Demanding a refund");
     }
 
-    */
-
+    /*
     // 环绕通知方法
     @Around("performance()")
     public void watchPerformance(ProceedingJoinPoint joinPoint) {
@@ -62,4 +70,5 @@ public class Audience {
             System.out.println("Demanding a refund");
         }
     }
+    */
 }
