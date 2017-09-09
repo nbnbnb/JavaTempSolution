@@ -1,25 +1,4 @@
-import com.sun.javafx.image.IntPixelGetter;
-import concert.Encoreable;
-import concert.Performance;
-import config.AppConfig;
-import demos.JdbcDemo;
-import javafx.util.Pair;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.lang.reflect.Constructor;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoField;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAdjuster;
-import java.time.temporal.TemporalAdjusters;
-import java.util.*;
-import java.util.stream.Collectors;
+import demos.SpringDemo;
 
 /**
  * Created by ZhangJin on 2017/7/8.
@@ -36,17 +15,8 @@ public class Main {
     }
 
     public static void Demo() {
-
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-
         try {
-            Performance performance= context.getBean(Performance.class);
-            performance.doIt();
-
-            // 由于实现了“引入新功能”
-            // 此处转型为新功能接口
-            Encoreable encoreable = (Encoreable) performance;
-            encoreable.performEncore();
+            SpringDemo.aopDemo();
         } catch (Exception e) {
             e.printStackTrace();
         }

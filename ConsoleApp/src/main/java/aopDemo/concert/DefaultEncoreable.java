@@ -1,4 +1,4 @@
-package concert;
+package aopDemo.concert;
 
 public class DefaultEncoreable implements Encoreable {
     @Override

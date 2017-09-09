@@ -1,4 +1,4 @@
-package concert;
+package aopDemo.concert;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.DeclareParents;
@@ -16,7 +16,7 @@ public class EncoreableIntroducer {
     // 标记符后面的加号表示是 Performance 的所有子类型， 而不是 Performance 本身
     // defaultImpl 属性指定了为引入功能提供实现的类。 在这里，我们指定的是 DefaultEncoreable 提供实现。
     // @DeclareParents 注解所标注的静态属性指明了要引入的接口。 在这里， 我们所引入的是 Encoreable 接口。
-    @DeclareParents(value = "concert.Performance+", defaultImpl = DefaultEncoreable.class)
+    @DeclareParents(value = "aopDemo.concert.Performance+", defaultImpl = DefaultEncoreable.class)
     public static Encoreable encoreable;
 
 }
