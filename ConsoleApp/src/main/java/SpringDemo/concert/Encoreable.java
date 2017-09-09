@@ -1,4 +1,4 @@
-package aopDemo.concert;
+package SpringDemo.concert;
 
 public interface Encoreable {
 

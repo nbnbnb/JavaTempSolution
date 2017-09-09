@@ -1,4 +1,4 @@
-package aopDemo.concert;
+package SpringDemo.concert;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -17,10 +17,10 @@ public class Audience {
     // 切点表达式
     // execution 表示在方法执行的时候触发
     // * 表示返回任意类型
-    // aopDemo.concert.Performance 表方法的类
+    // SpringDemo.concert.Performance 表方法的类
     // * 表示所有的方法
     // (..) 表示使用任意参数
-    @Pointcut("execution(* aopDemo.concert.Performance.*(..))")
+    @Pointcut("execution(* SpringDemo.concert.Performance.*(..))")
     public void performance() {
     }
 

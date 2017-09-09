@@ -1,7 +1,7 @@
 package demos;
 
-import aopDemo.concert.Encoreable;
-import aopDemo.concert.Performance;
+import SpringDemo.concert.Encoreable;
+import SpringDemo.concert.Performance;
 import config.AppConfig;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
