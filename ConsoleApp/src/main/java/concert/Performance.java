@@ -1,5 +1,7 @@
 package concert;
 
 public interface Performance {
-    void perform();
+    String perform();
+
+    void doIt();
 }

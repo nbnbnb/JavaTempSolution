@@ -40,7 +40,7 @@ public class Main {
 
         try {
             Performance performance= context.getBean(Performance.class);
-            performance.perform();
+            performance.doIt();
         } catch (Exception e) {
             e.printStackTrace();
         }
