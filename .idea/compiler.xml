@@ -19,7 +19,6 @@
       <module name="Spittr" target="1.8" />
       <module name="SpringBootApp" target="1.8" />
       <module name="Struts2App" target="1.8" />
-      <module name="study-parent" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
