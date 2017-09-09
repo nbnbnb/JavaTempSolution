@@ -4,20 +4,7 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/java/hello/Application.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/aware/AwareConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/concert/ConcertConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/conditional/ConditionConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/overturn/event/DemoPublisher.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/overturn/ELConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/concert/HelloWorldConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/overturn/PrePostConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/soundsystem/SoundSystemConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/taskexecutor/TaskExecutorConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/taskscheduler/TaskSchedulerConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/concert/TrackCounterConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/resources/cd-config.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/helloworld-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/config/AppConfig.java</file>
         </fileset>
       </configuration>
     </facet>
@@ -34,7 +21,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
     <orderEntry type="library" name="Maven: com.hynnet:sqljdbc4-chs:4.0.2206.100" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
