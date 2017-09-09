@@ -1,9 +1,13 @@
 import com.sun.javafx.image.IntPixelGetter;
+import concert.Performance;
+import config.AppConfig;
 import demos.JdbcDemo;
 import javafx.util.Pair;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.lang.reflect.Constructor;
 import java.time.*;
@@ -31,10 +35,12 @@ public class Main {
     }
 
     public static void Demo() {
+
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
         try {
-
-            JdbcDemo.basicQueryForSQLServer();
-
+            Performance performance= context.getBean(Performance.class);
+            performance.perform();
         } catch (Exception e) {
             e.printStackTrace();
         }
