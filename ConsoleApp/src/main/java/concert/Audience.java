@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 // 指定一个切面
 @Aspect
+// 声明为一个 bean
 @Component
 public class Audience {
 

@@ -1,4 +1,5 @@
 import com.sun.javafx.image.IntPixelGetter;
+import concert.Encoreable;
 import concert.Performance;
 import config.AppConfig;
 import demos.JdbcDemo;
@@ -41,6 +42,11 @@ public class Main {
         try {
             Performance performance= context.getBean(Performance.class);
             performance.doIt();
+
+            // 由于实现了“引入新功能”
+            // 此处转型为新功能接口
+            Encoreable encoreable = (Encoreable) performance;
+            encoreable.performEncore();
         } catch (Exception e) {
             e.printStackTrace();
         }
