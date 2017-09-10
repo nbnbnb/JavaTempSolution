@@ -16,7 +16,7 @@ public class Main {
 
     public static void Demo() {
         try {
-            SpringDemo.aopDemo();
+            SpringDemo.executionDemo();
         } catch (Exception e) {
             e.printStackTrace();
         }
