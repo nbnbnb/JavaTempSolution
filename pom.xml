@@ -10,8 +10,9 @@
     <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!--解决 maven test 乱码问题-->
+        <argLine>-Dfile.encoding=UTF-8</argLine>
 
         <junit.version>4.12</junit.version>
 
@@ -23,7 +24,6 @@
         <taglibs-standard.version>1.2.5</taglibs-standard.version>
 
         <struts2-core.version>2.5.12</struts2-core.version>
-
 
         <springModule.version>4.3.9.RELEASE</springModule.version>
 
@@ -191,6 +191,8 @@
 
     <build>
         <plugins>
+            <!--打包源码插件-->
+            <!--
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>3.0.1</version>
@@ -206,6 +208,7 @@
                     </execution>
                 </executions>
             </plugin>
+            -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>

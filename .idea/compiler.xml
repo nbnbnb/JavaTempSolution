@@ -16,8 +16,9 @@
     <bytecodeTargetLevel target="1.8">
       <module name="BasicWebApp" target="1.8" />
       <module name="ConsoleApp" target="1.8" />
+      <module name="JavaTempSolution" target="1.8" />
       <module name="Spittr" target="1.8" />
-      <module name="SpringBootApp" target="1.8" />
+      <module name="SpringBootApp" target="1.6" />
       <module name="Struts2App" target="1.8" />
     </bytecodeTargetLevel>
   </component>
