@@ -13,6 +13,7 @@
 
         <!--解决 maven test 乱码问题-->
         <argLine>-Dfile.encoding=UTF-8</argLine>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <junit.version>4.12</junit.version>
 
