@@ -54,7 +54,7 @@
                 <version>${sqljdbc4-chs.verioin}</version>
             </dependency>
 
-            <!-- Servlet & Jsp -->
+            <!-- Extention.Servlet & Jsp -->
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>

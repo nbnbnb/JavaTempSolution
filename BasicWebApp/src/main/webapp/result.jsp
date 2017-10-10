@@ -60,7 +60,7 @@ URIEncoding是对所有GET方式的请求的数据进行统一的重新编码，
 
 而useBodyEncodingForURI则是根据响应该请求的页面的request.setCharacterEncoding参数对数据进行的重新编码，不同的页面可以有不同的重新编码的编码
 
-通过添加 SetCharacterEncodingFilter 过滤器解决所有问题（为所有的 POST/GET 解码设置为 UTF-8，不使用默认的 ISO-8859-1）
+通过添加 Extention.Filter.SetCharacterEncodingFilter 过滤器解决所有问题（为所有的 POST/GET 解码设置为 UTF-8，不使用默认的 ISO-8859-1）
 request.setCharacterEncoding(encoding);
 chain.doFilter(request, response);
 -->

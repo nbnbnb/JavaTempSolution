@@ -1,3 +1,5 @@
+package Entities;
+
 import javax.servlet.ServletRequestAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;

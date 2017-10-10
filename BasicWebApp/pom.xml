@@ -21,7 +21,7 @@
             <artifactId>sqljdbc4-chs</artifactId>
         </dependency>
 
-        <!-- Servlet & Jsp -->
+        <!-- Extention.Servlet & Jsp -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>

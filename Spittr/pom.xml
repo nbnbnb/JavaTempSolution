@@ -36,7 +36,7 @@
             <artifactId>spring-webmvc</artifactId>
         </dependency>
 
-        <!-- Servlet & Jsp -->
+        <!-- Extention.Servlet & Jsp -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
