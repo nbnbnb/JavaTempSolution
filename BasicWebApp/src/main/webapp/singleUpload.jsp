@@ -16,7 +16,7 @@
     Author: <input type="text" name="author" />
     <br/>
     Select file to upload
-    <input type="file" name="filename" />
+    <input type="file" name="binaryFile" />
     <br/>
     <input type="submit" value="Upload" />
 </form>

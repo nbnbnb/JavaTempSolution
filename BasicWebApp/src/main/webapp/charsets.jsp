@@ -65,46 +65,51 @@ request.setCharacterEncoding(encoding);
 chain.doFilter(request, response);
 -->
 
-<%@ page contentType="text/html;charset=utf-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Resutl Page</title>
+    <title>Charsets Page</title>
 </head>
 <body>
-<%
-    // 可以在 Tomcat 读取默认编码之前进行显式设置
-    // 这个方法只对 POST 方法生效
-    // request.setCharacterEncoding("utf8");
-
-    String abc = null;
-    if (request != null) {
-        // 如果是 get 方式传递参数
-        // 此时的 abc 已经表示用 UTF-8 进行过解码
-        // 如果传递方不是用 UTF-8 进行的编码，此处就会乱码
-        abc = request.getParameter("abc");
-    }
-    if (abc == null) {
-        out.println("空值");
-    } else {
-        out.println("原始编码：");
-        out.println(abc);
-        out.println("</br>");
-        out.println("ISO-8859-1 to utf8 编码：");
-        String abc1 = new String(abc.getBytes("ISO-8859-1"), "utf8");
-        System.out.println(abc1);
-        out.println(abc1);
-        out.println("</br>");
-        out.println("ISO-8859-1 to gbk 编码：");
-        String abc2 = new String(abc.getBytes("ISO-8859-1"), "gbk");
-        out.println(abc2);
-    }
-%>
-
-</br>
-</br>
-</br>
 
 <a href="input.jsp">返回</a>
+
+</br>
+</br>
+</br>
+
+
+<%
+
+    if (request != null) {
+        // 如果是 get 方式传递参数
+        // 此时的 input 已经表示用 UTF-8 进行过解码
+        // 如果传递方式不是用 UTF-8 进行的编码，此处就会乱码
+        String input = request.getParameter("input");
+
+        if(input!=null) {
+            out.println("请求方式：");
+            out.println(request.getMethod());
+            out.println("</br>");
+            out.println("原始编码：");
+            // 使用了 SetCharacterEncodingFilter 过滤器
+            // 所以默认都使用了 UTF-8 方式进行解码
+            out.println(input);
+            out.println("</br>");
+            out.println("ISO-8859-1（Latin-1） to utf8 编码：");
+            String tp = new String(input.getBytes("ISO-8859-1"), "utf8");
+            out.println(tp);
+            out.println("</br>");
+            out.println("ISO-8859-1（Latin-1） to gbk 编码：");
+            tp = new String(input.getBytes("ISO-8859-1"), "gbk");
+            out.println(tp);
+        }
+    }else {
+        out.println("request == null");
+    }
+
+%>
+
 
 </body>
 </html>

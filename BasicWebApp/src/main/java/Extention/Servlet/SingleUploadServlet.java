@@ -35,22 +35,21 @@ public class SingleUploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         // save uploaded file to WEB-INF
-        Part part = req.getPart("filename");
+        Part part = req.getPart("binaryFile");
         // 文件名需要在 content-disposition 域中获取
+
         String fileName = getFileName(part);
         if (fileName != null && fileName.length() != 0) {
             part.write(getServletContext().getRealPath("/WEB-INF") + "/" + fileName);
         }
 
         // write to browser
-        resp.setContentType("text/html");
+        resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
         writer.print("<br/>Upload file name: " + fileName);
         writer.print("<br/>Size: " + part.getSize());
 
-
-        String author = req.getParameter("author");
-        writer.print("<br/>Autho: " + author);
+        writer.print("<br/>Author: " + req.getParameter("author"));
 
     }
 }
