@@ -8,9 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="BasicWebApp" />
         <module name="ConsoleApp" />
-        <module name="Spittr" />
         <module name="SpringBootApp" />
-        <module name="Struts2App" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">

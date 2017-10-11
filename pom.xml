@@ -203,8 +203,6 @@
     <modules>
         <module>./BasicWebApp</module>
         <module>./ConsoleApp</module>
-        <module>./Struts2App</module>
-        <module>./Spittr</module>
         <module>./SpringBootApp</module>
     </modules>
 
