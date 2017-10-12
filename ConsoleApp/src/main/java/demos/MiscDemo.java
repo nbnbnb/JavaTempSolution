@@ -31,7 +31,17 @@ public class MiscDemo {
         String jsonString = "{\"A\":\"2017-10-12 14:41:17\",\"B\":\"2017-10-12 14:41:17\",\"C\":\"2017-10-12\",\"D\":\"2017-10-12T14:41:17.068\"}";
         DateTimeClass times = SerializerHelper.toJsonObject(jsonString, DateTimeClass.class);
         System.out.println(times.A);
-        System.out.println(times.B);
+        System.out.println(times.B.getTime());
+        System.out.println(times.C);
+        System.out.println(times.D);
+
+        System.out.println();
+
+        // Date 同样也支持 Timestamp 格式序列化
+        jsonString = "{\"A\":1507790279021,\"B\":\"2017-10-12 14:41:17\",\"C\":\"2017-10-12\",\"D\":\"2017-10-12T14:41:17.068\"}";
+        times = SerializerHelper.toJsonObject(jsonString, DateTimeClass.class);
+        System.out.println(times.A);
+        System.out.println(times.B.getTime());
         System.out.println(times.C);
         System.out.println(times.D);
     }

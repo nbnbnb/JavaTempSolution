@@ -17,8 +17,7 @@ public class Main {
 
     public static void Demo() {
         try {
-            MiscDemo.toJsonStringTest();
-
+            MiscDemo.toJsonObjectTest();
         } catch (Exception e) {
             e.printStackTrace();
         }
