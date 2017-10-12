@@ -63,13 +63,13 @@ public class SerializerHelper {
         javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ISO_DATE_TIME));
         mapper.registerModule(javaTimeModule);
         // 添加 Module 后输出
-        // {"A":1507790356883,"B":1507790356883,"C":[2017,10,12],"D":[2017,10,12,14,39,16,883000000]}
+        // {"A":1507790279021,"B":1507790279021,"C":[2017,10,12],"D":[2017,10,12,14,37,59,21000000]}
         // 对 Date 和 Calendar 没影响，还是为 TimeStamp 形式
         // 对 LocalDate 和 LocalDateTime 有影响，输出为简化版本
 
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         // configure 后输出
-        // {"A":"2017-10-12T06:40:08.405+0000","B":"2017-10-12T06:40:08.405+0000","C":"2017-10-12","D":"2017-10-12T14:40:08.405"}
+        // {"A":"2017-10-12T06:37:59.021+0000","B":"2017-10-12T06:37:59.021+0000","C":"2017-10-12","D":"2017-10-12T14:37:59.021"}
         // 对所有格式都有影响
         // Date 和 Calendar 的时区为 0
         // LocalDate 和 LocalDateTime 无时区信息，并且显示为完整时间格式
@@ -78,7 +78,7 @@ public class SerializerHelper {
 
         mapper.setDateFormat(format);
         // 设置 yyyy-MM-dd HH:mm:ss 后输出
-        // {"A":"2017-10-12 14:41:17","B":"2017-10-12 14:41:17","C":"2017-10-12","D":"2017-10-12T14:41:17.068"}
+        // {"A":"2017-10-12 14:37:59","B":"2017-10-12 14:37:59","C":"2017-10-12","D":"2017-10-12T14:37:59.021"}
         // 对 Date 和 Calendar 有影响
         // 对 LocalDate 和 LocalDateTime 无影响
     }
