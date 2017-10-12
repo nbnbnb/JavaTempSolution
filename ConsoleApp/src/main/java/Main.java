@@ -1,4 +1,6 @@
+import demos.JdbcDemo;
 import demos.MiscDemo;
+import demos.SpringDemo;
 
 
 /**
@@ -11,13 +13,22 @@ public class Main {
 
     public static void main(String[] args) {
         log("----- start -----");
-        Demo();
+        //demo();
+        temp();
         log("-----  end  -----");
     }
 
-    public static void Demo() {
+    public static void demo() {
+        MiscDemo.toJsonObjectTest();
+        JdbcDemo.basicQueryForSQLServer();
+        MiscDemo.toJsonStringTest();
+        SpringDemo.aopDemo();
+        SpringDemo.executionDemo();
+    }
+
+    public static void temp() {
         try {
-            MiscDemo.toJsonObjectTest();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
