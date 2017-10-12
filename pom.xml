@@ -48,11 +48,13 @@
             </dependency>
 
             <!-- SQL Server JDBC -->
+            <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/sqljdbc4 -->
             <dependency>
-                <groupId>com.hynnet</groupId>
-                <artifactId>sqljdbc4-chs</artifactId>
-                <version>${sqljdbc4-chs.verioin}</version>
+                <groupId>com.microsoft.sqlserver</groupId>
+                <artifactId>sqljdbc4</artifactId>
+                <version>4.0</version>
             </dependency>
+
 
             <!-- Extention.Servlet & Jsp -->
             <dependency>
@@ -183,6 +185,7 @@
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest-library</artifactId>
                 <version>1.4-atlassian-1</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <!-- Import dependency management from Spring Boot -->

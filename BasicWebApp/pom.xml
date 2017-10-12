@@ -17,8 +17,8 @@
     <dependencies>
         <!-- SQL Server JDBC -->
         <dependency>
-            <groupId>com.hynnet</groupId>
-            <artifactId>sqljdbc4-chs</artifactId>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>sqljdbc4</artifactId>
         </dependency>
 
         <!-- Extention.Servlet & Jsp -->
