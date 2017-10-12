@@ -1,4 +1,4 @@
-import demos.SpringDemo;
+import demos.MiscDemo;
 
 /**
  * Created by ZhangJin on 2017/7/8.
@@ -16,7 +16,7 @@ public class Main {
 
     public static void Demo() {
         try {
-            SpringDemo.executionDemo();
+            MiscDemo.test();
         } catch (Exception e) {
             e.printStackTrace();
         }
