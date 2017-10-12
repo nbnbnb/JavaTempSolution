@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         log("----- start -----");
-        //demo();
+        demo();
         temp();
         log("-----  end  -----");
     }

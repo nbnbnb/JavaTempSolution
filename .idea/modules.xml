@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/BasicWebApp/BasicWebApp.iml" filepath="$PROJECT_DIR$/BasicWebApp/BasicWebApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/ConsoleApp/ConsoleApp.iml" filepath="$PROJECT_DIR$/ConsoleApp/ConsoleApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaTempSolution.iml" filepath="$PROJECT_DIR$/JavaTempSolution.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpringBootApp/SpringBootApp.iml" filepath="$PROJECT_DIR$/SpringBootApp/SpringBootApp.iml" />
     </modules>
   </component>
 </project>

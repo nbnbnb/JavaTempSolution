@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="BasicWebApp" />
         <module name="ConsoleApp" />
-        <module name="SpringBootApp" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">

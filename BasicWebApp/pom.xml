@@ -15,13 +15,7 @@
     </parent>
 
     <dependencies>
-        <!-- SQL Server JDBC -->
-        <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>sqljdbc4</artifactId>
-        </dependency>
-
-        <!-- Extention.Servlet & Jsp -->
+        <!-- Servlet & JSP -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -38,13 +32,6 @@
             <groupId>org.apache.taglibs</groupId>
             <artifactId>taglibs-standard-impl</artifactId>
         </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>me.zhangjin.study</groupId>-->
-            <!--<artifactId>study-InitializerPlug</artifactId>-->
-            <!--<version>0.0.1-SNAPSHOT</version>-->
-        <!--</dependency>-->
     </dependencies>
-
 
 </project>

@@ -32,6 +32,11 @@ public class SingleUploadServlet extends HttpServlet {
     }
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.sendRedirect("singleUpload.jsp");
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         // save uploaded file to WEB-INF
@@ -48,7 +53,6 @@ public class SingleUploadServlet extends HttpServlet {
         PrintWriter writer = resp.getWriter();
         writer.print("<br/>Upload file name: " + fileName);
         writer.print("<br/>Size: " + part.getSize());
-
         writer.print("<br/>Author: " + req.getParameter("author"));
 
     }

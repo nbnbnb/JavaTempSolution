@@ -53,6 +53,7 @@
       <set>
         <option value="$PROJECT_DIR$/InitializerPlug/pom.xml" />
         <option value="$PROJECT_DIR$/Spittr/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBootApp/pom.xml" />
         <option value="$PROJECT_DIR$/Struts2App/pom.xml" />
       </set>
     </option>
