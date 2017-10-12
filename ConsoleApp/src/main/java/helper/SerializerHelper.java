@@ -64,7 +64,7 @@ public class SerializerHelper {
         mapper.registerModule(javaTimeModule);
         // 添加 Module 后输出
         // {"A":1507790356883,"B":1507790356883,"C":[2017,10,12],"D":[2017,10,12,14,39,16,883000000]}
-        // Date 和 Calendar 没影响，还是为 TimeStamp 形式
+        // 对 Date 和 Calendar 没影响，还是为 TimeStamp 形式
         // 对 LocalDate 和 LocalDateTime 有影响，输出为简化版本
 
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
@@ -73,6 +73,7 @@ public class SerializerHelper {
         // 对所有格式都有影响
         // Date 和 Calendar 的时区为 0
         // LocalDate 和 LocalDateTime 无时区信息，并且显示为完整时间格式
+        // LocalDateTime 为带 (T) 的格式
 
 
         mapper.setDateFormat(format);

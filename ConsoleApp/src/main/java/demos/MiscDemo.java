@@ -11,7 +11,7 @@ import java.util.Date;
  * Created by jinzhanga on 2017/10/12.
  */
 public class MiscDemo {
-    public static void test() {
+    public static void toJsonStringTest() {
         DateTimeClass times = new DateTimeClass() {
             {
                 long now = 1507790279021L;
@@ -27,5 +27,13 @@ public class MiscDemo {
         System.out.println(SerializerHelper.toJsonString(times));
     }
 
+    public static void toJsonObjectTest() {
+        String jsonString = "{\"A\":\"2017-10-12 14:41:17\",\"B\":\"2017-10-12 14:41:17\",\"C\":\"2017-10-12\",\"D\":\"2017-10-12T14:41:17.068\"}";
+        DateTimeClass times = SerializerHelper.toJsonObject(jsonString, DateTimeClass.class);
+        System.out.println(times.A);
+        System.out.println(times.B);
+        System.out.println(times.C);
+        System.out.println(times.D);
+    }
 
 }

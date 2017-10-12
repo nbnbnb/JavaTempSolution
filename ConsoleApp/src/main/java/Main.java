@@ -1,5 +1,6 @@
 import demos.MiscDemo;
 
+
 /**
  * Created by ZhangJin on 2017/7/8.
  */
@@ -16,7 +17,8 @@ public class Main {
 
     public static void Demo() {
         try {
-            MiscDemo.test();
+            MiscDemo.toJsonObjectTest();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
