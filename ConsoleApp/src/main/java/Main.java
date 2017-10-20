@@ -1,4 +1,4 @@
-import demos.JdbcDemo;
+import demos.KotlinDemoKt;
 import demos.MiscDemo;
 import demos.SpringDemo;
 
@@ -13,14 +13,14 @@ public class Main {
 
     public static void main(String[] args) {
         log("----- start -----");
-        demo();
+        //demo();
         temp();
         log("-----  end  -----");
     }
 
     public static void demo() {
         MiscDemo.toJsonObjectTest();
-        JdbcDemo.basicQueryForSQLServer();
+        // JdbcDemo.basicQueryForSQLServer(); 需要连接 SQLServer
         MiscDemo.toJsonStringTest();
         SpringDemo.aopDemo();
         SpringDemo.executionDemo();
@@ -28,7 +28,7 @@ public class Main {
 
     public static void temp() {
         try {
-
+            KotlinDemoKt.test();
         } catch (Exception e) {
             e.printStackTrace();
         }
