@@ -43,7 +43,7 @@ class Audience {
     }
 
     @AfterReturning(pointcut = "performance())", returning = "returnVal")
-    fun applause(joinPoint: JoinPoint, returnVal: Any) {
+    fun applause(joinPoint: JoinPoint, returnVal: Any?) {
         // 在 @After 执行完后执行
         println("CLAP CLAP CLAP!!!")
         println("Result is: " + returnVal)

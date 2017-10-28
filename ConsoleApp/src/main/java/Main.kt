@@ -14,14 +14,14 @@ object Main {
     @JvmStatic
     fun main(args: Array<String>) {
         log("----- start -----")
-        //demo();
+        demo()
         temp()
         log("-----  end  -----")
     }
 
     fun demo() {
         MiscDemo.toJsonObjectTest()
-        // JdbcDemo.basicQueryForSQLServer(); 需要连接 SQLServer
+        JdbcDemo.basicQueryForSQLServer() //需要连接 SQLServer
         MiscDemo.toJsonStringTest()
         SpringDemo.aopDemo()
         SpringDemo.executionDemo()
