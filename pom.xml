@@ -174,11 +174,11 @@
                             例如，当你使用 Spring 时，你不需要打开所有的类，而只需要使用特定的注解标注，如 @Configuration 或 @Service。
                             all-open 插件允许指定这些注解。
                         -->
-                        <plugin>all-open</plugin>
+                        <!--<plugin>all-open</plugin>-->
                         <!-- 或者 "spring" 对于 Spring 支持 -->
-                        <plugin>spring</plugin>
+                        <!--<plugin>spring</plugin>-->
                         <!-- 或者 "jpa" 对于 JPA 支持 -->
-                        <plugin>no-arg</plugin>
+                        <!--<plugin>no-arg</plugin>-->
                     </compilerPlugins>
                     <pluginOptions>
                         <!--<option>no-arg:annotation=com.my.Annotation</option>-->
