@@ -14,7 +14,6 @@
           <element id="library" level="project" name="Maven: org.jetbrains:annotations:13.0" />
           <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jre7:1.1.51" />
           <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-reflect:1.1.51" />
-          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-maven-allopen:1.1.51" />
         </element>
       </element>
       <element id="directory" name="META-INF">
