@@ -6,3 +6,4 @@ target/
 .idea/dataSources.local.xml
 .idea/libraries/
 .idea/preferred-vcs.xml
+*.orig

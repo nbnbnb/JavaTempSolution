@@ -27,6 +27,7 @@
         <guava.versioin>22.0</guava.versioin>
         <commons-io.version>2.5</commons-io.version>
         <jackson.version>2.9.1</jackson.version>
+        <spring-boot.version>1.5.6.RELEASE</spring-boot.version>
     </properties>
 
     <dependencyManagement>
@@ -121,7 +122,6 @@
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-allopen</artifactId>
                 <version>${kotlin.version}</version>
-                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -173,11 +173,37 @@
                 <configuration>
                     <jvmTarget>1.8</jvmTarget>
                     <compilerPlugins>
+                        <!--
+                            Kotlin 有类及其默认为 final 的成员，这使得像 Spring AOP 这样需要类为 open 的框架和库用起来很不方便。
+                            这个 all-open 编译器插件会适配 Kotlin 以满足那些框架的需求，并使用指定的注解标注类而其成员无需显式使用 open 关键字打开。
+                            例如，当你使用 Spring 时，你不需要打开所有的类，而只需要使用特定的注解标注，如 @Configuration 或 @Service。
+                            all-open 插件允许指定这些注解。
+                        -->
+                        <!--<plugin>all-open</plugin>-->
                         <!-- 或者 "spring" 对于 Spring 支持 -->
-                        <!--<plugin>kotlin-allopen</plugin>-->
-                        <plugin>kotlin-spring</plugin>
+                        <!--<plugin>spring</plugin>-->
+                        <!-- 或者 "jpa" 对于 JPA 支持 -->
+                        <!--<plugin>no-arg</plugin>-->
                     </compilerPlugins>
+                    <pluginOptions>
+                        <!--<option>no-arg:annotation=com.my.Annotation</option>-->
+                        <!-- 在合成的构造函数中调用实例初始化器 -->
+                        <!-- <option>no-arg:invokeInitializers=true</option> -->
+                    </pluginOptions>
                 </configuration>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-allopen</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-noarg</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -213,7 +239,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>1.5.6.RELEASE</version>
+                <version>${spring-boot.version}</version>
             </plugin>
         </plugins>
     </build>
