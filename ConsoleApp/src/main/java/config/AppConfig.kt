@@ -12,4 +12,5 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy
 
 @ComponentScan(basePackages = arrayOf("config", "demos", "SpringDemo.concert"))
 @EnableAspectJAutoProxy   // 启动 AspectJ 自动代理
-class AppConfig
+@Configuration
+open class AppConfig
