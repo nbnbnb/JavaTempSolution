@@ -3,7 +3,7 @@ package demos
 /**
  * 声明协变性和逆变性
  */
-internal class Generic {
+private class Generic {
     fun setApple(abc: ABC<in Apple>) {
         // 逆变性
         // 原理：如果只能向集合中放入项目，就可以用 Object 集合向其中放入 String
@@ -41,12 +41,12 @@ internal class Generic {
     }
 }
 
-internal class ABC<T> {
+private class ABC<T> {
     var theType: T? = null
 }
 
-internal open class Fruit
+private open class Fruit
 
-internal open class Apple : Fruit()
+private open class Apple : Fruit()
 
-internal class RedApple : Apple()
+private class RedApple : Apple()
