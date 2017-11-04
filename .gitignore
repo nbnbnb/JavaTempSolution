@@ -7,3 +7,4 @@ target/
 .idea/libraries/
 .idea/preferred-vcs.xml
 *.orig
+.idea/misc.xml
