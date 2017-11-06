@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BasicWebApp/BasicWebApp.iml" filepath="$PROJECT_DIR$/BasicWebApp/BasicWebApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/ConsoleApp/ConsoleApp.iml" filepath="$PROJECT_DIR$/ConsoleApp/ConsoleApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/study-parent.iml" filepath="$PROJECT_DIR$/JavaTempSolution.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaTempSolution.iml" filepath="$PROJECT_DIR$/JavaTempSolution.iml" />
     </modules>
   </component>
 </project>
