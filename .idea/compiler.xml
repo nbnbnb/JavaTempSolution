@@ -10,14 +10,10 @@
         <module name="ConsoleApp" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8">
-      <module name="BasicWebApp" target="1.8" />
-      <module name="ConsoleApp" target="1.8" />
-      <module name="JavaTempSolution" target="1.8" />
-      <module name="Spittr" target="1.8" />
-      <module name="SpringBootApp" target="1.8" />
-      <module name="Struts2App" target="1.8" />
-      <module name="study-parent" target="1.8" />
+    <bytecodeTargetLevel target="9">
+      <module name="BasicWebApp" target="9" />
+      <module name="ConsoleApp" target="9" />
+      <module name="JavaTempSolution" target="9" />
     </bytecodeTargetLevel>
   </component>
 </project>
