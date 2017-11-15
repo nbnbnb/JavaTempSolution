@@ -15,7 +15,7 @@
     </modules>
 
     <properties>
-        <kotlin.version>1.1.51</kotlin.version>
+        <kotlin.version>1.1.60</kotlin.version>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
         <!--解决 maven test 乱码问题-->
         <argLine>-Dfile.encoding=UTF-8</argLine>
@@ -32,7 +32,7 @@
         <guava.versioin>22.0</guava.versioin>
         <commons-io.version>2.5</commons-io.version>
         <jackson.version>2.9.1</jackson.version>
-        <spring-boot.version>1.5.6.RELEASE</spring-boot.version>
+        <spring-boot.version>1.5.8.RELEASE</spring-boot.version>
     </properties>
 
     <dependencies>
