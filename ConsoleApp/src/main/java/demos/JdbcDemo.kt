@@ -27,7 +27,5 @@ object JdbcDemo {
         } catch (ex: Exception) {
             ex.printStackTrace()
         }
-
-
     }
 }

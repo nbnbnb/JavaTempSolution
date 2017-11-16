@@ -4,7 +4,7 @@ package demos
  * 声明协变性和逆变性
  */
 private class Generic {
-    fun setApple(abc: ABC<in Apple>) {
+    fun setApple(abc: TheClass<in Apple>) {
         // 逆变性
         // 原理：如果只能向集合中放入项目，就可以用 Object 集合向其中放入 String
 
@@ -21,7 +21,7 @@ private class Generic {
         val myApple = abc.theType
     }
 
-    fun getApple(abc: ABC<out Apple>) {
+    fun getApple(abc: TheClass<out Apple>) {
         // 协变性
         // 原理：如果只能从集合中获取项目，那么使用 String 的集合，并且从其中读取 Object 也没问题
 
@@ -41,7 +41,7 @@ private class Generic {
     }
 }
 
-private class ABC<T> {
+private class TheClass<T> {
     var theType: T? = null
 }
 
