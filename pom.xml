@@ -33,7 +33,7 @@
         <commons-io.version>2.5</commons-io.version>
         <jackson.version>2.9.1</jackson.version>
         <spring-boot.version>1.5.8.RELEASE</spring-boot.version>
-        <jsr305.version>3.0.2</jsr305.version>
+        <jsr305.version>2.0.1</jsr305.version>
     </properties>
 
     <dependencies>
@@ -141,7 +141,6 @@
             <plugins>
                 <!--打包源码插件-->
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <configuration>
                         <attach>true</attach>
@@ -175,7 +174,7 @@
                         </execution>
                     </executions>
                     <configuration>
-                        <jvmTarget>1.8</jvmTarget>
+                        <jvmTarget>9</jvmTarget>
                         <compilerPlugins>
                             <!--
                                 Kotlin 有类及其默认为 final 的成员，这使得像 Spring AOP 这样需要类为 open 的框架和库用起来很不方便。
@@ -210,8 +209,15 @@
                     </dependencies>
                 </plugin>
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>9</source>
+                        <target>9</target>
+                        <!-- 指明编译源代码时使用的字符编码， maven编译的时候默认使用的GBK编码，
+                        通过encoding属性设置字符编码，告诉maven这个项目使用UTF-8来编译 -->
+                        <encoding>utf8</encoding>
+                    </configuration>
+
                     <executions>
                         <!-- 替换会被 maven 特别处理的 default-compile -->
                         <execution>
