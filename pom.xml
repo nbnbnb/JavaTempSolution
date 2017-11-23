@@ -33,6 +33,7 @@
         <commons-io.version>2.5</commons-io.version>
         <jackson.version>2.9.1</jackson.version>
         <spring-boot.version>1.5.8.RELEASE</spring-boot.version>
+        <jsr305.version>3.0.2</jsr305.version>
     </properties>
 
     <dependencies>
@@ -125,6 +126,12 @@
                 <groupId>com.fasterxml.jackson.datatype</groupId>
                 <artifactId>jackson-datatype-jsr310</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>${jsr305.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
