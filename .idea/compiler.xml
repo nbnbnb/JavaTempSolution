@@ -11,8 +11,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="9">
-      <module name="BasicWebApp" target="9" />
-      <module name="ConsoleApp" target="9" />
+      <module name="BasicWebApp" target="1.8" />
+      <module name="ConsoleApp" target="1.8" />
       <module name="JavaTempSolution" target="1.5" />
     </bytecodeTargetLevel>
   </component>

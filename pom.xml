@@ -174,7 +174,7 @@
                         </execution>
                     </executions>
                     <configuration>
-                        <jvmTarget>9</jvmTarget>
+                        <jvmTarget>1.8</jvmTarget>
                         <compilerPlugins>
                             <!--
                                 Kotlin 有类及其默认为 final 的成员，这使得像 Spring AOP 这样需要类为 open 的框架和库用起来很不方便。
@@ -211,8 +211,8 @@
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <configuration>
-                        <source>9</source>
-                        <target>9</target>
+                        <source>1.8</source>
+                        <target>1.8</target>
                         <!-- 指明编译源代码时使用的字符编码， maven编译的时候默认使用的GBK编码，
                         通过encoding属性设置字符编码，告诉maven这个项目使用UTF-8来编译 -->
                         <encoding>utf8</encoding>
