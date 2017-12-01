@@ -15,7 +15,7 @@
     </modules>
 
     <properties>
-        <kotlin.version>1.1.60</kotlin.version>
+        <kotlin.version>1.2.0</kotlin.version>
         <kotlin.compiler.incremental>false</kotlin.compiler.incremental>
         <!--解决 maven test 乱码问题-->
         <argLine>-Dfile.encoding=UTF-8</argLine>
