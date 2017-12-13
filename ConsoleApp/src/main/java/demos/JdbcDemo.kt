@@ -1,6 +1,6 @@
 package demos
 
-import java.sql.*
+import java.sql.DriverManager
 
 /**
  * Created by ZhangJin on 2017/7/11.
@@ -15,7 +15,7 @@ object JdbcDemo {
             val url = "jdbc:sqlserver://localhost\\SQLExpress;databaseName=JavaTempSolution;IntegratedSecurity=True"
             val con = DriverManager.getConnection(url)
 
-            val sql = "SELECT CURRENT_TIMESTAMP"
+            val sql = "SELECT CURRENT_TIMESTAMP "
             val statement = con.createStatement()
             val resultSet = statement.executeQuery(sql)
 

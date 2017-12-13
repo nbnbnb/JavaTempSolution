@@ -1,6 +1,7 @@
-import demos.*
-import demos.MiscDemo
+import demos.JdbcDemo
+
 import demos.SpringDemo
+import demos.test
 
 
 /**
@@ -14,28 +15,24 @@ object Main {
     @JvmStatic
     fun main(args: Array<String>) {
         log("----- start -----")
-        //demo()
+        //demos()
         temp()
         log("-----  end  -----")
     }
 
-    fun demo() {
-        MiscDemo.toJsonObjectTest()
-        JdbcDemo.basicQueryForSQLServer() //需要连接 SQLServer
-        MiscDemo.toJsonStringTest()
+    private fun demos() {
+        JdbcDemo.basicQueryForSQLServer() // 需要连接 SQLServer，并开启 SQL Server Browser 服务
         SpringDemo.aopDemo()
         SpringDemo.executionDemo()
     }
 
-    fun temp() {
+    private fun temp() {
         try {
             test()
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
-
 }
 
 

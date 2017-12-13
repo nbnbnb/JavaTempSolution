@@ -26,13 +26,13 @@
         <servlet-api.version>3.1.0</servlet-api.version>
         <jsp-api.version>2.0</jsp-api.version>
         <taglibs-standard.version>1.2.5</taglibs-standard.version>
-        <spring-context.version>4.3.9.RELEASE</spring-context.version>
+        <spring-context.version>5.0.2.RELEASE</spring-context.version>
         <aspectjweaver.version>1.8.10</aspectjweaver.version>
         <commons-lang3.verson>3.6</commons-lang3.verson>
         <guava.versioin>22.0</guava.versioin>
         <commons-io.version>2.5</commons-io.version>
         <jackson.version>2.9.1</jackson.version>
-        <spring-boot.version>1.5.8.RELEASE</spring-boot.version>
+        <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
         <jsr305.version>2.0.1</jsr305.version>
     </properties>
 

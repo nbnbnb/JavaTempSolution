@@ -1,5 +1,6 @@
 package helper
 
+import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
@@ -20,7 +21,7 @@ object SerializerHelper {
 
     init {
         /**
-         * 默认输出，时间为 1507790279021 = 2017-10-12T14:37:59.021 = 1970-01-01T00:00:00.000+0000 至今的毫秒数
+         * 默认输出，时间为 1507790279021 = 2017-10-12T14:37:59.021 = 1970-01-01T00:00:00.000+0000 至当前的毫秒数
          *
          * {
          * "A": 1507790279021,
@@ -81,6 +82,10 @@ object SerializerHelper {
         // {"A":"2017-10-12 14:37:59","B":"2017-10-12 14:37:59","C":"2017-10-12","D":"2017-10-12T14:37:59.021"}
         // 对 Date 和 Calendar 有影响
         // 对 LocalDate 和 LocalDateTime 无影响
+
+
+        // 忽略大小写
+        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
     }
 
 
