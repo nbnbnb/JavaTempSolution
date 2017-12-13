@@ -10,10 +10,11 @@ import java.util.*
  */
 
 // 反序列化时，需要指定默认值，这样才会生成公共的构造函数
-// 并且需要使用 var 声明字段，这样才能赋值
+// 并且需要使用 var 声明字段，这样反序列化才能赋值
+@JsonPropertyOrder(alphabetic = true)
 data class DateTimeClass(
-        @JsonPropertyOrder(alphabetic = true) var A: Date? = null,
-        @JsonPropertyOrder(alphabetic = true) var B: Calendar? = null,
-        @JsonPropertyOrder(alphabetic = true) var C: LocalDate? = null,
-        @JsonPropertyOrder(alphabetic = true) var D: LocalDateTime? = null)
+        var A: Date? = null,
+        var B: Calendar? = null,
+        var C: LocalDate? = null,
+        var D: LocalDateTime? = null)
 
