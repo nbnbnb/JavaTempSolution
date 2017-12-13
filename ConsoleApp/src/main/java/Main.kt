@@ -8,8 +8,8 @@ import demos.test
  * Created by ZhangJin on 2017/7/8.
  */
 object Main {
-    private fun log(`object`: Any) {
-        println(`object`)
+    private fun log(obj: Any?) {
+        println(obj)
     }
 
     @JvmStatic
