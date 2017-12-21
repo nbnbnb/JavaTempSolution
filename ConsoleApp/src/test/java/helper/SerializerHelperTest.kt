@@ -12,7 +12,7 @@ import kotlin.test.assertTrue
  */
 
 class SerializerHelperTest {
-    private val jsonString = "{\"A\":\"2017-10-12 14:37:59\",\"B\":\"2017-10-12 14:37:59\",\"C\":\"2017-10-12\",\"D\":\"2017-10-12T14:37:59.021\"}"
+
     private val testDate = Date(1507790279021L)
     private val testCalendar: Calendar = Calendar.getInstance().apply { timeInMillis = 1507790279021L }
     private val testTimes = DateTimeClass(testDate, testCalendar, DateTimeHelper.dateToLocalDate(testDate), DateTimeHelper.dateToLocalDateTime(testDate))
@@ -26,11 +26,20 @@ class SerializerHelperTest {
 
         // 注意：正常反序列化后的字段顺序是未知的
         // DateTimeClass 对象使用了 @JsonPropertyOrder 进行标注，用来设置字段顺序
-        assertEquals(jsonString.toUpperCase(), SerializerHelper.toJsonString(testTimes).toUpperCase())
+        assertEquals("{\"A\":\"2017-10-12 14:37:59\",\"B\":\"2017-10-12 14:37:59\",\"C\":\"2017-10-12\",\"D\":\"2017-10-12T14:37:59.021\"}".toUpperCase(), SerializerHelper.toJsonString(testTimes).toUpperCase())
     }
 
     @Test
     fun toJsonObjectTest() {
+        val jsonString = """
+            {
+                "A": "2017-10-12 14:37:59",
+                "B": "2017-10-12 14:37:59",
+                "C": "2017-10-12",
+                "D": "2017-10-12T14:37:59.021"
+            }
+        """
+
         val newTimes = SerializerHelper.toJsonObject(jsonString, DateTimeClass::class.java)!!
         // 转换为相应的日期格式后，毫秒相关的精度将会丢失
         assertTrue(Math.abs(newTimes.A!!.time - testTimes.A!!.time) < 100)
