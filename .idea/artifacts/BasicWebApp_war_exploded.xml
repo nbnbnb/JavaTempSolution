@@ -12,6 +12,7 @@
           <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.2.10" />
           <element id="library" level="project" name="Maven: org.jetbrains:annotations:13.0" />
           <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-reflect:1.2.10" />
+          <element id="library" level="project" name="Maven: org.jetbrains.kotlinx:kotlinx-coroutines-core:0.20" />
         </element>
       </element>
       <element id="directory" name="META-INF">
