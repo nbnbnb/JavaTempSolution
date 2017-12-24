@@ -43,7 +43,10 @@
     <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-reflect:1.1.60" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains.kotlin:kotlin-test-junit:1.1.60" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains.kotlin:kotlin-test:1.1.60" level="project" />
-    <orderEntry type="library" name="Maven: org.jetbrains.kotlinx:kotlinx-coroutines-core:0.20" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:unknown" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-reflect:unknown" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-js:unknown" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains.kotlinx:kotlinx-coroutines-core:unknown" level="project" />
     <orderEntry type="library" name="Maven: com.microsoft.sqlserver:sqljdbc4:4.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:5.0.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.0.2.RELEASE" level="project" />
@@ -58,9 +61,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:2.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.2.10" level="project" />
-    <orderEntry type="library" name="Maven: org.jetbrains:annotations:13.0" level="project" />
-    <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-reflect:1.2.10" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains.kotlin:kotlin-test-junit:1.2.10" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains.kotlin:kotlin-test:1.2.10" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
