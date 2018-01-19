@@ -7,12 +7,12 @@
           <element id="module-output" name="BasicWebApp" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:unknown" />
-          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-reflect:unknown" />
-          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-js:unknown" />
-          <element id="library" level="project" name="Maven: org.jetbrains.kotlinx:kotlinx-coroutines-core:unknown" />
           <element id="library" level="project" name="Maven: org.apache.taglibs:taglibs-standard-spec:1.2.5" />
           <element id="library" level="project" name="Maven: org.apache.taglibs:taglibs-standard-impl:1.2.5" />
+          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.2.20" />
+          <element id="library" level="project" name="Maven: org.jetbrains:annotations:13.0" />
+          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-reflect:1.2.20" />
+          <element id="library" level="project" name="Maven: org.jetbrains.kotlinx:kotlinx-coroutines-core:0.21.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">
