@@ -17,16 +17,16 @@ subprojects {
     repositories {
         mavenLocal()
 
-        maven { url "http://maven.release.ctripcorp.com/nexus/content/groups/public/" }
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
         maven { url "http://repo.maven.apache.org/maven2" }
     }
 
 
     dependencies {
-        compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: '1.2.20'
-        compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: '1.2.20'
-        compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: '0.21.2'
-        testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit', version: '1.2.20'
+        compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: "$kotlin_version"
+        compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: "$kotlin_version"
+        compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: '0.22.1'
+        testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit', version: "$kotlin_version"
     }
 
 
