@@ -3,3 +3,4 @@ ConsoleApp/out
 build/
 .idea/libraries
 .gradle/
+.idea/workspace.xml
