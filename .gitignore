@@ -4,3 +4,5 @@ build/
 .idea/libraries
 .gradle/
 .idea/workspace.xml
+.idea/modules/
+.idea/artifacts
