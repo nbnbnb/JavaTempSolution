@@ -1,12 +1,5 @@
-lib/
-out/
-target/
-.idea/workspace.xml
-.idea/dataSources/**
-.idea/dataSources.local.xml
-.idea/libraries/
-.idea/preferred-vcs.xml
-*.orig
-.idea/misc.xml
-ConsoleApp/build/
+ConsoleApp/build
+ConsoleApp/out
 build/
+.idea/libraries
+.gradle/

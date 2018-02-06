@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BasicWebApp/study-BasicWebApp.iml" filepath="$PROJECT_DIR$/.idea/modules/BasicWebApp/study-BasicWebApp.iml" group="study-BasicWebApp" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BasicWebApp/study-BasicWebApp_main.iml" filepath="$PROJECT_DIR$/.idea/modules/BasicWebApp/study-BasicWebApp_main.iml" group="study-BasicWebApp" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BasicWebApp/study-BasicWebApp_test.iml" filepath="$PROJECT_DIR$/.idea/modules/BasicWebApp/study-BasicWebApp_test.iml" group="study-BasicWebApp" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ConsoleApp/study-ConsoleApp.iml" filepath="$PROJECT_DIR$/.idea/modules/ConsoleApp/study-ConsoleApp.iml" group="study-ConsoleApp" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ConsoleApp/study-ConsoleApp_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ConsoleApp/study-ConsoleApp_main.iml" group="study-ConsoleApp" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ConsoleApp/study-ConsoleApp_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ConsoleApp/study-ConsoleApp_test.iml" group="study-ConsoleApp" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/study-parent.iml" filepath="$PROJECT_DIR$/.idea/modules/study-parent.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/study-parent_main.iml" filepath="$PROJECT_DIR$/.idea/modules/study-parent_main.iml" group="study-parent" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/study-parent_test.iml" filepath="$PROJECT_DIR$/.idea/modules/study-parent_test.iml" group="study-parent" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BasicWebApp/BasicWebApp.iml" filepath="$PROJECT_DIR$/.idea/modules/BasicWebApp/BasicWebApp.iml" group="BasicWebApp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BasicWebApp/BasicWebApp_main.iml" filepath="$PROJECT_DIR$/.idea/modules/BasicWebApp/BasicWebApp_main.iml" group="BasicWebApp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BasicWebApp/BasicWebApp_test.iml" filepath="$PROJECT_DIR$/.idea/modules/BasicWebApp/BasicWebApp_test.iml" group="BasicWebApp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ConsoleApp/ConsoleApp.iml" filepath="$PROJECT_DIR$/.idea/modules/ConsoleApp/ConsoleApp.iml" group="ConsoleApp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ConsoleApp/ConsoleApp_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ConsoleApp/ConsoleApp_main.iml" group="ConsoleApp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ConsoleApp/ConsoleApp_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ConsoleApp/ConsoleApp_test.iml" group="ConsoleApp" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/JavaTempSolution.iml" filepath="$PROJECT_DIR$/.idea/JavaTempSolution.iml" />
     </modules>
   </component>
 </project>

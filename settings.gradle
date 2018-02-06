@@ -1,6 +1,8 @@
-rootProject.name = 'study-parent'
-include ':study-BasicWebApp'
-include ':study-ConsoleApp'
+rootProject.name = 'JavaTempSolution'
 
-project(':study-BasicWebApp').projectDir = "$rootDir/BasicWebApp" as File
-project(':study-ConsoleApp').projectDir = "$rootDir/ConsoleApp" as File
+include ':BasicWebApp'
+include ':ConsoleApp'
+
+project(':BasicWebApp').projectDir = "$rootDir/BasicWebApp" as File
+project(':ConsoleApp').projectDir = "$rootDir/ConsoleApp" as File
+
