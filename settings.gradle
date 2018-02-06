@@ -1,0 +1,6 @@
+rootProject.name = 'study-parent'
+include ':study-BasicWebApp'
+include ':study-ConsoleApp'
+
+project(':study-BasicWebApp').projectDir = "$rootDir/BasicWebApp" as File
+project(':study-ConsoleApp').projectDir = "$rootDir/ConsoleApp" as File

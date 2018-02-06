@@ -1,0 +1,32 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Gradle : me.zhangjin.study : study-BasicWebApp-0.0.1-SNAPSHOT.war (exploded)">
+    <output-path>$PROJECT_DIR$/BasicWebApp/build/libs/exploded/study-BasicWebApp-0.0.1-SNAPSHOT.war</output-path>
+    <properties id="gradle-properties">
+      <options external-project-path="$PROJECT_DIR$">
+        <manifest>TWFuaWZlc3QtVmVyc2lvbjogMS4wDQoNCg==</manifest>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/BasicWebApp/build/libs/exploded/study-BasicWebApp-0.0.1-SNAPSHOT.war/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="study-BasicWebApp_main/web/Web Gradle : study-BasicWebApp-0.0.1-SNAPSHOT.war" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="study-BasicWebApp_main" />
+          <element id="dir-copy" path="$PROJECT_DIR$/BasicWebApp/out/production/resources" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Gradle: org.jetbrains.kotlin:kotlin-reflect:1.2.20" />
+          <element id="library" level="project" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core:0.21.2" />
+          <element id="library" level="project" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.21" />
+          <element id="library" level="project" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.21" />
+          <element id="library" level="project" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.2.21" />
+          <element id="library" level="project" name="Gradle: org.apache.taglibs:taglibs-standard-spec:1.2.5" />
+          <element id="library" level="project" name="Gradle: org.apache.taglibs:taglibs-standard-impl:1.2.5" />
+          <element id="library" level="project" name="Gradle: org.jetbrains:annotations:13.0" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,7 +1,4 @@
-import demos.JdbcDemo
-
-import demos.SpringDemo
-import demos.test
+import demos.*
 
 
 /**
@@ -28,7 +25,8 @@ object Main {
 
     private fun temp() {
         try {
-            test()
+            KotlinDemo.test()
+            JavaDemo.test()
         } catch (e: Exception) {
             e.printStackTrace()
         }

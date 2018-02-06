@@ -6,14 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="BasicWebApp" />
-        <module name="ConsoleApp" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="9">
       <module name="BasicWebApp" target="1.8" />
       <module name="ConsoleApp" target="1.8" />
       <module name="JavaTempSolution" target="1.8" />
+      <module name="study-BasicWebApp_main" target="1.8" />
+      <module name="study-BasicWebApp_test" target="1.8" />
+      <module name="study-ConsoleApp_main" target="1.8" />
+      <module name="study-ConsoleApp_test" target="1.8" />
+      <module name="study-parent_main" target="1.9" />
+      <module name="study-parent_test" target="1.9" />
     </bytecodeTargetLevel>
   </component>
 </project>

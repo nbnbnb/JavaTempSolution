@@ -8,3 +8,5 @@ target/
 .idea/preferred-vcs.xml
 *.orig
 .idea/misc.xml
+ConsoleApp/build/
+build/
