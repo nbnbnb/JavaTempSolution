@@ -1,8 +1,5 @@
-ConsoleApp/build
-ConsoleApp/out
 build/
-.idea/libraries
+.idea/
 .gradle/
-.idea/workspace.xml
-.idea/modules/
-.idea/artifacts
+
+out/
