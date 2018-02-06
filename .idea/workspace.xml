@@ -1,88 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="222a2bd3-221c-46f7-8b58-c6c9babf45f0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileChanges/last-build.bin" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileContent/annotation-processors.bin" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileContent/fileContent.lock" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.bin" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.lock" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/resourceHashesCache.bin" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/fileSnapshots.bin" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/taskHistory.bin" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/taskHistory.lock" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/BasicWebApp_war.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/BasicWebApp_war_exploded.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___me_zhangjin_study___study_BasicWebApp_0_0_1_SNAPSHOT_war.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___me_zhangjin_study___study_BasicWebApp_0_0_1_SNAPSHOT_war__exploded_.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Spittr_war.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Spittr_war_exploded.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Struts2App_war.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Struts2App_war_exploded.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/BasicWebApp/study-BasicWebApp.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/BasicWebApp/study-BasicWebApp_main.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/BasicWebApp/study-BasicWebApp_test.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/ConsoleApp/study-ConsoleApp.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/ConsoleApp/study-ConsoleApp_main.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/ConsoleApp/study-ConsoleApp_test.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/study-parent.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/study-parent_main.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/study-parent_test.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="$PROJECT_DIR$/BasicWebApp/BasicWebApp.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BasicWebApp/build.gradle" afterPath="$PROJECT_DIR$/BasicWebApp/build.gradle" />
-      <change beforePath="$PROJECT_DIR$/BasicWebApp/src/main/java/Entities/Product.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BasicWebApp/src/main/java/Extention/Filter/LoggingFilter.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BasicWebApp/src/main/java/Extention/Filter/SetCharacterEncodingFilter.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BasicWebApp/src/main/java/Extention/Listener/AppListener.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BasicWebApp/src/main/java/Extention/Listener/DynRegListener.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BasicWebApp/src/main/java/Extention/Listener/SessionListener.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BasicWebApp/src/main/java/Extention/Servlet/AsyncDispatchServlet.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BasicWebApp/src/main/java/Extention/Servlet/DynServlet.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BasicWebApp/src/main/java/Extention/Servlet/HelloServlet.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BasicWebApp/src/main/java/Extention/Servlet/SingleUploadServlet.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/ConsoleApp.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/build.gradle" afterPath="$PROJECT_DIR$/ConsoleApp/build.gradle" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/Main.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/MindView/SimpleMicroBanchmark.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/MindView/SynchronizationComparisons.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/SpringDemo/concert/AspectJExecution.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/SpringDemo/concert/Audience.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/SpringDemo/concert/DefaultEncoreable.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/SpringDemo/concert/Encoreable.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/SpringDemo/concert/EncoreableIntroducer.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/SpringDemo/concert/IExecution.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/SpringDemo/concert/JJPerformance.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/SpringDemo/concert/MyExecution.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/SpringDemo/concert/MyFlag.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/SpringDemo/concert/Performance.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/SpringDemo/concert/SheExecution.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/config/AppConfig.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/demos/JdbcDemo.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/demos/KotlinDemo.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/demos/SpringDemo.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/helper/DateTimeHelper.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp/src/main/java/helper/SerializerHelper.kt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/JavaTempSolution.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/gradlew" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
-    </list>
+    <list default="true" id="222a2bd3-221c-46f7-8b58-c6c9babf45f0" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
     <ignored path="$PROJECT_DIR$/BasicWebApp/.gradle/" />
@@ -118,8 +37,8 @@
       <file leaf-file-name="Main.kt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ConsoleApp/src/main/kotlin/Main.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="260">
+              <caret line="13" column="24" lean-forward="false" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -898,23 +817,6 @@
               <item name="JavaTempSolution" type="b2602c69:ProjectViewProjectNode" />
               <item name="JavaTempSolution" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
-            <path>
-              <item name="JavaTempSolution" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaTempSolution" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name=".gradle" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaTempSolution" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaTempSolution" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name=".gradle" type="462c0819:PsiDirectoryNode" />
-              <item name="4.3" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaTempSolution" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaTempSolution" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name=".gradle" type="462c0819:PsiDirectoryNode" />
-              <item name="buildOutputCleanup" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -1055,12 +957,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1517933976542</updated>
-      <workItem from="1517933980344" duration="706000" />
+      <workItem from="1517933980344" duration="778000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="706000" />
+    <option name="totallyTimeSpent" value="778000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -1083,11 +985,11 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938644" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32938644" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19189766" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16044776" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -1121,8 +1023,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ConsoleApp/src/main/kotlin/Main.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="260">
+          <caret line="13" column="24" lean-forward="false" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
           <folding />
         </state>
       </provider>
