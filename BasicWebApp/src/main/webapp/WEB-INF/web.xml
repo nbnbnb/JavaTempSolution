@@ -4,6 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <!-- 关联 Tomcat context.xml Resource 节点 -->
     <resource-ref>
         <description>JavaTempSolution DB(SQLServer)</description>
         <res-ref-name>jdbc/JavaTempSolution</res-ref-name>
