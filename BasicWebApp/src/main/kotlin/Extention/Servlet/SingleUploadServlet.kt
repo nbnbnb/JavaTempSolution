@@ -1,5 +1,6 @@
 package Extention.Servlet
 
+import java.io.IOException
 import javax.servlet.ServletException
 import javax.servlet.annotation.MultipartConfig
 import javax.servlet.annotation.WebServlet
@@ -7,8 +8,6 @@ import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import javax.servlet.http.Part
-import java.io.IOException
-import java.io.PrintWriter
 
 /**
  * Created by ZhangJin on 2017/7/15.
@@ -42,7 +41,7 @@ class SingleUploadServlet : HttpServlet() {
         // 文件名需要在 content-disposition 域中获取
 
         val fileName = getFileName(part)
-        if (fileName != null && fileName.length != 0) {
+        if (fileName != null && fileName.isNotEmpty()) {
             part.write(servletContext.getRealPath("/WEB-INF") + "/" + fileName)
         }
 
@@ -55,7 +54,4 @@ class SingleUploadServlet : HttpServlet() {
 
     }
 
-    companion object {
-        private val serialVersionUID = 8593038L
-    }
 }

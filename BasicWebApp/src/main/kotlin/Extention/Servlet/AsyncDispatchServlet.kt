@@ -1,14 +1,12 @@
 package Extention.Servlet
 
-import javax.servlet.AsyncContext
+import java.io.IOException
+import java.util.*
 import javax.servlet.ServletException
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import java.io.IOException
-import java.io.PrintWriter
-import java.util.Date
 
 /**
  * Created by ZhangJin on 2017/7/15.
@@ -37,15 +35,12 @@ class AsyncDispatchServlet : HttpServlet() {
             }
 
             req.setAttribute("asyncThread", Thread.currentThread().name)
-            try {
-                val writer = resp.writer
-                writer.println("Async Thread Running")
-                writer.println("mainThread" + req.getAttribute("mainThread"))
-                writer.println("asyncThread" + req.getAttribute("asyncThread"))
-                writer.println(Date())
-            } catch (e: IOException) {
 
-            }
+            val writer = resp.writer
+            writer.println("Async Thread Running")
+            writer.println("mainThread" + req.getAttribute("mainThread"))
+            writer.println("asyncThread" + req.getAttribute("asyncThread"))
+            writer.println(Date())
 
             asyncContext.complete()
         }
