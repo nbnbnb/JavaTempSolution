@@ -1,13 +1,12 @@
-
 apply plugin: 'kotlin'
 
 description = 'The ConsoleApp'
 dependencies {
-    compile group: 'com.microsoft.sqlserver', name: 'sqljdbc4', version:'4.0'
-    compile group: 'org.springframework', name: 'spring-context', version:'5.0.2.RELEASE'
-    compile group: 'org.aspectj', name: 'aspectjweaver', version:'1.8.10'
-    compile group: 'commons-io', name: 'commons-io', version:'2.5'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.9.1'
-    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version:'2.9.1'
-    compile group: 'com.google.code.findbugs', name: 'jsr305', version:'2.0.1'
+    compile group: 'com.microsoft.sqlserver', name: 'sqljdbc4', version: '4.0'
+    compile group: 'org.springframework', name: 'spring-context', version: '5.0.2.RELEASE'
+    compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.10'
+    compile group: 'commons-io', name: 'commons-io', version: '2.5'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.1'
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.1'
+    compile group: 'com.google.code.findbugs', name: 'jsr305', version: '2.0.1'
 }

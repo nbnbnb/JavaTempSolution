@@ -1,8 +1,9 @@
-package SBConsoleApp
+package SpringBootApp
 
 /**
  * Created by ZhangJin on 2017/7/8.
  */
+
 object Main {
     private fun log(obj: Any?) {
         println(obj)
@@ -16,7 +17,8 @@ object Main {
     }
 
     private fun temp() {
-
+        println("Hello SpringBoot")
+        
     }
 }
 

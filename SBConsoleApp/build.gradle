@@ -1,6 +1,0 @@
-apply plugin: 'kotlin'
-
-description = 'The SBConsoleApp'
-dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web:2.0.0.RELEASE")
-}
