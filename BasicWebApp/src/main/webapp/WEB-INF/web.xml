@@ -21,10 +21,10 @@
             <role-name>manager</role-name>
         </auth-constraint>
     </security-constraint>
-    <login-config>
+    <login-ConsoleApp.config>
         <auth-method>BASIC</auth-method>
         <realm-name>Members Only</realm-name>
-    </login-config>
+    </login-ConsoleApp.config>
     <filter-mapping>
         <filter-name>SetCharacterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
