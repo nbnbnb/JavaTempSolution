@@ -10,14 +10,11 @@ dependencies {
     compile group: 'org.apache.taglibs', name: 'taglibs-standard-impl', version: '1.2.5'
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
     providedCompile group: 'javax.servlet', name: 'jsp-api', version: '2.0'
-
-    gretty "org.apache.tomcat:tomcat-dbcp:$tomcat8Version"
 }
 
 // gretty 配置 更详细的文档可以查 http://akhikhl.github.io/gretty-doc/
 // jdni test https://github.com/akhikhl/tomcat-spring-jndi-test
 gretty {
-    servletContainer = 'tomcat8'
     httpPort = 9090
     contextPath = 'BasicWebApp'
 }
