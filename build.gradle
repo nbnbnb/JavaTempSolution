@@ -1,6 +1,6 @@
 // 双引号才能解析属性
 ext {
-    kotlinVersion = '1.2.21'
+    kotlinVersion = '1.2.30'
     kotlinXVersion = '0.22.3'
     grettyVersion = '2.0.0'
 }

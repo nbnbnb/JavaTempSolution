@@ -1,8 +1,6 @@
 apply plugin: 'war'
 apply plugin: 'kotlin'
-// apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
-// Copy from github
-apply from: 'gretty.plugin'
+apply plugin: 'org.akhikhl.gretty'
 
 description = 'The BasicWebApp'
 dependencies {
@@ -17,4 +15,10 @@ dependencies {
 gretty {
     httpPort = 9090
     contextPath = 'BasicWebApp'
+}
+
+buildscript {
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:2.0.0'
+    }
 }
