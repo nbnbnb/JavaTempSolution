@@ -10,3 +10,10 @@ dependencies {
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.1'
     compile group: 'com.google.code.findbugs', name: 'jsr305', version: '2.0.1'
 }
+
+jar {
+    // 设置 jar 包的文件名（前缀）
+    baseName = 'springboot-app'
+    // 设置 jar 包的版本
+    version = '0.1.0-SNAPSHOT'
+}
