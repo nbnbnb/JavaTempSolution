@@ -1,9 +1,0 @@
-rootProject.name = 'JavaTempSolution'
-
-include ':BasicWebApp'
-include ':ConsoleApp'
-include ':SpringBootApp'
-
-project(':BasicWebApp').projectDir = "$rootDir/BasicWebApp" as File
-project(':ConsoleApp').projectDir = "$rootDir/ConsoleApp" as File
-project(':SpringBootApp').projectDir = "$rootDir/SpringBootApp" as File
