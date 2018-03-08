@@ -23,7 +23,7 @@
         <!--设置 maven 编译时编码-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <spring-boot.version>1.5.9.RELEASE</spring-boot.version>
+        <spring-boot.version>2.0.0.RELEASE</spring-boot.version>
         <spring-context.version>5.0.2.RELEASE</spring-context.version>
         <aspectjweaver.version>1.8.10</aspectjweaver.version>
         <commons-lang3.verson>3.6</commons-lang3.verson>
@@ -216,6 +216,7 @@
                         </dependency>
                     </dependencies>
                 </plugin>
+                <!-- Maven 编译插件，与 Kotlin 编译插件联合使用 -->
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.7.0</version>
@@ -254,7 +255,6 @@
                         </execution>
                     </executions>
                 </plugin>
-
                 <!--在 Package 阶段，执行 single 目标，打包依赖为单个 jar 文件-->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -280,7 +280,6 @@
                         </execution>
                     </executions>
                 </plugin>
-
                 <!--Spring Boot-->
                 <plugin>
                     <groupId>org.springframework.boot</groupId>

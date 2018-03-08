@@ -9,7 +9,7 @@
 
     <parent>
         <groupId>me.zhangjin.study</groupId>
-        <artifactId>study-parent</artifactId>
+        <artifactId>study-Root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
