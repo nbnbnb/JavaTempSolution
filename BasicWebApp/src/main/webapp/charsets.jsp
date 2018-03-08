@@ -12,7 +12,7 @@ contentType="text/html;charset=UTF-8" 表示
 POST 数据到服务器时，改如何解码
 响应输出时，改如何编码（浏览器需要得到正确的编码信息，然后再进行相应的解码）
 
-Tomcat 默认的编码是 ISO-8859-1（Latin-1），一般通过自定义 Filter 设置为 UTF-8，或者在 server.xml 进行全局设置
+Tomcat 默认的编码是 ISO-8859-1（Latin-1），一般通过自定义 filter 设置为 UTF-8，或者在 server.xml 进行全局设置
 
 现代浏览器一般将 GET 参数通过 UTF-8 方式进行编码，Tomcat 可以通过 server.xml Connector 进行全局编码配置
 

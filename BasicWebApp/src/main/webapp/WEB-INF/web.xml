@@ -31,7 +31,7 @@
     </filter-mapping>
     <filter>
         <filter-name>SetCharacterEncodingFilter</filter-name>
-        <filter-class>Extention.Filter.SetCharacterEncodingFilter</filter-class>
+        <filter-class>basicwebapp.extention.filter.SetCharacterEncodingFilter</filter-class>
         <init-param>
             <param-name>encoding</param-name>
             <param-value>utf-8</param-value>

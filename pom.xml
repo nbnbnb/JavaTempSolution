@@ -73,7 +73,7 @@
                 <version>${sqljdbc4.version}</version>
             </dependency>
 
-            <!-- Servlet && JSP -->
+            <!-- servlet && JSP -->
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
@@ -263,7 +263,7 @@
                     <configuration>
                         <archive>
                             <manifest>
-                                <mainClass>Main</mainClass>
+                                <mainClass>consoleapp.Main</mainClass>
                             </manifest>
                         </archive>
                         <descriptorRefs>

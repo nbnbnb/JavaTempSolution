@@ -14,7 +14,7 @@
     </parent>
 
     <dependencies>
-        <!-- Servlet & JSP -->
+        <!-- servlet & JSP -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
