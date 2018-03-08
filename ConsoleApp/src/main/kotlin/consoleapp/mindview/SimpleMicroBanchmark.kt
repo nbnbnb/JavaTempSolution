@@ -30,7 +30,7 @@ internal class LockingTest : Incrementable() {
 object SimpleMicroBanchmark {
     internal fun test(incrementable: Incrementable): Long {
         val start = System.nanoTime()
-        for (i in 0..10000000L - 1) {
+        for (i in 0 until 10000000L) {
             incrementable.increment()
         }
         return System.nanoTime() - start

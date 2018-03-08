@@ -10,16 +10,12 @@ import consoleapp.demos.test
  * Created by ZhangJin on 2017/7/8.
  */
 object Main {
-    private fun log(obj: Any?) {
-        println(obj)
-    }
-
     @JvmStatic
     fun main(args: Array<String>) {
-        log("----- start -----")
+        println("----- start -----")
         //demos()
         temp()
-        log("-----  end  -----")
+        println("-----  end  -----")
     }
 
     private fun demos() {

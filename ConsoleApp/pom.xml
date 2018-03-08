@@ -47,9 +47,6 @@
         <plugins>
             <plugin>
                 <artifactId>kotlin-maven-plugin</artifactId>
-                <configuration>
-                    <experimentalCoroutines>enable</experimentalCoroutines>
-                </configuration>
                 <groupId>org.jetbrains.kotlin</groupId>
             </plugin>
             <plugin>
@@ -60,6 +57,19 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
+
+                <!-- 设置打包的参数 -->
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>consoleapp.Main</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+
             </plugin>
         </plugins>
     </build>
