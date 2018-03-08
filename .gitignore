@@ -3,5 +3,4 @@ out/
 target/
 .idea/
 *.orig
-
-.iml
+*.iml
