@@ -2,6 +2,7 @@ plugins {
     // spring-boot-gradle-plugin 也是可用的，它提供了从源代码创建可执行jar并运行项目的任务。
     // 它还提供依赖关系管理，除其他功能外，还允许您省略由Spring Boot管理的任何依赖关系的版本号
     id "org.springframework.boot" version "1.5.10.RELEASE"
+    id "org.jetbrains.kotlin.jvm" version "1.2.30"
 }
 
 description = 'The SpringBootApp'

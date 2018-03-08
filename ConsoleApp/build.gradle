@@ -1,6 +1,12 @@
-apply plugin: 'kotlin'
+plugins {
+    id 'application'
+    id "org.jetbrains.kotlin.jvm" version "1.2.30"
+}
 
 description = 'The ConsoleApp'
+
+
+
 dependencies {
     compile group: 'com.microsoft.sqlserver', name: 'sqljdbc4', version: '4.0'
     compile group: 'org.springframework', name: 'spring-context', version: '5.0.2.RELEASE'
