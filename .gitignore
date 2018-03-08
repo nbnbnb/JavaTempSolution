@@ -1,0 +1,6 @@
+lib/
+out/
+target/
+.idea/
+*.orig
+
