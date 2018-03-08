@@ -11,8 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 open class Application {
     companion object {
         @JvmStatic
-        fun main(args: Array<String>) {
-            SpringApplication.run(Application::class.java)
+        fun main(vararg args: String) {
+            SpringApplication.run(arrayOf(Application::class.java), args)
         }
     }
 }

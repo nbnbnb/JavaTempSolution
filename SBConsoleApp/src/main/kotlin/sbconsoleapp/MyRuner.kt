@@ -18,6 +18,6 @@ class MyRuner : CommandLineRunner {
     override fun run(vararg args: String) {
         println(myProperties.name)
         println(myProperties.age)
+        println(myProperties.address)
     }
-
 }
