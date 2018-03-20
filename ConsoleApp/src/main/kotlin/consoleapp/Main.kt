@@ -1,9 +1,9 @@
 package consoleapp
 
+import consoleapp.demos.JavaDemo
 import consoleapp.demos.JdbcDemo
-
+import consoleapp.demos.KotlinDemo
 import consoleapp.demos.SpringDemo
-import consoleapp.demos.test
 
 
 /**
@@ -26,7 +26,8 @@ object Main {
 
     private fun temp() {
         try {
-            test()
+            KotlinDemo.test()
+            JavaDemo.test()
         } catch (e: Exception) {
             e.printStackTrace()
         }
