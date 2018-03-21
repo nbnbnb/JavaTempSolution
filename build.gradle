@@ -2,8 +2,8 @@ allprojects {
     apply plugin: 'maven'
     apply plugin: 'kotlin'
     apply plugin: 'java'
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+    sourceCompatibility = java_version
+    targetCompatibility = java_version
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
     }

@@ -1,10 +1,9 @@
-
 apply plugin: 'war'
 
 description = 'Basic WebApp'
 dependencies {
-    compile group: 'org.apache.taglibs', name: 'taglibs-standard-spec', version:'1.2.5'
-    compile group: 'org.apache.taglibs', name: 'taglibs-standard-impl', version:'1.2.5'
-    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version:'3.1.0'
-    providedCompile group: 'javax.servlet', name: 'jsp-api', version:'2.0'
+    compile group: 'org.apache.taglibs', name: 'taglibs-standard-spec', version: "$taglibs_standard_version"
+    compile group: 'org.apache.taglibs', name: 'taglibs-standard-impl', version: "$taglibs_standard_version"
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: "$servlet_api_version"
+    providedCompile group: 'javax.servlet', name: 'jsp-api', version: "$jsp_api_version"
 }

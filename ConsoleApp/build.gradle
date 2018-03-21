@@ -1,11 +1,10 @@
-
 description = 'Console App'
 dependencies {
-    compile group: 'com.microsoft.sqlserver', name: 'sqljdbc4', version:'4.0'
-    compile group: 'org.springframework', name: 'spring-context', version:'5.0.4.RELEASE'
-    compile group: 'org.aspectj', name: 'aspectjweaver', version:'1.8.10'
-    compile group: 'commons-io', name: 'commons-io', version:'2.5'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.9.1'
-    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version:'2.9.1'
-    compile group: 'com.google.code.findbugs', name: 'jsr305', version:'2.0.1'
+    compile group: 'com.microsoft.sqlserver', name: 'sqljdbc4', version: "$sqljdbc4_version"
+    compile group: 'org.springframework', name: 'spring-context', version: "$spring_context_version"
+    compile group: 'org.aspectj', name: 'aspectjweaver', version: "$aspectjweaver_version"
+    compile group: 'commons-io', name: 'commons-io', version: "$commons_io_version"
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "$jackson_databind_version"
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: "$jsr310_version"
+    compile group: 'com.google.code.findbugs', name: 'jsr305', version: "$jsr305_version"
 }
