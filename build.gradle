@@ -1,0 +1,29 @@
+allprojects {
+    apply plugin: 'maven'
+
+    group = 'me.zhangjin.study'
+    version = '0.0.1-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "http://repo.maven.apache.org/maven2" }
+    }
+
+    dependencies {
+        compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: '1.2.30'
+        compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: '1.2.30'
+        compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: '0.22.5'
+        testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit', version: '1.2.30'
+    }
+
+}
