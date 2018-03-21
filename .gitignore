@@ -2,5 +2,6 @@ lib/
 out/
 target/
 .idea/
+.gradle/
 *.orig
 *.iml
