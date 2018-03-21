@@ -10,17 +10,21 @@ import org.springframework.stereotype.Component
  */
 
 /**
- * ApplicationArguments 可以获取命令行信息
+ * ApplicationArguments 可以获取命令行信息，在运行是将会自动注入
  * boolean debug = args.containsOption("debug");
  * List<String> files = args.getNonOptionArgs();
- * if run with "--debug logfile.txt" debug=true, files=["logfile.txt"]
+ * 如果使用命令行参数运行 "--debug logfile.txt"
+ * 则得到的结果为 debug=true, files=["logfile.txt"]
  */
-
 @Component
 class MyBean @Autowired constructor(args: ApplicationArguments) {
     init {
-        val debug = args.containsOption("debug")
-        val files = args.nonOptionArgs
         // if run with "--debug logfile.txt" debug=true, files=["logfile.txt"]
+
+        @SuppressWarnings("UNUSED")
+        val debug = args.containsOption("debug")
+
+        @Suppress("unused")
+        val files = args.nonOptionArgs
     }
 }

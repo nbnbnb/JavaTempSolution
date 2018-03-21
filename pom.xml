@@ -16,16 +16,20 @@
     </modules>
 
     <properties>
+        <!--Kotlin-->
         <kotlin.version>1.2.30</kotlin.version>
-        <kotlin.compiler.incremental>false</kotlin.compiler.incremental>
+        <kotlinx-coroutines.version>0.22.5</kotlinx-coroutines.version>
 
         <!--解决 maven test 乱码问题-->
         <argLine>-Dfile.encoding=UTF-8</argLine>
         <!--设置 maven 编译时编码-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <!-- Spring -->
         <spring-boot.version>2.0.0.RELEASE</spring-boot.version>
-        <spring-context.version>5.0.2.RELEASE</spring-context.version>
+        <spring-context.version>5.0.4.RELEASE</spring-context.version>
+
+
         <aspectjweaver.version>1.8.10</aspectjweaver.version>
         <commons-lang3.verson>3.6</commons-lang3.verson>
         <guava.versioin>22.0</guava.versioin>
@@ -38,6 +42,8 @@
         <jsp-api.version>2.0</jsp-api.version>
         <taglibs-standard.version>1.2.5</taglibs-standard.version>
         <jsr305.version>2.0.1</jsr305.version>
+
+
     </properties>
 
     <dependencies>
@@ -55,7 +61,7 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-core</artifactId>
-            <version>0.21.2</version>
+            <version>${kotlinx-coroutines.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
