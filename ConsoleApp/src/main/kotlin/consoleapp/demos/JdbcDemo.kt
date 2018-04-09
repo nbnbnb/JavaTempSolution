@@ -7,7 +7,6 @@ import java.sql.DriverManager
  */
 object JdbcDemo {
     fun basicQueryForSQLServer() {
-
         try {
             // 加载驱动包
             // 如果包已经在路径中，则不需要显式加载
