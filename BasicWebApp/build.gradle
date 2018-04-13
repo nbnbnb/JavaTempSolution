@@ -1,17 +1,11 @@
 apply plugin: 'org.akhikhl.gretty'
 apply plugin: 'war'
-apply plugin: 'io.spring.dependency-management'
 
 description = 'Basic WebApp'
 
-dependencyManagement {
-    imports {
-        mavenBom 'io.spring.platform:platform-bom:Cairo-RELEASE'
-    }
+dependencies {
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: "$servlet_api_version"
 }
 
-dependencies {
-    compile group: 'org.apache.taglibs', name: 'taglibs-standard-spec'
-    compile group: 'org.apache.taglibs', name: 'taglibs-standard-impl'
-    providedCompile group: 'javax.servlet', name: 'javax.servlet-api'
-}
+
+// 不能使用 Spring IO，因为有些 gretty 会和里面的 jetty 版本冲突

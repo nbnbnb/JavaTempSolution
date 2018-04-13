@@ -33,7 +33,7 @@ allprojects {
 
 subprojects {
     dependencies {
-        compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib'
+        compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jdk8'
         compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect'
 
         compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: "$kotlinx_version"
