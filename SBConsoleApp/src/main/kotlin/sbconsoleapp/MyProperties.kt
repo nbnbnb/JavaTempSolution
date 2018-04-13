@@ -14,13 +14,13 @@ import org.springframework.stereotype.Component
 
 @Component
 class MyProperties {
-    @Value("\${name}")
+    @Value("\${info.name}")
     lateinit var name: String
 
-    @Value("\${age}")
+    @Value("\${info.age}")
     lateinit var age: Integer
 
     // 通过命令行指定 --adress=home
-    @Value("\${address}")
+    @Value("\${info.city}")
     lateinit var address: String
 }

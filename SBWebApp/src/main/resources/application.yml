@@ -1,12 +1,2 @@
 ﻿#  注意，yml 文件是两个空格进行缩进，而不是 Tab
 
-info:
-  name:
-    张进
-  age:
-    31
-  city:
-    WuHan
-
-
-

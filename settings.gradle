@@ -2,7 +2,9 @@ rootProject.name = 'JavaTempSolution'
 include ':BasicWebApp'
 include ':ConsoleApp'
 include ':SBConsoleApp'
+include ':SBWebApp'
 
 project(':BasicWebApp').projectDir = "$rootDir/BasicWebApp" as File
 project(':ConsoleApp').projectDir = "$rootDir/ConsoleApp" as File
 project(':SBConsoleApp').projectDir = "$rootDir/SBConsoleApp" as File
+project(':SBWebApp').projectDir = "$rootDir/SBWebApp" as File
