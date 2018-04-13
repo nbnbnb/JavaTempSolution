@@ -55,6 +55,8 @@ buildscript {
 
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBoot_version"
         classpath "io.spring.gradle:dependency-management-plugin:$sprintIO_version"
+
+        classpath 'org.akhikhl.gretty:gretty:+'
     }
 
 }
