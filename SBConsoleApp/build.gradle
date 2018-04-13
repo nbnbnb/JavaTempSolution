@@ -4,6 +4,13 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 description = 'SpringBoot ConsoleApp'
+
+dependencyManagement {
+    imports {
+        mavenBom 'io.spring.platform:platform-bom:Cairo-RELEASE'
+    }
+}
+
 dependencies {
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: "$springBoot_version"
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter'
 }

@@ -1,0 +1,20 @@
+apply plugin: 'io.spring.dependency-management'
+
+description = 'BasicConsole App'
+
+dependencyManagement {
+    imports {
+        mavenBom 'io.spring.platform:platform-bom:Cairo-RELEASE'
+    }
+}
+
+dependencies {
+    compile group: 'com.microsoft.sqlserver', name: 'sqljdbc4', version: "$sqljdbc4_version"
+    compile group: 'org.springframework', name: 'spring-context'
+    compile group: 'org.aspectj', name: 'aspectjweaver'
+    compile group: 'commons-io', name: 'commons-io'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind'
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310'
+    compile group: 'com.google.code.findbugs', name: 'jsr305'
+}
+
