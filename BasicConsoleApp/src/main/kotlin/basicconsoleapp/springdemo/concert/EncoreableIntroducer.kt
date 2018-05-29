@@ -21,7 +21,7 @@ object EncoreableIntroducer {
     //
     // @DeclareParents 注解所标注的静态属性 encoreable 指明了要引入的接口。
     // 在这里， 我们所引入的是 Encoreable 接口（DefaultEncoreable 实现了该接口）
-    @DeclareParents(value = "basicconsoleapp.Performance+", defaultImpl = DefaultEncoreable::class)
+    @DeclareParents(value = "basicconsoleapp.springdemo.concert.Performance+", defaultImpl = DefaultEncoreable::class)
     var encoreable: Encoreable? = null
 
 }

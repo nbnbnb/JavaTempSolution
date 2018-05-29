@@ -17,14 +17,14 @@ class Audience {
     //  方法的实际内容并不重要， 在这里它实际上应该是空的
     //  表达式中的匹配的方法，都会执行切入
 
-    // 切点表达式 execution(* basicconsoleapp.Performance.*(..))
+    // 切点表达式 execution(* basicconsoleapp.springdemo.concert.Performance.*(..))
     //
     //  execution 表示在方法执行的时候触发
     //  * 表示返回任意类型
     //  basicconsoleapp.Performance 表方法的类
     //  * 表示所有的方法
     //  (..) 表示使用任意参数
-    @Pointcut("execution(* basicconsoleapp.Performance.*(..))")
+    @Pointcut("execution(* basicconsoleapp.springdemo.concert.Performance.*(..))")
     fun performance() {
     }
 

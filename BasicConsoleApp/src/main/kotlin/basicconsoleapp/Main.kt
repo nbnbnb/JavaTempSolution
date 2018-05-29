@@ -15,6 +15,8 @@ object Main {
         println("----- start -----")
         //demos()
         temp()
+        SpringDemo.aopDemo()
+        SpringDemo.executionDemo()
         println("-----  end  -----")
     }
 

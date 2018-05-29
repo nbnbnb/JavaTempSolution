@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component
 @Component
 class AspectJExecution {
 
-    @Before("execution(public * basicconsoleapp.IExecution.*(..)) && @annotation(basicconsoleapp.MyFlag) && within(basicconsoleapp.SheExecution)")
+    // 总共 3 个限制
+    @Before("execution(public * basicconsoleapp.springdemo.concert.IExecution.*(..)) && @annotation(basicconsoleapp.springdemo.concert.MyFlag) && within(basicconsoleapp.springdemo.concert.SheExecution)")
     fun doAOP(joinPoint: JoinPoint) {
         println("execution(public * *(..))")
     }
