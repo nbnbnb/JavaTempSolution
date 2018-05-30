@@ -15,15 +15,18 @@ object Main {
         println("----- start -----")
         //demos()
         temp()
-        SpringDemo.aopDemo()
-        SpringDemo.executionDemo()
+        //SpringDemo.basic()
+        //SpringDemo.selector()
+        //SpringDemo.introducer()
+        SpringDemo.around()
         println("-----  end  -----")
     }
 
     private fun demos() {
         JdbcDemo.basicQueryForSQLServer() // 需要连接 SQLServer，并开启 SQL Server Browser 服务
-        SpringDemo.aopDemo()
-        SpringDemo.executionDemo()
+        SpringDemo.basic()
+        SpringDemo.selector()
+        SpringDemo.introducer()
     }
 
     private fun temp() {

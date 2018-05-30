@@ -1,25 +1,25 @@
 package basicconsoleapp.demos
 
 import basicconsoleapp.config.AppConfig
-import basicconsoleapp.springdemo.concert.Encoreable
-import basicconsoleapp.springdemo.concert.IExecution
-import basicconsoleapp.springdemo.concert.Performance
+import basicconsoleapp.springdemo.concert.around.Arounder
+import basicconsoleapp.springdemo.concert.basic.Performance
+import basicconsoleapp.springdemo.concert.introducer.Encoreable
+import basicconsoleapp.springdemo.concert.selector.IExecution
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 object SpringDemo {
 
-    fun aopDemo() {
+    fun basic() {
         val context = AnnotationConfigApplicationContext(AppConfig::class.java)
         val performance = context.getBean(Performance::class.java)
         performance.doIt()
-
-        // 由于实现了“引入新功能”
-        // 此处转型为新功能接口
-        val encoreable = performance as Encoreable
-        encoreable.performEncore()
+        println("------")
+        performance.perform()
+        println("------")
+        performance.showError()
     }
 
-    fun executionDemo() {
+    fun selector() {
         val context = AnnotationConfigApplicationContext(AppConfig::class.java)
         val myExecution = context.getBean("myExecution", IExecution::class.java)
         myExecution.doIt()
@@ -28,4 +28,18 @@ object SpringDemo {
         sheExecution.doIt()
     }
 
+    fun introducer() {
+        val context = AnnotationConfigApplicationContext(AppConfig::class.java)
+        val performance = context.getBean(Performance::class.java)
+        // 由于实现了“引入新功能”
+        // 此处可以将 Performance 接口转型为 Encoreable 接口
+        val encoreable = performance as Encoreable
+        encoreable.performEncore()
+    }
+
+    fun around() {
+        val context = AnnotationConfigApplicationContext(AppConfig::class.java)
+        val arounder = context.getBean(Arounder::class.java)
+        arounder.showInfo("JJZhang", 30)
+    }
 }

@@ -1,4 +1,4 @@
-package basicconsoleapp.springdemo.concert
+package basicconsoleapp.springdemo.concert.introducer
 
 class DefaultEncoreable : Encoreable {
     override fun performEncore() {
