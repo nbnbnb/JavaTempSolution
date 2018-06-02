@@ -18,7 +18,8 @@ object Main {
         //SpringDemo.basic()
         //SpringDemo.selector()
         //SpringDemo.introducer()
-        SpringDemo.around()
+        //SpringDemo.around()
+        SpringDemo.el()
         println("-----  end  -----")
     }
 

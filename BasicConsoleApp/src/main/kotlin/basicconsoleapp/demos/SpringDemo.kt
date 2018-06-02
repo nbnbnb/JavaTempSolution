@@ -1,10 +1,12 @@
 package basicconsoleapp.demos
 
 import basicconsoleapp.config.AppConfig
+import basicconsoleapp.config.ELConfig
 import basicconsoleapp.springdemo.concert.around.Arounder
 import basicconsoleapp.springdemo.concert.basic.Performance
 import basicconsoleapp.springdemo.concert.introducer.Encoreable
 import basicconsoleapp.springdemo.concert.selector.IExecution
+import org.apache.commons.io.IOUtils
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 object SpringDemo {
@@ -41,5 +43,18 @@ object SpringDemo {
         val context = AnnotationConfigApplicationContext(AppConfig::class.java)
         val arounder = context.getBean(Arounder::class.java)
         arounder.showInfo("JJZhang", 30)
+    }
+
+    fun el() {
+        val context = AnnotationConfigApplicationContext(AppConfig::class.java)
+        val elConfig = context.getBean(ELConfig::class.java)
+        println(elConfig.normal)
+        println(elConfig.osNameString)
+        println(elConfig.randomNumber)
+        println(elConfig.fromAnother)
+        println(IOUtils.toString(elConfig.testFile.inputStream, "utf8"))
+        println(IOUtils.toString(elConfig.testUrl.inputStream, "utf8"))
+        println(elConfig.bookName)
+        println(elConfig.env.getProperty("book.author"))
     }
 }
