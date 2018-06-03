@@ -1,6 +1,7 @@
 package basicconsoleapp.helper
 
 import java.sql.Timestamp
+import java.text.SimpleDateFormat
 import java.time.*
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -36,8 +37,9 @@ object DateTimeHelper {
      * @return
      */
     fun toCalendar(timestamp: Timestamp): Calendar {
-        currentCalendar.time = timestamp
-        return currentCalendar
+        val tp = currentCalendar
+        tp.time = timestamp
+        return tp
     }
 
     /**
@@ -131,5 +133,15 @@ object DateTimeHelper {
     fun timeStampToCustomString(timestamp: Timestamp, format: String): String {
         val localDateTime = timeStampToLocalDateTime(timestamp)
         return localDateTime.format(DateTimeFormatter.ofPattern(format))
+    }
+
+    /**
+     * 将 Date 转换为指定格式的字符串
+     *
+     * @param format 默认格式为 yyyy-MM-dd HH:mm:ss
+     */
+    fun dateToString(date: Date, format: String = "yyyy-MM-dd HH:mm:ss"): String {
+        val sdf = SimpleDateFormat(format)
+        return sdf.format(date)
     }
 }

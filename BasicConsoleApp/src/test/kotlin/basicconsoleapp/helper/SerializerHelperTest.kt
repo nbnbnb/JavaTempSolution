@@ -4,48 +4,65 @@ import basicconsoleapp.entities.DateTimeClass
 import org.junit.Test
 import java.util.*
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 
 /**
  * Created by jinzhanga on 2017/12/13.
  */
 
+
 class SerializerHelperTest {
 
-    private val testDate = Date(1507790279021L)
-    private val testCalendar: Calendar = Calendar.getInstance().apply { timeInMillis = 1507790279021L }
-    private val testTimes = DateTimeClass(testDate, testCalendar, DateTimeHelper.dateToLocalDate(testDate), DateTimeHelper.dateToLocalDateTime(testDate))
+    private var testTime: DateTimeClass = DateTimeClass().apply {
+        val now = 1507790279000L
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = now
+        a = Date(now)
+        b = calendar
+        c = DateTimeHelper.dateToLocalDate(a)
+        d = DateTimeHelper.dateToLocalDateTime(a)
+
+    }
 
     @Test
     fun toJsonStringTest() {
-        // 由于使用了 Backing Field
-        // 反序列化出来都是小写的字段
-        // {"a":"2017-10-12 14:37:59","b":"2017-10-12 14:37:59","c":"2017-10-12","d":"2017-10-12T14:37:59.021"}
-        // 此处转换为大写进行比较
 
-        // 注意：正常反序列化后的字段顺序是未知的
-        // DateTimeClass 对象使用了 @JsonPropertyOrder 进行标注，用来设置字段顺序
-        assertEquals("{\"A\":\"2017-10-12 14:37:59\",\"B\":\"2017-10-12 14:37:59\",\"C\":\"2017-10-12\",\"D\":\"2017-10-12T14:37:59.021\"}".toUpperCase(), SerializerHelper.toJsonString(testTimes).toUpperCase())
+        // Arrange
+        val jsonString = "{\"a\":\"2017-10-12 14:37:59\",\"b\":\"2017-10-12 14:37:59\",\"c\":\"2017-10-12\",\"d\":\"2017-10-12T14:37:59\"}"
+
+        // Act
+        val jsonStringNew = SerializerHelper.toJsonString(testTime)
+
+        // Assert
+        assertEquals(jsonString, jsonStringNew)
+
     }
 
     @Test
-    fun toJsonObjectTest() {
+    fun toObjectTest() {
+
         val jsonString = """
             {
-                "A": "2017-10-12 14:37:59",
-                "B": "2017-10-12 14:37:59",
-                "C": "2017-10-12",
-                "D": "2017-10-12T14:37:59.021"
+                "a": "2017-10-12 14:37:59",
+                "b": "2017-10-12 14:37:59",
+                "c": "2017-10-12",
+                "d": "2017-10-12T14:37:59"
             }
-        """
+            """
+        // Act
+        val jsonObjectValue = SerializerHelper.toJsonObject(jsonString, DateTimeClass::class.java)
 
-        val newTimes = SerializerHelper.toJsonObject(jsonString, DateTimeClass::class.java)!!
-        // 转换为相应的日期格式后，毫秒相关的精度将会丢失
-        assertTrue(Math.abs(newTimes.A!!.time - testTimes.A!!.time) < 100)
-        assertTrue(Math.abs(newTimes.B!!.time.time - testTimes.B!!.time.time) < 100)
-        // LocalDate 和 LocalDateTime 可以比较值相等（精度不带毫秒部分）
-        assertEquals(newTimes.C, testTimes.C)
-        assertEquals(newTimes.D, testTimes.D)
+        // Assert
+        // {"A":"2017-10-12 14:37:59","B":"2017-10-12 14:37:59","C":"2017-10-12","D":"2017-10-12T14:37:59"}
+        // LocalDateTime 的完整格式为 "2017-10-12T14:37:59.123"，如果毫秒为 0，则省略后面的毫秒形式 "2017-10-12T14:37:59"
+        assertEquals(jsonObjectValue!!.a, testTime.a)
+        // Calendar 不支持相对性比较，此处比较毫秒值
+        assertEquals(jsonObjectValue.b.time, testTime.b.time)
+        assertEquals(jsonObjectValue.c, testTime.c)
+        assertEquals(jsonObjectValue.d, testTime.d)
     }
+
 }
+
+
+
