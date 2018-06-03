@@ -2,6 +2,7 @@ package basicconsoleapp.demos
 
 import basicconsoleapp.config.AppConfig
 import basicconsoleapp.config.ELConfig
+import basicconsoleapp.config.TaskSchedulerConfig
 import basicconsoleapp.springdemo.concert.around.Arounder
 import basicconsoleapp.springdemo.concert.aware.AwareService
 import basicconsoleapp.springdemo.concert.basic.Performance
@@ -76,6 +77,12 @@ object SpringDemo {
         }
 
         context.close()
+    }
 
+    fun schedule() {
+        val context = AnnotationConfigApplicationContext(TaskSchedulerConfig::class.java)
+
+        // 如果调用了 close 方法，则计划任务将会关闭
+        // context.close()
     }
 }

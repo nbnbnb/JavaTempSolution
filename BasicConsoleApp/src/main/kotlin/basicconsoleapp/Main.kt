@@ -21,7 +21,8 @@ object Main {
         //SpringDemo.around()
         //SpringDemo.el()
         //SpringDemo.aware()
-        SpringDemo.task()
+        //SpringDemo.task()
+        SpringDemo.schedule()
         println("-----  end  -----")
     }
 

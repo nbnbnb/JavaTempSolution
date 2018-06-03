@@ -9,5 +9,6 @@ import org.springframework.context.annotation.Import
 @EnableAspectJAutoProxy   // 启动 AspectJ 自动代理
 @Configuration
 @Import(ELConfig::class, TaskExecutorConfig::class)
+
 open class AppConfig
 
