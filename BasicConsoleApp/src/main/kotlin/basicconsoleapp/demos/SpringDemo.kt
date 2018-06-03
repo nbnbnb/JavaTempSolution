@@ -7,6 +7,7 @@ import basicconsoleapp.springdemo.concert.aware.AwareService
 import basicconsoleapp.springdemo.concert.basic.Performance
 import basicconsoleapp.springdemo.concert.introducer.Encoreable
 import basicconsoleapp.springdemo.concert.selector.IExecution
+import basicconsoleapp.springdemo.ee.taskexecutor.AsyncTaskService
 import org.apache.commons.io.IOUtils
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
@@ -59,9 +60,22 @@ object SpringDemo {
         println(elConfig.env.getProperty("book.author"))
     }
 
-    fun aware(){
+    fun aware() {
         val context = AnnotationConfigApplicationContext(AppConfig::class.java)
         val awareService = context.getBean(AwareService::class.java)
         awareService.outputResult()
+    }
+
+    fun task() {
+        val context = AnnotationConfigApplicationContext(AppConfig::class.java)
+        val asyncTaskService = context.getBean(AsyncTaskService::class.java)
+
+        for (i in 0..10) {
+            asyncTaskService.executeAsyncTask(i)
+            asyncTaskService.executeAsyncTaskPlus(i)
+        }
+
+        context.close()
+
     }
 }

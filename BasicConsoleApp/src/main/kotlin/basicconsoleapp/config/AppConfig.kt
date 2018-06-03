@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Import
 @ComponentScan("basicconsoleapp")
 @EnableAspectJAutoProxy   // 启动 AspectJ 自动代理
 @Configuration
-@Import(ELConfig::class)
+@Import(ELConfig::class, TaskExecutorConfig::class)
 open class AppConfig
 

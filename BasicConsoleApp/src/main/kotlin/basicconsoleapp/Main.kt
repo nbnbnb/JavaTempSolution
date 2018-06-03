@@ -20,7 +20,8 @@ object Main {
         //SpringDemo.introducer()
         //SpringDemo.around()
         //SpringDemo.el()
-        SpringDemo.aware()
+        //SpringDemo.aware()
+        SpringDemo.task()
         println("-----  end  -----")
     }
 
