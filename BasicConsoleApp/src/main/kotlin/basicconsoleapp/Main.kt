@@ -19,7 +19,8 @@ object Main {
         //SpringDemo.selector()
         //SpringDemo.introducer()
         //SpringDemo.around()
-        SpringDemo.el()
+        //SpringDemo.el()
+        SpringDemo.aware()
         println("-----  end  -----")
     }
 

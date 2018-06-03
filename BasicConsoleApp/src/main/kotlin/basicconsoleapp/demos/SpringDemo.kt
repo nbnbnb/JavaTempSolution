@@ -3,6 +3,7 @@ package basicconsoleapp.demos
 import basicconsoleapp.config.AppConfig
 import basicconsoleapp.config.ELConfig
 import basicconsoleapp.springdemo.concert.around.Arounder
+import basicconsoleapp.springdemo.concert.aware.AwareService
 import basicconsoleapp.springdemo.concert.basic.Performance
 import basicconsoleapp.springdemo.concert.introducer.Encoreable
 import basicconsoleapp.springdemo.concert.selector.IExecution
@@ -56,5 +57,11 @@ object SpringDemo {
         println(IOUtils.toString(elConfig.testUrl.inputStream, "utf8"))
         println(elConfig.bookName)
         println(elConfig.env.getProperty("book.author"))
+    }
+
+    fun aware(){
+        val context = AnnotationConfigApplicationContext(AppConfig::class.java)
+        val awareService = context.getBean(AwareService::class.java)
+        awareService.outputResult()
     }
 }
