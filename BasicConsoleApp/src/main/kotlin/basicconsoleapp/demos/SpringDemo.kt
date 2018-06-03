@@ -1,6 +1,7 @@
 package basicconsoleapp.demos
 
 import basicconsoleapp.config.AppConfig
+import basicconsoleapp.config.ConditionConfig
 import basicconsoleapp.config.ELConfig
 import basicconsoleapp.config.TaskSchedulerConfig
 import basicconsoleapp.springdemo.concert.around.Arounder
@@ -8,9 +9,11 @@ import basicconsoleapp.springdemo.concert.aware.AwareService
 import basicconsoleapp.springdemo.concert.basic.Performance
 import basicconsoleapp.springdemo.concert.introducer.Encoreable
 import basicconsoleapp.springdemo.concert.selector.IExecution
+import basicconsoleapp.springdemo.ee.conditional.ListService
 import basicconsoleapp.springdemo.ee.taskexecutor.AsyncTaskService
 import org.apache.commons.io.IOUtils
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
+import org.springframework.core.env.get
 
 object SpringDemo {
 
@@ -84,5 +87,11 @@ object SpringDemo {
 
         // 如果调用了 close 方法，则计划任务将会关闭
         // context.close()
+    }
+
+    fun conditional() {
+        val context = AnnotationConfigApplicationContext(ConditionConfig::class.java)
+        val listService = context.getBean(ListService::class.java)
+        println("${context.environment["os.name"]} 系统下的列表命令为 ${listService.showListCmd()}")
     }
 }

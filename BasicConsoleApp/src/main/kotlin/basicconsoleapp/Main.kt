@@ -22,7 +22,8 @@ object Main {
         //SpringDemo.el()
         //SpringDemo.aware()
         //SpringDemo.task()
-        SpringDemo.schedule()
+        //SpringDemo.schedule()
+        SpringDemo.conditional()
         println("-----  end  -----")
     }
 
