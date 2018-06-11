@@ -7,7 +7,7 @@ description = 'SpringBoot ConsoleApp'
 
 dependencyManagement {
     imports {
-        mavenBom 'io.spring.platform:platform-bom:Cairo-RELEASE'
+        mavenBom "io.spring.platform:platform-bom:${springPlatform_version}"
     }
 }
 

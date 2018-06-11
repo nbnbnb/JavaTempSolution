@@ -1,13 +1,13 @@
 apply plugin: 'kotlin-spring'
-apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+
 
 description = 'SpringBoot WebApp'
 
 dependencyManagement {
     imports {
-        mavenBom 'io.spring.platform:platform-bom:Cairo-RELEASE'
+        mavenBom "io.spring.platform:platform-bom:${springPlatform_version}"
     }
 }
 
@@ -16,6 +16,7 @@ dependencies {
     compile('com.fasterxml.jackson.module:jackson-module-kotlin')
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compile("org.jetbrains.kotlin:kotlin-reflect")
+    compile("commons-io:commons-io")
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
