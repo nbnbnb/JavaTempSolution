@@ -1,7 +1,21 @@
 allprojects {
 
+    // 插件使用的都是 buildscript 中的依赖信息
+
+    // 将 kotlin 编译为 JVM 平台代码
     apply plugin: 'kotlin'
+
+    // JavaScript 平台
+    // apply plugin: "kotlin2js"
+
+    // 使用 maven 仓库
     apply plugin: 'maven'
+
+    // Spring IO 管理
+    apply plugin: 'io.spring.dependency-management'
+
+    apply plugin: "kotlin-allopen"
+    apply plugin: 'kotlin-spring'
 
     sourceCompatibility = java_version
     targetCompatibility = java_version
@@ -33,6 +47,8 @@ allprojects {
 
 }
 
+
+
 subprojects {
     dependencies {
         compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jdk8'
@@ -40,17 +56,25 @@ subprojects {
         compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect'
         compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: "$kotlinx_version"
         compile('com.fasterxml.jackson.module:jackson-module-kotlin')
+        compile group: 'org.springframework', name: 'spring-context'
+        compile("commons-io:commons-io")
 
+        testCompile group: 'org.springframework', name: 'spring-test'
         testCompile "org.jetbrains.kotlin:kotlin-test"
         testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit'
     }
 
-
+    dependencyManagement {
+        imports {
+            mavenBom "io.spring.platform:platform-bom:${springPlatform_version}"
+        }
+    }
 }
 
 buildscript {
 
     repositories {
+        mavenLocal()
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     }
 
