@@ -19,7 +19,6 @@ import org.springframework.stereotype.Component
 @Component
 class InjectArguments @Autowired constructor(args: ApplicationArguments) {
     init {
-
         // if run with "--debug logfile.txt" debug=true, files=["logfile.txt"]
 
         @Suppress("UNUSED")

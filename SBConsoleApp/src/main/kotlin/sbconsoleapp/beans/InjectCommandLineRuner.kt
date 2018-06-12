@@ -19,6 +19,8 @@ class InjectCommandLineRuner : CommandLineRunner {
     lateinit var myProperties: InjectProperties
 
     override fun run(vararg args: String) {
+
+        println("Staring in InjectCommandLineRuner")
         println(myProperties.name)
         println(myProperties.age)
         println(myProperties.address)
