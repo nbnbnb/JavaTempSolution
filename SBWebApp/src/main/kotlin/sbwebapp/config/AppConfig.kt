@@ -10,9 +10,9 @@ import sbwebapp.ext.LoggerFilter
  */
 
 @Configuration
-open class AppConfig {
+class AppConfig {
     @Bean
-    open fun filterDemo4Registration(): FilterRegistrationBean<*> {
+    fun filterDemo4Registration(): FilterRegistrationBean<*> {
 
         val registration = FilterRegistrationBean<LoggerFilter>()
         //注入过滤器

@@ -44,7 +44,7 @@ class LoggerFilter : Filter {
             requestHeaders.add(headerName, requestWrapper.getHeader(headerName))
         }
         val httpMethod = HttpMethod.valueOf(requestWrapper.method)
-        val requestParams = requestWrapper.parameterMap
+        val queryString = requestWrapper.queryString
         val requestBody = IOUtils.toString(requestWrapper.inputStream, UTF_8)
         val responseStatus = HttpStatus.valueOf(responseWrapper.statusCode)
         val responseHeaders = HttpHeaders()
@@ -59,7 +59,7 @@ class LoggerFilter : Filter {
         logger.info("responseBody: $responseBody")
         logger.info("requestBody: $requestBody")
         logger.info("responseStatus: $responseStatus")
-        logger.info("requestParams: $requestParams")
+        logger.info("queryString: $queryString")
         logger.info("requestUrl: $requestUrl")
 
         // 最后注意需要将 responseWrapper 的内容写入到原始 response

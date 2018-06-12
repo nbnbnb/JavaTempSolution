@@ -2,10 +2,10 @@ package basicconsoleapp.helper
 
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.MapperFeature
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter
  */
 object SerializerHelper {
 
-    private val mapper = ObjectMapper()
+    private val mapper = jacksonObjectMapper()
     private val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
     init {

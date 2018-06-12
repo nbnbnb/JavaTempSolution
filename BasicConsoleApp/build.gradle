@@ -1,5 +1,4 @@
 apply plugin: 'io.spring.dependency-management'
-
 description = 'BasicConsole App'
 
 dependencyManagement {
