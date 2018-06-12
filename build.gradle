@@ -50,9 +50,7 @@ subprojects {
 
 buildscript {
 
-
     repositories {
-        mavenLocal()
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     }
 
@@ -63,7 +61,7 @@ buildscript {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBoot_version"
         classpath "io.spring.gradle:dependency-management-plugin:$springIO_version"
 
-
+        // 使用 + 标识符，获取最新版本的 gretty
         classpath 'org.akhikhl.gretty:gretty:+'
     }
 

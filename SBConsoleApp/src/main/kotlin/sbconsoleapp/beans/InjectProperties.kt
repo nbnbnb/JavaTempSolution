@@ -1,4 +1,4 @@
-package sbconsoleapp
+package sbconsoleapp.beans
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
@@ -13,14 +13,17 @@ import org.springframework.stereotype.Component
  */
 
 @Component
-class MyProperties {
+class InjectProperties {
     @Value("\${info.name}")
     lateinit var name: String
 
     @Value("\${info.age}")
-    lateinit var age: Integer
+    var age: Int = 0
 
-    // 通过命令行指定 --adress=home
+
     @Value("\${info.city}")
     lateinit var address: String
+
+    // 通过命令行指定 --adress=home
+    // 则可以通过 @Value("\${address}") 进行注入
 }

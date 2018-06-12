@@ -29,42 +29,49 @@ class LoggerFilter : Filter {
 
     }
 
-    override fun doFilter(httpServletRequest: ServletRequest, httpServletResponse: ServletResponse, filterChain: FilterChain) {
+    override fun doFilter(servletRequest: ServletRequest, servletResponse: ServletResponse, filterChain: FilterChain) {
 
-        val requestWrapper = ContentCachingRequestWrapper(httpServletRequest as HttpServletRequest)
-        val responseWrapper = ContentCachingResponseWrapper(httpServletResponse as HttpServletResponse)
+        val httpServletRequest = servletRequest as HttpServletRequest
+        val httpServletResponse = servletResponse as HttpServletResponse
 
-        filterChain.doFilter(requestWrapper, responseWrapper)
+        if (httpServletRequest.requestURL.endsWith(".ico")) {
+            filterChain.doFilter(servletRequest, servletResponse)
+        } else {
 
-        val requestUrl = requestWrapper.requestURL.toString()
-        val requestHeaders = HttpHeaders()
-        val headerNames = requestWrapper.headerNames
-        while (headerNames.hasMoreElements()) {
-            val headerName = headerNames.nextElement() as String
-            requestHeaders.add(headerName, requestWrapper.getHeader(headerName))
+            val requestWrapper = ContentCachingRequestWrapper(httpServletRequest)
+            val responseWrapper = ContentCachingResponseWrapper(httpServletResponse)
+            filterChain.doFilter(httpServletRequest, httpServletResponse)
+
+            filterChain.doFilter(requestWrapper, responseWrapper)
+
+            val requestUrl = requestWrapper.requestURL.toString()
+            val requestHeaders = HttpHeaders()
+            val headerNames = requestWrapper.headerNames
+            while (headerNames.hasMoreElements()) {
+                val headerName = headerNames.nextElement() as String
+                requestHeaders.add(headerName, requestWrapper.getHeader(headerName))
+            }
+            val httpMethod = HttpMethod.valueOf(requestWrapper.method)
+            val queryString = requestWrapper.queryString
+            val requestBody = IOUtils.toString(requestWrapper.inputStream, UTF_8)
+            val responseStatus = HttpStatus.valueOf(responseWrapper.statusCode)
+            val responseHeaders = HttpHeaders()
+            for (headerName in responseWrapper.headerNames) {
+                responseHeaders.add(headerName, responseWrapper.getHeader(headerName))
+            }
+            val responseBody = IOUtils.toString(responseWrapper.contentInputStream, UTF_8)
+
+            logger.info("ContentType: ${httpServletRequest.contentType}")
+            logger.info("Method: $httpMethod")
+            logger.info("responseBody: $responseBody")
+            logger.info("requestBody: $requestBody")
+            logger.info("responseStatus: $responseStatus")
+            logger.info("queryString: $queryString")
+            logger.info("requestUrl: $requestUrl")
+
+            // 最后注意需要将 responseWrapper 的内容写入到原始 response
+            // 最后一步执行，因为执行完后 ContentCachingResponseWrapper 的 FastByteArrayOutputStream 会被重置
+            responseWrapper.copyBodyToResponse()
         }
-        val httpMethod = HttpMethod.valueOf(requestWrapper.method)
-        val queryString = requestWrapper.queryString
-        val requestBody = IOUtils.toString(requestWrapper.inputStream, UTF_8)
-        val responseStatus = HttpStatus.valueOf(responseWrapper.statusCode)
-        val responseHeaders = HttpHeaders()
-        for (headerName in responseWrapper.headerNames) {
-            responseHeaders.add(headerName, responseWrapper.getHeader(headerName))
-        }
-        val responseBody = IOUtils.toString(responseWrapper.contentInputStream, UTF_8)
-
-
-        logger.info("ContentType: ${httpServletRequest.contentType}")
-        logger.info("Method: $httpMethod")
-        logger.info("responseBody: $responseBody")
-        logger.info("requestBody: $requestBody")
-        logger.info("responseStatus: $responseStatus")
-        logger.info("queryString: $queryString")
-        logger.info("requestUrl: $requestUrl")
-
-        // 最后注意需要将 responseWrapper 的内容写入到原始 response
-        // 最后一步执行，因为执行完后 ContentCachingResponseWrapper 的 FastByteArrayOutputStream 会被重置
-        responseWrapper.copyBodyToResponse()
     }
-
 }

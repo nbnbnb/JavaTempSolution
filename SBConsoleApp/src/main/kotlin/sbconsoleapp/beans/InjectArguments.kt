@@ -1,7 +1,7 @@
-package sbconsoleapp
+package sbconsoleapp.beans
 
-import org.springframework.boot.ApplicationArguments
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.ApplicationArguments
 import org.springframework.stereotype.Component
 
 
@@ -17,11 +17,12 @@ import org.springframework.stereotype.Component
  * 则得到的结果为 debug=true, files=["logfile.txt"]
  */
 @Component
-class MyBean @Autowired constructor(args: ApplicationArguments) {
+class InjectArguments @Autowired constructor(args: ApplicationArguments) {
     init {
+
         // if run with "--debug logfile.txt" debug=true, files=["logfile.txt"]
 
-        @SuppressWarnings("UNUSED")
+        @Suppress("UNUSED")
         val debug = args.containsOption("debug")
 
         @Suppress("unused")
