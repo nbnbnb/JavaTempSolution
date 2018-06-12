@@ -38,16 +38,14 @@ allprojects {
             jvmTarget = java_version
         }
     }
+
     compileTestKotlin {
         kotlinOptions {
             freeCompilerArgs = ["-Xjsr305=strict"]
             jvmTarget = java_version
         }
     }
-
 }
-
-
 
 subprojects {
     dependencies {
@@ -72,21 +70,16 @@ subprojects {
 }
 
 buildscript {
-
     repositories {
         mavenLocal()
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     }
-
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-allopen:${kotlin_version}"
-
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBoot_version"
         classpath "io.spring.gradle:dependency-management-plugin:$springIO_version"
-
     }
-
 }
 
 

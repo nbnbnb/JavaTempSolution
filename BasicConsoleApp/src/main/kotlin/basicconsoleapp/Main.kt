@@ -15,15 +15,6 @@ object Main {
         println("----- start -----")
         //demos()
         temp()
-        //SpringDemo.basic()
-        //SpringDemo.selector()
-        //SpringDemo.introducer()
-        //SpringDemo.around()
-        //SpringDemo.el()
-        //SpringDemo.aware()
-        //SpringDemo.task()
-        //SpringDemo.schedule()
-        SpringDemo.conditional()
         println("-----  end  -----")
     }
 
@@ -32,6 +23,15 @@ object Main {
         SpringDemo.basic()
         SpringDemo.selector()
         SpringDemo.introducer()
+        SpringDemo.basic()
+        SpringDemo.selector()
+        SpringDemo.introducer()
+        SpringDemo.around()
+        SpringDemo.el()
+        SpringDemo.aware()
+        SpringDemo.task()
+        SpringDemo.schedule()
+        SpringDemo.conditional()
     }
 
     private fun temp() {

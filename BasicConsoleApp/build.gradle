@@ -2,7 +2,6 @@ description = 'BasicConsole App'
 
 dependencies {
     compile group: 'com.microsoft.sqlserver', name: 'sqljdbc4', version: "$sqljdbc4_version"
-
     compile group: 'org.aspectj', name: 'aspectjweaver'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind'
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310'
