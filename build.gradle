@@ -14,8 +14,12 @@ allprojects {
     // Spring IO 管理
     apply plugin: 'io.spring.dependency-management'
 
+
     apply plugin: "kotlin-allopen"
     apply plugin: 'kotlin-spring'
+
+    apply plugin: "kotlin-noarg"
+    apply plugin: "kotlin-jpa"
 
     sourceCompatibility = java_version
     targetCompatibility = java_version
@@ -77,6 +81,7 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-allopen:${kotlin_version}"
+        classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlin_version"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBoot_version"
         classpath "io.spring.gradle:dependency-management-plugin:$springIO_version"
     }

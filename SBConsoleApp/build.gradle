@@ -2,6 +2,13 @@ apply plugin: 'org.springframework.boot'
 
 description = 'SpringBoot ConsoleApp'
 
+
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
+    compile group: 'mysql', name: 'mysql-connector-java'
+
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
 }
+
+
