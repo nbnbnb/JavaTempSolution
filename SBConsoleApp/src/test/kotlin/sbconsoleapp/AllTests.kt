@@ -24,15 +24,16 @@ class AllTests {
 
     @Test
     fun basicTest() {
-        personRepository.save(Person(1, "AAA", 30, "北京"))
-        personRepository.save(Person(2, "BBB", 31, "上海"))
-
-        assertEquals(personRepository.findAll().size, 2)
+        assertEquals(personRepository.findAll().size, 6)
         assertEquals(personRepository.findByAddress("北京").size, 1)
 
         assertEquals(personRepository.findByNameAndAddress("AAA", "北京").address, "北京")
         assertEquals(personRepository.withNameAndAddressQuery("AAA", "北京").address, "北京")
         assertEquals(personRepository.withNameAndAddressNamedQuery("AAA", "北京").address, "北京")
 
+        personRepository.save(Person(7, "GGG", 30, "天津"))
+        personRepository.save(Person(8, "HHH", 31, "重启"))
+
+        assertEquals(personRepository.findAll().size, 8)
     }
 }

@@ -7,25 +7,25 @@ spring:
     password: boot
   jpa:
     hibernate:
+      # 默认情况下，仅当您使用嵌入式数据库（H2，HSQL或Derby）时才会自动创建JPA数据库（可以通过下面的额 ddl-auto 显式设置）
       # create: 启动时删除上一次生成的表，并根据实体类生成表，表中的数据会被清空
       # create-drop：启动时根据实体类生成表，sessionFactory 关闭时表会被删除
       # update: 启动时会根据实体生成表，当实体表属性变动的时候，表结构也会更新，在初期开发阶段使用此选项
       # validate: 启动时验证实体类和数据表是否一致，在我们数据结构稳定时采用此选项
       # none: 不采取任何措施
-      ddl-auto: update
+      # 当设置为 create 或 create-drop 模式时，将会自动执行类路径下的 import.sql 文件（Hibernate 的默认功能）
+      # 还可以通过 schema.sql 来执行初始化操作，此时应该设置 ddl-auto: none，这两个功能只应二选一
+      # Spring BOOT 自动识别的是 schema.sql 和 data.sql
+      # https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html#howto-initialize-a-database-using-jpa
+      ddl-auto: create
     # 用来设置 hibernate 操作的时候在控制台显示其真实的 sql 语句
     show-sql: true
-  jackson:
-    # 让控制台输出的 json 字符串格式更美观
-    serialization: true
+    properties:
+      hibernate:
+        format_sql: true
 
-info:
-  name:
-    张进
-  age:
-    31
-  city:
-    WuHan
+
+
 
 
 
