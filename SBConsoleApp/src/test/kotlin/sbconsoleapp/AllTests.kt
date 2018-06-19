@@ -3,7 +3,6 @@ package sbconsoleapp
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.context.annotation.Import
 import org.springframework.test.context.junit4.SpringRunner
 import sbconsoleapp.dao.PersonRepository
 import sbconsoleapp.demain.Person
@@ -15,8 +14,9 @@ import kotlin.test.assertEquals
  */
 
 @RunWith(SpringRunner::class)
-@SpringBootTest
-@Import(ConsoleApplication::class)
+@SpringBootTest(classes = [(ConsoleApplication::class)])
+//@Suite.SuiteClasses(MiscHelperTest::class, QConfigHelperTest::class, CtripLoggerTest::class)
+//@Import(ConsoleApplication::class)
 class AllTests {
 
     @Autowired
