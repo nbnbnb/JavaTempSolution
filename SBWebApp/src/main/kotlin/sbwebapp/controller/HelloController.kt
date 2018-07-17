@@ -15,8 +15,8 @@ class HelloController {
         return "Hello World!"
     }
 
-    @RequestMapping("/ggg")
-    fun ggg(kkking: Dictionary<String, String>): String {
+    @RequestMapping("/formsbind")
+    fun formsBind(@RequestParam info: Map<String, String>): String {
         return "Hello World!"
     }
 }
