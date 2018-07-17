@@ -10,22 +10,5 @@ import sbwebapp.ext.LoggerFilter
  */
 
 @Configuration
-class AppConfig {
-    @Bean
-    fun filterDemo4Registration(): FilterRegistrationBean<*> {
+class AppConfig
 
-        val registration = FilterRegistrationBean<LoggerFilter>()
-        //注入过滤器
-        registration.filter = LoggerFilter()
-        //拦截规则
-        registration.addUrlPatterns("/*")
-        //过滤器名称
-        registration.setName("LoggerFilter")
-        //是否自动注册
-        registration.isEnabled = true
-        //过滤器顺序
-        registration.order = 1
-
-        return registration
-    }
-}
