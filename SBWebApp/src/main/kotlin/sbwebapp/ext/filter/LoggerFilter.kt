@@ -55,6 +55,8 @@ class LoggerFilter : Filter {
             val queryString = URLDecoder.decode(requestWrapper.queryString ?: "", UTF_8.name())
 
             val responseStatus = HttpStatus.valueOf(responseWrapper.statusCode)
+
+            // header 不支持中文，需要进行编码
             val responseHeaders = HttpHeaders()
             for (headerName in responseWrapper.headerNames) {
                 responseHeaders.add(headerName, responseWrapper.getHeader(headerName))
@@ -66,7 +68,7 @@ class LoggerFilter : Filter {
             logger.info("Request-Body: $requestBody")
             logger.info("Request-Url: $requestUrl")
             logger.info("Request-QueryString: $queryString")
-            logger.info("Request-Headers: ${getRequestHeaderInfos(requestWrapper)}")
+            logger.info("Request-Headers: \n${getRequestHeaderInfos(requestWrapper)}")
 
             logger.info("Response-ContentType: ${responseWrapper.contentType}")
             logger.info("Response-Body: $responseBody")
@@ -89,7 +91,7 @@ class LoggerFilter : Filter {
         }
         return requestHeaders.map {
             it.key + ":" + it.value.joinToString(",")
-        }.joinToString("^")
+        }.joinToString("\n")
     }
 
 }
