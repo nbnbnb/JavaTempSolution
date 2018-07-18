@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit4.SpringRunner
 import sbconsoleapp.dao.PersonRepository
 import sbconsoleapp.demain.Person
+import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -23,6 +24,7 @@ class AllTests {
     private lateinit var personRepository: PersonRepository
 
     @Test
+    @Ignore
     fun basicTest() {
         assertEquals(personRepository.findAll().size, 6)
         assertEquals(personRepository.findByAddress("北京").size, 1)

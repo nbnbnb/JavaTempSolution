@@ -1,5 +1,9 @@
 apply plugin: 'org.springframework.boot'
 
+// 打包 war
+// Tomcat 调试使用
+apply plugin: 'war'
+
 description = 'SpringBoot WebApp'
 
 dependencies {

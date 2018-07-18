@@ -1,4 +1,4 @@
-package sbwebapp.ext
+package sbwebapp.ext.filter
 
 import org.apache.commons.io.IOUtils
 import org.slf4j.LoggerFactory
@@ -6,18 +6,15 @@ import org.springframework.core.annotation.Order
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
-import org.springframework.stereotype.Component
 import org.springframework.web.util.ContentCachingRequestWrapper
 import org.springframework.web.util.ContentCachingResponseWrapper
 import java.net.URLDecoder
-import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets.UTF_8
 import javax.servlet.*
 import javax.servlet.annotation.WebFilter
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletRequestWrapper
 import javax.servlet.http.HttpServletResponse
-import javax.servlet.http.HttpServletResponseWrapper
 
 
 /**
@@ -40,23 +37,22 @@ class LoggerFilter : Filter {
 
     override fun doFilter(servletRequest: ServletRequest, servletResponse: ServletResponse, filterChain: FilterChain) {
 
-        val httpServletRequest = servletRequest as HttpServletRequest
-        val httpServletResponse = servletResponse as HttpServletResponse
+        val requestWrapper = ContentCachingRequestWrapper(servletRequest as HttpServletRequest)
+        val responseWrapper = ContentCachingResponseWrapper(servletResponse as HttpServletResponse)
 
-        if (httpServletRequest.requestURL.endsWith(".ico")) {
+        val requestUrl = requestWrapper.requestURL.toString()
+
+        if (requestUrl.endsWith(".ico")) {
             filterChain.doFilter(servletRequest, servletResponse)
         } else {
 
-            val requestWrapper = ContentCachingRequestWrapper(httpServletRequest)
-            val responseWrapper = ContentCachingResponseWrapper(httpServletResponse)
+            // 放在第一行
+            filterChain.doFilter(requestWrapper, responseWrapper)
 
-
-
-            val requestBody = URLDecoder.decode(requestWrapper.contentAsByteArray.toString(Charset.forName("UTF-8")), "UTF-8")
-            val requestUrl = requestWrapper.requestURL.toString()
+            val requestBody = URLDecoder.decode(requestWrapper.contentAsByteArray.toString(UTF_8), UTF_8.name())
 
             val httpMethod = HttpMethod.valueOf(requestWrapper.method)
-            val queryString = URLDecoder.decode(requestWrapper.queryString, "UTF-8")
+            val queryString = URLDecoder.decode(requestWrapper.queryString ?: "", UTF_8.name())
 
             val responseStatus = HttpStatus.valueOf(responseWrapper.statusCode)
             val responseHeaders = HttpHeaders()
@@ -65,19 +61,17 @@ class LoggerFilter : Filter {
             }
             val responseBody = IOUtils.toString(responseWrapper.contentInputStream, UTF_8)
 
-            logger.info("Request-ContentType: ${httpServletRequest.contentType}")
+            logger.info("Request-ContentType: ${requestWrapper.contentType}")
             logger.info("Request-Method: $httpMethod")
             logger.info("Request-Body: $requestBody")
             logger.info("Request-Url: $requestUrl")
             logger.info("Request-QueryString: $queryString")
             logger.info("Request-Headers: ${getRequestHeaderInfos(requestWrapper)}")
 
-            logger.info("Response-ContentType: ${httpServletResponse.contentType}")
+            logger.info("Response-ContentType: ${responseWrapper.contentType}")
             logger.info("Response-Body: $responseBody")
             logger.info("Response-Status: $responseStatus")
 
-            // 缓存之后，继续处理
-            filterChain.doFilter(requestWrapper, responseWrapper)
 
             // 最后注意需要将 responseWrapper 的内容写入到原始 response
             // 最后一步执行，因为执行完后 ContentCachingResponseWrapper 的 FastByteArrayOutputStream 会被重置
