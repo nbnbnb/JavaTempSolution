@@ -17,7 +17,7 @@ spring:
       # 还可以通过 schema.sql 来执行初始化操作，此时应该设置 ddl-auto: none，这两个功能只应二选一
       # Spring BOOT 自动识别的是 schema.sql 和 data.sql
       # https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html#howto-initialize-a-database-using-jpa
-      ddl-auto: create
+      ddl-auto: none
     # 用来设置 hibernate 操作的时候在控制台显示其真实的 sql 语句
     show-sql: true
     properties:

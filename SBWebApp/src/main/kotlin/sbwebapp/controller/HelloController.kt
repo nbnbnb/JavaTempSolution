@@ -1,7 +1,7 @@
 package sbwebapp.controller
 
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import java.util.*
 
 /**
  * Created by ZhangJin on 2018/6/12.
@@ -15,4 +15,8 @@ class HelloController {
         return "Hello World!"
     }
 
+    @RequestMapping("/formsbind")
+    fun formsBind(@RequestParam info: Map<String, String>): String {
+        return "Hello World!"
+    }
 }

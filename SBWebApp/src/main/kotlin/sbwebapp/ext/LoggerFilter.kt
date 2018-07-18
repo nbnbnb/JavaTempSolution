@@ -2,21 +2,30 @@ package sbwebapp.ext
 
 import org.apache.commons.io.IOUtils
 import org.slf4j.LoggerFactory
+import org.springframework.core.annotation.Order
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
+import org.springframework.stereotype.Component
 import org.springframework.web.util.ContentCachingRequestWrapper
 import org.springframework.web.util.ContentCachingResponseWrapper
+import java.net.URLDecoder
+import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets.UTF_8
 import javax.servlet.*
+import javax.servlet.annotation.WebFilter
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletRequestWrapper
 import javax.servlet.http.HttpServletResponse
+import javax.servlet.http.HttpServletResponseWrapper
 
 
 /**
  * Created by ZhangJin on 2018/6/12.
  */
 
+@Order(1)
+@WebFilter(filterName = "LoggerFilter", urlPatterns = ["/*"])
 class LoggerFilter : Filter {
 
     private val logger = LoggerFactory.getLogger(LoggerFilter::class.java)!!
@@ -40,20 +49,15 @@ class LoggerFilter : Filter {
 
             val requestWrapper = ContentCachingRequestWrapper(httpServletRequest)
             val responseWrapper = ContentCachingResponseWrapper(httpServletResponse)
-            filterChain.doFilter(httpServletRequest, httpServletResponse)
 
-            filterChain.doFilter(requestWrapper, responseWrapper)
 
+
+            val requestBody = URLDecoder.decode(requestWrapper.contentAsByteArray.toString(Charset.forName("UTF-8")), "UTF-8")
             val requestUrl = requestWrapper.requestURL.toString()
-            val requestHeaders = HttpHeaders()
-            val headerNames = requestWrapper.headerNames
-            while (headerNames.hasMoreElements()) {
-                val headerName = headerNames.nextElement() as String
-                requestHeaders.add(headerName, requestWrapper.getHeader(headerName))
-            }
+
             val httpMethod = HttpMethod.valueOf(requestWrapper.method)
-            val queryString = requestWrapper.queryString
-            val requestBody = IOUtils.toString(requestWrapper.inputStream, UTF_8)
+            val queryString = URLDecoder.decode(requestWrapper.queryString, "UTF-8")
+
             val responseStatus = HttpStatus.valueOf(responseWrapper.statusCode)
             val responseHeaders = HttpHeaders()
             for (headerName in responseWrapper.headerNames) {
@@ -61,17 +65,62 @@ class LoggerFilter : Filter {
             }
             val responseBody = IOUtils.toString(responseWrapper.contentInputStream, UTF_8)
 
-            logger.info("ContentType: ${httpServletRequest.contentType}")
-            logger.info("Method: $httpMethod")
-            logger.info("responseBody: $responseBody")
-            logger.info("requestBody: $requestBody")
-            logger.info("responseStatus: $responseStatus")
-            logger.info("queryString: $queryString")
-            logger.info("requestUrl: $requestUrl")
+            logger.info("Request-ContentType: ${httpServletRequest.contentType}")
+            logger.info("Request-Method: $httpMethod")
+            logger.info("Request-Body: $requestBody")
+            logger.info("Request-Url: $requestUrl")
+            logger.info("Request-QueryString: $queryString")
+            logger.info("Request-Headers: ${getRequestHeaderInfos(requestWrapper)}")
+
+            logger.info("Response-ContentType: ${httpServletResponse.contentType}")
+            logger.info("Response-Body: $responseBody")
+            logger.info("Response-Status: $responseStatus")
+
+            // 缓存之后，继续处理
+            filterChain.doFilter(requestWrapper, responseWrapper)
 
             // 最后注意需要将 responseWrapper 的内容写入到原始 response
             // 最后一步执行，因为执行完后 ContentCachingResponseWrapper 的 FastByteArrayOutputStream 会被重置
             responseWrapper.copyBodyToResponse()
+
         }
     }
+
+    private fun getRequestHeaderInfos(requestWrapper: HttpServletRequestWrapper): String {
+        val requestHeaders = HttpHeaders()
+        val headerNames = requestWrapper.headerNames
+        while (headerNames.hasMoreElements()) {
+            val headerName = headerNames.nextElement() as String
+            requestHeaders.add(headerName, requestWrapper.getHeader(headerName))
+        }
+        return requestHeaders.map {
+            it.key + ":" + it.value.joinToString(",")
+        }.joinToString("^")
+    }
+
 }
+
+/**
+
+使用 @Bean 方式注册
+
+@Bean
+fun filterDemo4Registration(): FilterRegistrationBean<*> {
+
+val registration = FilterRegistrationBean<LoggerFilter>()
+//注入过滤器
+registration.filter = LoggerFilter()
+//拦截规则
+registration.addUrlPatterns("/*")
+//过滤器名称
+registration.setName("LoggerFilter")
+//是否自动注册
+registration.isEnabled = true
+//过滤器顺序
+registration.order = 1
+
+return registration
+}
+
+
+ */
