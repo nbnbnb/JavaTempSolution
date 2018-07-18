@@ -2,7 +2,6 @@ package sbconsoleapp
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
 
 
 /**
@@ -10,11 +9,11 @@ import org.springframework.boot.runApplication
  */
 
 @SpringBootApplication
-class ConsoleApplication {
+class SBConsoleApp {
     companion object {
         @JvmStatic
         fun main(vararg args: String) {
-            SpringApplication.run(arrayOf(ConsoleApplication::class.java), args)
+            SpringApplication.run(arrayOf(SBConsoleApp::class.java), args)
         }
     }
 }

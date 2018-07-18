@@ -89,6 +89,7 @@ class LoggerFilter : Filter {
             val headerName = headerNames.nextElement() as String
             requestHeaders.add(headerName, requestWrapper.getHeader(headerName))
         }
+
         return requestHeaders.map {
             it.key + ":" + it.value.joinToString(",")
         }.joinToString("\n")

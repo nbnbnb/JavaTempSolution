@@ -15,7 +15,7 @@ import kotlin.test.assertEquals
  */
 
 @RunWith(SpringRunner::class)
-@SpringBootTest(classes = [(ConsoleApplication::class)])
+@SpringBootTest(classes = [(SBConsoleApp::class)])
 //@Suite.SuiteClasses(MiscHelperTest::class, QConfigHelperTest::class, CtripLoggerTest::class)
 //@Import(ConsoleApplication::class)
 class AllTests {
