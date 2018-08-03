@@ -12,12 +12,20 @@ import java.util.*
 class CustomInvocationHandler : InvocationHandler {
 
     override fun invoke(proxy: Any, method: Method, args: Array<Any>): Any? {
-
         // 获取 method 信息
         // 动态执行并返回
-        System.out.println("ObjectProxy execute:" + method.name)
-        val param = Arrays.toString(args)
-        return "pepsi is param=$param"
+        println("CustomInvocationHandler.invoke:")
+        println("MethodName ${method.name}")
+        args.forEach {
+            println("Arg: it.javaClass $it ")
+        }
+        println("ReturnType ${method.returnType}")
+
+        // *(args ?: arrayOfNulls<Any>(0))
+        // HACK
+        // 此处使用了方法的参数用来构造返回都对象
+        return method.returnType.constructors[0].newInstance(*args)
+
     }
 
     companion object {

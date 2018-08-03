@@ -7,10 +7,5 @@ package basicconsoleapp.proxy.mock
 
 @RefrenceFlag
 interface MockInterface {
-    fun getName(name: String): String
-}
-
-@RefrenceFlag
-interface MockInterface2 {
-    fun getAddress(name: String): String
+    fun dynamicMock(a: MockAClass): MockBClass
 }
