@@ -29,6 +29,10 @@ class CustomClassPathBeanDefinitionScanner(registry: BeanDefinitionRegistry) : C
             // 设置一个 FactoryBean，通过它来创建具体的实现对象
             definition.setBeanClass(CustomFactoryBean::class.java)
 
+            // 设置参数
+            definition.propertyValues.add("serviceClass", MockInterface::class.java)
+
+
             // 注册这个逻辑
             this.registry.registerBeanDefinition(holder.beanName, definition)
 
