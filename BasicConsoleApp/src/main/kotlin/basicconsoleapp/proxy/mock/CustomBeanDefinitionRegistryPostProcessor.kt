@@ -1,7 +1,6 @@
 package basicconsoleapp.proxy.mock
 
-import org.slf4j.LoggerFactory
-import org.springframework.beans.BeansException
+
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory
 import org.springframework.beans.factory.support.BeanDefinitionRegistry
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor
@@ -15,30 +14,26 @@ import org.springframework.stereotype.Component
  */
 
 @Component
-class AnnotationScannerConfigurer : ApplicationContextAware, BeanDefinitionRegistryPostProcessor {
+class CustomBeanDefinitionRegistryPostProcessor : ApplicationContextAware, BeanDefinitionRegistryPostProcessor {
 
     private var applicationContext: ApplicationContext? = null
-
-    private val LOGGER = LoggerFactory.getLogger(AnnotationScannerConfigurer::class.java)
-
 
     override fun setApplicationContext(applicationContext: ApplicationContext) {
         this.applicationContext = applicationContext
     }
 
-    @Throws(BeansException::class)
     override fun postProcessBeanFactory(beanFactory: ConfigurableListableBeanFactory) {
-        LOGGER.info("postProcessBeanFactory() beanDefinition的个数=====>" + beanFactory.beanDefinitionCount)
+        println("postProcessBeanFactory()")
     }
 
-    @Throws(BeansException::class)
     override fun postProcessBeanDefinitionRegistry(registry: BeanDefinitionRegistry) {
-        LOGGER.info("postProcessBeanDefinitionRegistry() beanDefinitionName=====>" + registry.beanDefinitionNames.toString())
-        // 需要被代理的接口
-        val annotationScanner = AnnotationScanner(registry)
-        annotationScanner.setResourceLoader(applicationContext)
-        // "com.pepsi.annotationproxy.service"是我 接口所在的包
-        annotationScanner.scan("com.pepsi.annotationproxy.service")
+        println("postProcessBeanDefinitionRegistry()")
 
+        // 需要被代理的接口
+        val annotationScanner = CustomClassPathBeanDefinitionScanner(registry)
+        annotationScanner.setResourceLoader(applicationContext)
+
+        annotationScanner.scan("basicconsoleapp")
+        // annotationScanner.scan("") 不指定包，这种扫描方式很耗时
     }
 }

@@ -31,6 +31,7 @@ object Main {
         SpringDemo.task()
         SpringDemo.schedule()
         SpringDemo.conditional()
+        SpringDemo.dynamicProxy()
     }
 
     private fun temp() {

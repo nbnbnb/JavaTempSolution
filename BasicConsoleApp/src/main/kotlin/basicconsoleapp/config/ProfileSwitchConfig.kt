@@ -10,17 +10,17 @@ import org.springframework.context.annotation.Profile
  */
 
 @Configuration
-open class TestConfig {
+class ProfileSwitchConfig {
 
     @Bean
     @Profile("dev")
-    open fun devTestBean(): TestBean {
+    fun devTestBean(): TestBean {
         return TestBean("from development profile")
     }
 
     @Bean
     @Profile("prod")
-    open fun prodTestBean(): TestBean {
+    fun prodTestBean(): TestBean {
         return TestBean("from production profile")
     }
 

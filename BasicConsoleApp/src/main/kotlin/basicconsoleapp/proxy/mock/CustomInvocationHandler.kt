@@ -9,11 +9,10 @@ import java.util.*
  * Created by jinzhanga on 2018/8/3.
  */
 
-class InterfaceProxy : InvocationHandler {
+class CustomInvocationHandler : InvocationHandler {
 
-    override fun invoke(proxy: Any, method: Method, args: Array<Any>): Any {
+    override fun invoke(proxy: Any, method: Method, args: Array<Any>): Any? {
         System.out.println("ObjectProxy execute:" + method.name)
-        val methodName = method.name
         val param = Arrays.toString(args)
         return "pepsi is param=$param"
     }
@@ -22,7 +21,7 @@ class InterfaceProxy : InvocationHandler {
         fun <T> newInstance(innerInterface: Class<T>): T {
             val classLoader = innerInterface.classLoader
             val interfaces = arrayOf<Class<*>>(innerInterface)
-            val proxy = InterfaceProxy()
+            val proxy = CustomInvocationHandler()
             return Proxy.newProxyInstance(classLoader, interfaces, proxy) as T
         }
     }

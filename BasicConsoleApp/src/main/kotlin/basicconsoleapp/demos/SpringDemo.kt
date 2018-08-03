@@ -3,7 +3,8 @@ package basicconsoleapp.demos
 import basicconsoleapp.config.AppConfig
 import basicconsoleapp.config.ConditionConfig
 import basicconsoleapp.config.ELConfig
-import basicconsoleapp.config.TaskSchedulerConfig
+import basicconsoleapp.proxy.*
+import basicconsoleapp.proxy.mock.MockInterface
 import basicconsoleapp.springdemo.concert.around.Arounder
 import basicconsoleapp.springdemo.concert.aware.AwareService
 import basicconsoleapp.springdemo.concert.basic.Performance
@@ -83,7 +84,8 @@ object SpringDemo {
     }
 
     fun schedule() {
-        val context = AnnotationConfigApplicationContext(TaskSchedulerConfig::class.java)
+        // 启动了 Spring 框架，就会启动 Scheduler
+        val context = AnnotationConfigApplicationContext(AppConfig::class.java)
 
         // 如果调用了 close 方法，则计划任务将会关闭
         // context.close()
@@ -93,5 +95,26 @@ object SpringDemo {
         val context = AnnotationConfigApplicationContext(ConditionConfig::class.java)
         val listService = context.getBean(ListService::class.java)
         println("${context.environment["os.name"]} 系统下的列表命令为 ${listService.showListCmd()}")
+    }
+
+    fun dynamicProxy() {
+        val jdkFacadeImpl = JDKFacadeImpl()
+        val jdkFacadeProxy = JDKFacadeProxy()
+        val jdkFacade = jdkFacadeProxy.bind(jdkFacadeImpl) as JDKFacade
+        jdkFacade.addBook()
+
+        println()
+
+        val cglibFacadeImpl = CGlibFacadeImpl()
+        val cglibFacadeImplProxy = CGlibFacadeImplProxy()
+        val cgiFacade = cglibFacadeImplProxy.getInstance(cglibFacadeImpl) as CGlibFacadeImpl
+        cgiFacade.addBook()
+    }
+
+    fun dynamicInterfaceImpl() {
+        val context = AnnotationConfigApplicationContext(AppConfig::class.java)
+        val bizService = context.getBean(MockInterface::class.java)
+        val myName = bizService.getName("haha")
+        println(myName)
     }
 }

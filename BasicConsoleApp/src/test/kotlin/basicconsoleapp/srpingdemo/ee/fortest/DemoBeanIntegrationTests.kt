@@ -1,6 +1,6 @@
 package basicconsoleapp.srpingdemo.ee.fortest
 
-import basicconsoleapp.config.TestConfig
+import basicconsoleapp.config.ProfileSwitchConfig
 import basicconsoleapp.springdemo.ee.fortest.TestBean
 import org.junit.Assert
 import org.junit.Test
@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 // 他提供了 Spring TestContext Framework 的功能
 @RunWith(SpringJUnit4ClassRunner::class)
 // 使用配置类来配置 Applicatioin Context
-@ContextConfiguration(classes = [TestConfig::class])
+@ContextConfiguration(classes = [ProfileSwitchConfig::class])
 // 确定活动的 profile
 @ActiveProfiles("prod")
 class DemoBeanIntegrationTests {
