@@ -12,6 +12,9 @@ import java.util.*
 class CustomInvocationHandler : InvocationHandler {
 
     override fun invoke(proxy: Any, method: Method, args: Array<Any>): Any? {
+
+        // 获取 method 信息
+        // 动态执行并返回
         System.out.println("ObjectProxy execute:" + method.name)
         val param = Arrays.toString(args)
         return "pepsi is param=$param"

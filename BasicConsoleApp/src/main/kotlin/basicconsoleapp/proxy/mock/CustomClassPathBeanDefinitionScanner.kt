@@ -19,6 +19,7 @@ class CustomClassPathBeanDefinitionScanner(registry: BeanDefinitionRegistry) : C
     }
 
     override fun doScan(vararg basePackages: String): Set<BeanDefinitionHolder> {
+
         // 扫描包路径
         val beanDefinitions = super.doScan(*basePackages)
 
