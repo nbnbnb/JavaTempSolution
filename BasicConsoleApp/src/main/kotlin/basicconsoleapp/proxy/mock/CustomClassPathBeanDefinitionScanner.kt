@@ -23,16 +23,13 @@ class CustomClassPathBeanDefinitionScanner(registry: BeanDefinitionRegistry) : C
         val beanDefinitions = super.doScan(*basePackages)
 
         for (holder in beanDefinitions) {
-
             val definition = holder.beanDefinition as GenericBeanDefinition
-
+            // 获取接口类型
+            val interClass = Class.forName(definition.beanClassName)
             // 设置一个 FactoryBean，通过它来创建具体的实现对象
             definition.setBeanClass(CustomFactoryBean::class.java)
-
             // 设置参数
-            definition.propertyValues.add("serviceClass", MockInterface::class.java)
-
-
+            definition.propertyValues.add("serviceClass", interClass)
             // 注册这个逻辑
             this.registry.registerBeanDefinition(holder.beanName, definition)
 

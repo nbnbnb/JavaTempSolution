@@ -5,6 +5,7 @@ import basicconsoleapp.config.ConditionConfig
 import basicconsoleapp.config.ELConfig
 import basicconsoleapp.proxy.*
 import basicconsoleapp.proxy.mock.MockInterface
+import basicconsoleapp.proxy.mock.MockInterface2
 import basicconsoleapp.springdemo.concert.around.Arounder
 import basicconsoleapp.springdemo.concert.aware.AwareService
 import basicconsoleapp.springdemo.concert.basic.Performance
@@ -113,8 +114,12 @@ object SpringDemo {
 
     fun dynamicInterfaceImpl() {
         val context = AnnotationConfigApplicationContext(AppConfig::class.java)
-        val bizService = context.getBean(MockInterface::class.java)
-        val myName = bizService.getName("haha")
+        val mock1 = context.getBean(MockInterface::class.java)
+        val myName = mock1.getName("haha")
         println(myName)
+
+        val mock2 = context.getBean(MockInterface2::class.java)
+        val myAddress = mock2.getAddress("haha")
+        println(myAddress)
     }
 }

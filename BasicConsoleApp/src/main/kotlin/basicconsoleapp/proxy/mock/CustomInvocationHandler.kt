@@ -18,11 +18,11 @@ class CustomInvocationHandler : InvocationHandler {
     }
 
     companion object {
-        fun <T> newInstance(innerInterface: Class<T>): T {
+        fun newInstance(innerInterface: Class<*>): Any {
             val classLoader = innerInterface.classLoader
-            val interfaces = arrayOf<Class<*>>(innerInterface)
+            val interfaces = arrayOf(innerInterface)
             val proxy = CustomInvocationHandler()
-            return Proxy.newProxyInstance(classLoader, interfaces, proxy) as T
+            return Proxy.newProxyInstance(classLoader, interfaces, proxy)
         }
     }
 
