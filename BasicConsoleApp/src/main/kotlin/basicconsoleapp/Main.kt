@@ -25,7 +25,6 @@ object Main {
         SpringDemo.introducer()
         SpringDemo.basic()
         SpringDemo.selector()
-        SpringDemo.introducer()
         SpringDemo.around()
         SpringDemo.el()
         SpringDemo.aware()
