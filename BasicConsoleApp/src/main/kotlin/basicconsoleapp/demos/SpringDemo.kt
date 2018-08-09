@@ -113,11 +113,20 @@ object SpringDemo {
     }
 
     fun dynamicInterfaceImpl() {
-
         val context = AnnotationConfigApplicationContext(AppConfig::class.java)
         val mock = context.getBean(MockInterface::class.java)
         val mockB = mock.dynamicMock(MockAClass())
         println(mockB)
+    }
 
+    /**
+     * 启动 RMI 服务器
+     */
+    fun rmiServer(){
+        // 命令行指定
+        // -Djava.rmi.server.codebase=rmi://localhost/SpitterService
+        System.setProperty("java.rmi.server.codebase", "rmi://localhost/SpitterService")
+        AnnotationConfigApplicationContext(AppConfig::class.java)
+        println("服务已发布 rmi://localhost/SpitterService")
     }
 }

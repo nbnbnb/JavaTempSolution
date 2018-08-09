@@ -1,4 +1,4 @@
-package basicconsoleapp.srpingdemo.ee.fortest
+package basicconsoleapp.srpingdemo
 
 import basicconsoleapp.config.ProfileSwitchConfig
 import basicconsoleapp.springdemo.ee.fortest.TestBean
@@ -20,7 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 @ContextConfiguration(classes = [ProfileSwitchConfig::class])
 // 确定活动的 profile
 @ActiveProfiles("prod")
-class DemoBeanIntegrationTests {
+class ProfileSwichTest {
 
     @Autowired
     private lateinit var testBean: TestBean

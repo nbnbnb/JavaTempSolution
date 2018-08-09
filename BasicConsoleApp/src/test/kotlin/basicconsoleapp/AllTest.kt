@@ -1,7 +1,7 @@
 package basicconsoleapp
 
 import basicconsoleapp.helper.SerializerHelperTest
-import basicconsoleapp.srpingdemo.ee.fortest.DemoBeanIntegrationTests
+import basicconsoleapp.srpingdemo.ProfileSwichTest
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
 
@@ -10,6 +10,6 @@ import org.junit.runners.Suite
  */
 
 @RunWith(Suite::class)
-@Suite.SuiteClasses(SerializerHelperTest::class, DemoBeanIntegrationTests::class)
+@Suite.SuiteClasses(SerializerHelperTest::class, ProfileSwichTest::class)
 class AllTest
 
