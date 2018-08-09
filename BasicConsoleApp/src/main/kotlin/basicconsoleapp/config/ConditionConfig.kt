@@ -10,17 +10,17 @@ import org.springframework.context.annotation.Configuration
  */
 
 @Configuration
-open class ConditionConfig {
+class ConditionConfig {
 
     @Bean
     @Conditional(WindowsCondition::class)
-    open fun windowsListService(): ListService {
+    fun windowsListService(): ListService {
         return WindowsListService()
     }
 
     @Bean
     @Conditional(LinuxCondition::class)
-    open fun linuxListService(): ListService {
+    fun linuxListService(): ListService {
         return LinuxListService()
     }
 

@@ -18,7 +18,7 @@ import org.springframework.core.io.Resource
 // 这样就能通过 ${book.name} 语法进行注入了
 // 外部源中的值，同样也会填充到 Environment 中
 @PropertySource("test.properties")
-open class ELConfig {
+class ELConfig {
 
     // 注入一个字符串常量
     @Value("I Love You!")
