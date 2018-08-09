@@ -123,10 +123,7 @@ object SpringDemo {
      * 启动 RMI 服务器
      */
     fun rmiServer(){
-        // 命令行指定
-        // -Djava.rmi.server.codebase=rmi://localhost/SpitterService
-        System.setProperty("java.rmi.server.codebase", "rmi://localhost/SpitterService")
         AnnotationConfigApplicationContext(AppConfig::class.java)
-        println("服务已发布 rmi://localhost/SpitterService")
+        println("服务已发布 rmi://127.0.0.1:1199/SpitterService")
     }
 }

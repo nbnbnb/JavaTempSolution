@@ -18,6 +18,7 @@ class RMIConfig {
         //serviceName属性用来在RMI注册表中注册一个服务
         exporter.setServiceName("SpitterService")
         exporter.serviceInterface = SpitterService::class.java
+        // rmi://127.0.0.1:1199/SpitterService
         exporter.setRegistryPort(1199)  // 设置端口，默认 1099
         return exporter
     }
