@@ -1,4 +1,4 @@
-package basicconsoleapp.springdemo.ee.fortest
+package basicconsoleapp.springdemo.ee.entities
 
 /**
  * Created by ZhangJin on 2018/6/3.

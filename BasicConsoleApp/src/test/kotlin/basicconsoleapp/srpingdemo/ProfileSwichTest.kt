@@ -1,7 +1,7 @@
 package basicconsoleapp.srpingdemo
 
 import basicconsoleapp.config.ProfileSwitchConfig
-import basicconsoleapp.springdemo.ee.fortest.TestBean
+import basicconsoleapp.springdemo.ee.entities.TestBean
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith

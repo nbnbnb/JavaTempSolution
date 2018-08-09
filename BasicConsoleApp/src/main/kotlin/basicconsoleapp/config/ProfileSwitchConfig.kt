@@ -1,6 +1,6 @@
 package basicconsoleapp.config
 
-import basicconsoleapp.springdemo.ee.fortest.TestBean
+import basicconsoleapp.springdemo.ee.entities.TestBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
