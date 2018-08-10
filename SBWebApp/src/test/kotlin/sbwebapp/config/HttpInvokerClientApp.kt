@@ -2,7 +2,7 @@ package sbwebapp.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.remoting.caucho.HessianProxyFactoryBean
+import org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean
 import sbwebapp.service.inter.HelloWorldService
 
 /**
@@ -10,11 +10,11 @@ import sbwebapp.service.inter.HelloWorldService
  */
 
 @Configuration
-class HessionClientApp{
+class HttpInvokerClientApp {
     @Bean
-    fun helloClient(): HessianProxyFactoryBean {
-        val factory = HessianProxyFactoryBean()
-        factory.serviceUrl = "http://localhost:8080/HessianHelloWorldService"
+    fun helloClient(): HttpInvokerProxyFactoryBean {
+        val factory = HttpInvokerProxyFactoryBean()
+        factory.serviceUrl = "http://localhost:8080/HttpInvokerHelloWorldService"
         factory.serviceInterface = HelloWorldService::class.java
         return factory
     }
