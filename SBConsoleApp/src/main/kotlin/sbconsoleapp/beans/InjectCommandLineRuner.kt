@@ -18,11 +18,10 @@ class InjectCommandLineRuner : CommandLineRunner {
     @Autowired
     lateinit var myProperties: InjectProperties
 
-    override fun run(vararg args: String) {
+    @Autowired
+    lateinit var myArguments: InjectArguments
 
-        println("Staring in InjectCommandLineRuner")
-        println(myProperties.name)
-        println(myProperties.age)
-        println(myProperties.address)
+    override fun run(vararg args: String) {
+        println(" CommandLineRunner Starting...")
     }
 }

@@ -20,7 +20,6 @@ class InjectProperties {
     @Value("\${info.age}")
     var age: Int = 0
 
-
     @Value("\${info.city}")
     lateinit var address: String
 
