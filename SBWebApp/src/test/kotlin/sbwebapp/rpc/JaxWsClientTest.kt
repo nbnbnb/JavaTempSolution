@@ -1,11 +1,12 @@
-package sbwebapp.hessian
+package sbwebapp.rpc
 
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit4.SpringRunner
-import sbwebapp.config.HessionClientApp
+import sbwebapp.config.HttpInvokerClientApp
+import sbwebapp.config.JaxWsClientApp
 import sbwebapp.service.inter.HelloWorldService
 import kotlin.test.assertEquals
 
@@ -14,8 +15,8 @@ import kotlin.test.assertEquals
  */
 
 @RunWith(SpringRunner::class)
-@SpringBootTest(classes = [(HessionClientApp::class)])
-class HessianClientTest {
+@SpringBootTest(classes = [(JaxWsClientApp::class)])
+class JaxWsClientTest {
 
     @Autowired
     private lateinit var helloWorldService: HelloWorldService

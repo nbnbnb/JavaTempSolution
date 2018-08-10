@@ -10,7 +10,7 @@ import sbwebapp.service.inter.HelloWorldService
  */
 
 @Configuration
-class HessionClientApp{
+class HessianClientApp {
     @Bean
     fun helloClient(): HessianProxyFactoryBean {
         val factory = HessianProxyFactoryBean()

@@ -1,4 +1,4 @@
-package sbwebapp.hessian
+package sbwebapp.rpc
 
 import org.junit.Test
 import org.junit.runner.RunWith
