@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.remoting.caucho.HessianServiceExporter
 import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter
+import org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter
 import sbwebapp.service.inter.HelloWorldService
 
 
@@ -33,5 +34,12 @@ class AppConfig {
         exporter.service = helloWorldService
         exporter.serviceInterface = HelloWorldService::class.java
         return exporter
+    }
+
+    @Bean
+    fun jaxWsExporter(): SimpleJaxWsServiceExporter {
+        val gg = SimpleJaxWsServiceExporter()
+        //gg.setBaseAddress("http://localhost:8081/jax")
+        return SimpleJaxWsServiceExporter()
     }
 }
