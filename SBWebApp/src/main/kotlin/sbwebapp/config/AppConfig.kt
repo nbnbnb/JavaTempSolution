@@ -1,6 +1,5 @@
 package sbwebapp.config
 
-import javax.xml.ws.Endpoint
 import org.apache.cxf.Bus
 import org.apache.cxf.jaxws.EndpointImpl
 import org.springframework.beans.factory.annotation.Autowired
@@ -9,7 +8,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.remoting.caucho.HessianServiceExporter
 import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter
 import sbwebapp.service.inter.HelloWorldService
-import sbwebapp.service.impl.HelloWorldServiceImpl
+import javax.xml.ws.Endpoint
 
 
 /**
@@ -53,7 +52,7 @@ class AppConfig {
 
         // cxf-spring-boot-starter-jaxws 的版本与 SpringBoot 需要兼容
 
-        val endpoint = EndpointImpl(bus, HelloWorldServiceImpl())
+        val endpoint = EndpointImpl(bus, helloWorldService)
         endpoint.publish("/JaxWsHelloWorldService")
 
         // 服务地址 http://localhost:8080/services/JaxWsHelloWorldService
