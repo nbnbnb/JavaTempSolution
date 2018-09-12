@@ -60,6 +60,8 @@ subprojects {
         compile group: 'org.springframework', name: 'spring-context'
         compile("commons-io:commons-io")
 
+        implementation "io.reactivex.rxjava2:rxjava"
+
         testCompile group: 'org.springframework', name: 'spring-test'
         testCompile "org.jetbrains.kotlin:kotlin-test"
         testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit'
