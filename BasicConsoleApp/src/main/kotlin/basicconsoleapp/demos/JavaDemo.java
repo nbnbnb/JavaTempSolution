@@ -10,11 +10,9 @@ import basicconsoleapp.demos.runner.ReactiveXDemo;
 
 public class JavaDemo {
 
-
     public static void test() {
-        ReactiveXDemo.coldToHot2();
+        ReactiveXDemo.maybe();
     }
-
 
 }
 

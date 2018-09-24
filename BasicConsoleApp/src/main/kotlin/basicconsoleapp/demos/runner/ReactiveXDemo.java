@@ -1,10 +1,9 @@
 package basicconsoleapp.demos.runner;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.*;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.observables.ConnectableObservable;
@@ -443,5 +442,118 @@ public class ReactiveXDemo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 只有 onSuccess 和 onError，并没有 onComplete
+     * Single 可以通过 toXXX 方法转换成 Observable、Flowable、Completable 及 Maybe
+     */
+    public static void single() {
+        Single.create(new SingleOnSubscribe<String>() {
+            @Override
+            public void subscribe(SingleEmitter<String> emitter) throws Exception {
+                emitter.onSuccess("test");
+            }
+        }).subscribe(new Consumer<String>() {  // onSuccess
+            @Override
+            public void accept(String s) throws Exception {
+                System.out.println(s);
+            }
+        }, new Consumer<Throwable>() {  // onError
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                throwable.printStackTrace();
+            }
+        });
+    }
+
+    /**
+     * Completable 在创建后，不会发射任何数据
+     * 只有 OnComplete 和 onError 事件
+     */
+    public static void completable() {
+
+        Completable.fromAction(new Action() {  // onComplete
+            @Override
+            public void run() throws Exception {
+                System.out.println("Hello World");
+            }
+        }).subscribe();
+
+        Completable
+                .create(new CompletableOnSubscribe() {
+                    @Override
+                    public void subscribe(CompletableEmitter emitter) throws Exception {
+                        try {
+                            TimeUnit.SECONDS.sleep(5);
+                            emitter.onComplete();  // onComplete 调用后，执行 andThen
+                        } catch (InterruptedException e) {
+                            emitter.onError(e);
+                        }
+                    }
+                })
+                .andThen(Observable.range(1, 10))  // 结合 andThen 使用
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        System.out.println(integer);
+                    }
+                });
+    }
+
+    /**
+     * RxJava 2.x 之后才有的新类型
+     * 可以看成是 Single 和 Completable 的结合
+     * 没有 onNext 方法，需要通过 onSuccess 方法来发送数据
+     */
+    public static void maybe() {
+        Maybe
+                .create(new MaybeOnSubscribe<String>() {
+                    @Override
+                    public void subscribe(MaybeEmitter<String> emitter) throws Exception {
+                        // 只能发射 0 或 1 个数据
+                        emitter.onSuccess("testA");
+                        // 即使发送多个数据，后面发射的数据也不会处理
+                        emitter.onSuccess("testB");
+
+                        // emitter.onComplete();
+                        // emitter.onError(e);
+                    }
+                })
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        System.out.println("s=" + s);
+                    }
+                });
+
+        Maybe
+                .create(new MaybeOnSubscribe<String>() {
+                    @Override
+                    public void subscribe(MaybeEmitter<String> emitter) throws Exception {
+
+                        // 如果先调用了 onComplete，即使后面再调用 onSuccess，也不会发射任何数据
+                        emitter.onComplete();
+
+                        // 如果 Maybe 有数据发射或者调用了 onError，则不会执行 onComplete
+                        emitter.onSuccess("testA");
+                    }
+                })
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        System.out.println("s=" + s);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        System.out.println("Maybe onComplete");
+                    }
+                });
     }
 }
