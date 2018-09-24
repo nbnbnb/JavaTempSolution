@@ -1,7 +1,12 @@
 package basicconsoleapp.demos;
 
 import basicconsoleapp.demos.runner.ReactiveXDemo;
-
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 
 /**
@@ -11,7 +16,7 @@ import basicconsoleapp.demos.runner.ReactiveXDemo;
 public class JavaDemo {
 
     public static void test() {
-        ReactiveXDemo.maybe();
+
     }
 
 }

@@ -8,8 +8,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.observables.ConnectableObservable;
 import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subjects.PublishSubject;
-import io.reactivex.subjects.Subject;
+import io.reactivex.subjects.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -65,7 +64,7 @@ public class ReactiveXDemo {
                     // 它在 subscribeOn(Schedulers.single()) 后指定
                     // 此时使用了当前控制台的默认线程
 
-                    // 因为数据处理是“自下而上”的，所以此次最先执行
+                    // 因为数据处理是“自下而上”的，所以此处最先执行
                     // 然后 subscribeOn 才进行线程切换
 
                     // 由于在主线程中，没有线程切换，01 一般是最先输出的
@@ -101,6 +100,12 @@ public class ReactiveXDemo {
                         System.out.println("subscribe:" + Thread.currentThread().getName());
                     }
                 });
+
+        try {
+            Thread.sleep(25);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void coldToHot() {
@@ -555,5 +560,220 @@ public class ReactiveXDemo {
                         System.out.println("Maybe onComplete");
                     }
                 });
+    }
+
+    /**
+     * Observer 会接收 AsyncSubject 的 OnComplete 之前的最后一个数据
+     */
+    public static void asyncSubject() {
+
+        AsyncSubject<String> subject = AsyncSubject.create();
+
+        subject.onNext("test1");
+        subject.onNext("test2");  // 只会输出 test2
+
+        // OnComplete 之前的最后一个数据
+        // 如果不调用 onComplete，则什么都不会输出
+        subject.onComplete();
+
+        subject.subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                System.out.println(s);
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                throwable.printStackTrace();
+            }
+        }, new Action() {
+            @Override
+            public void run() throws Exception {
+                System.out.println("asyncSubject:complete");
+            }
+        });
+
+        subject.onNext("test3");
+        subject.onNext("test4");
+    }
+
+    /**
+     * Observer 会先接收到 BehaviorSubject 被订阅之前的最后一个数据
+     * 再接收订阅之后发射过来的数据
+     */
+    public static void behaviorSubject() {
+
+        // 如果订阅之前没有数据，可以指定默认值
+        BehaviorSubject<String> subject = BehaviorSubject.createDefault("Default Value");
+
+        subject.onNext("behaviorSubject 1");
+        // 被订阅前的最后一个数据
+        subject.onNext("behaviorSubject 2");
+
+        subject.subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                System.out.println(s);
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                throwable.printStackTrace();
+            }
+        }, new Action() {
+            @Override
+            public void run() throws Exception {
+                System.out.println("behaviorSubject:complete");
+            }
+        });
+
+        // 订阅之后的数据
+        // 正常输出
+        subject.onNext("behaviorSubject 3");
+        subject.onNext("behaviorSubject 4");
+
+        subject.onComplete();
+    }
+
+    /**
+     * ReplaySubject 会发射所有来自原始 Observable 的数据给观察者
+     * 无论他们是何时订阅的
+     */
+    public static void replaySubject() {
+
+        ReplaySubject<String> subject = ReplaySubject.create();
+
+        subject.onNext("replaySubject 1");
+        subject.onNext("replaySubject 2");
+
+        subject.subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                System.out.println(s);
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                throwable.printStackTrace();
+            }
+        }, new Action() {
+            @Override
+            public void run() throws Exception {
+                System.out.println("replaySubject:complete");
+            }
+        });
+
+        subject.onNext("replaySubject 3");
+        subject.onNext("replaySubject 4");
+
+        subject.onComplete();
+    }
+
+    /**
+     * 设置订阅前的缓存容量
+     */
+    public static void replaySubject2() {
+
+        ReplaySubject<String> subject = ReplaySubject.createWithSize(1);
+
+        subject.onNext("replaySubject 1");
+        subject.onNext("replaySubject 2");  // 只缓存这一条数据
+
+        subject.subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                System.out.println(s);
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                throwable.printStackTrace();
+            }
+        }, new Action() {
+            @Override
+            public void run() throws Exception {
+                System.out.println("replaySubject:complete");
+            }
+        });
+
+        subject.onNext("replaySubject 3");
+        subject.onNext("replaySubject 4");
+
+        subject.onComplete();
+    }
+
+
+    /**
+     * 只接收 PublishSubject 被订阅之后发送的数据
+     */
+    public static void publishSubject() {
+
+        PublishSubject<String> subject = PublishSubject.create();
+
+        subject.onNext("publishSubject 1");
+        subject.onNext("publishSubject 2");
+
+        // 订阅前端的数据都丢弃
+
+        subject.subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                System.out.println(s);
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                throwable.printStackTrace();
+            }
+        }, new Action() {
+            @Override
+            public void run() throws Exception {
+                System.out.println("publishSubject:complete");
+            }
+        });
+
+        subject.onNext("publishSubject 3");
+        subject.onNext("publishSubject 4");
+
+        subject.onComplete();
+    }
+
+    public static void publishSubjectHack() {
+        PublishSubject<String> subject = PublishSubject.create();
+
+        subject.subscribeOn(Schedulers.io())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        System.out.println(s);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        System.out.println("completed");
+                    }
+                });
+
+        // subject 发射元素被指派到了 I/O 线程
+        // 此时 I/O 线程正在初始化还没起来，subject 发射前，Foo 和 Bar 这两个元素还在主线程中
+        // 从而从主线程往 I/O 线程转发的过程中，由于 I/O 线程还没有起来，所以就被丢弃了
+
+        // 解决办法很简单，用 Observable.create() 替代 PublishSubject.create()
+
+        subject.onNext("Foo");
+        subject.onNext("Bar");
+
+        subject.onComplete();
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
