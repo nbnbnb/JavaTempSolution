@@ -12,7 +12,7 @@ public class JavaDemo {
 
 
     public static void test() {
-        ReactiveXDemo.share();
+        ReactiveXDemo.coldToHot2();
     }
 
 

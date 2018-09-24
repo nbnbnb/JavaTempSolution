@@ -9,6 +9,8 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.observables.ConnectableObservable;
 import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.PublishSubject;
+import io.reactivex.subjects.Subject;
 
 import java.util.concurrent.TimeUnit;
 
@@ -102,6 +104,67 @@ public class ReactiveXDemo {
                 });
     }
 
+    public static void coldToHot() {
+        Consumer<Long> subscribe1 = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                System.out.println("subscriber1: " + aLong);
+            }
+        };
+
+        Consumer<Long> subscribe2 = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                System.out.println("subscriber2: " + aLong);
+            }
+        };
+
+        Consumer<Long> subscribe3 = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                System.out.println("subscriber3: " + aLong);
+            }
+        };
+
+        // ConnectableObservable 是线程安全的
+        // serializes the calls to the onSubscribe, onNext, onError and onComplete methods, making them thread-safe
+        ConnectableObservable<Long> observable = Observable
+                .create(new ObservableOnSubscribe<Long>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<Long> emitter) throws Exception {
+                        Observable
+                                .interval(10, TimeUnit.MILLISECONDS, Schedulers.computation())
+                                .take(Integer.MAX_VALUE)
+                                .subscribe(emitter::onNext);
+                    }
+                })
+                .observeOn(Schedulers.newThread())
+                // 使用 publish 操作符，将 （Cold）Observable 转换为 （Hot）ConnectableObservable
+                .publish();
+
+        // 需要使用 connect 触发执行
+        observable.connect();
+
+        observable.subscribe(subscribe1);
+        observable.subscribe(subscribe2);
+
+        try {
+            Thread.sleep(25);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // subscribe3 从当前流的位置开始订阅
+        // 而不会重头开始
+        observable.subscribe(subscribe3);
+
+        try {
+            Thread.sleep(105);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void refCount01() {
 
         Consumer<Long> subscribe1 = new Consumer<Long>() {
@@ -129,12 +192,10 @@ public class ReactiveXDemo {
         ConnectableObservable<Long> connectableObservable = Observable.create(new ObservableOnSubscribe<Long>() {
             @Override
             public void subscribe(ObservableEmitter<Long> emitter) throws Exception {
-
                 Observable
                         .interval(10, TimeUnit.MILLISECONDS, Schedulers.computation())
                         .take(Integer.MAX_VALUE)
                         .subscribe(emitter::onNext);
-
             }
         }).observeOn(Schedulers.newThread()).publish();
 
@@ -305,6 +366,80 @@ public class ReactiveXDemo {
 
         try {
             Thread.sleep(25);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Subject 和 Processor 的作用相同
+     * Processor 是 RxJava 2.x 新增的类，继承自 Flowable，支持背压控制，而 Subject 则不支持背压控制
+     */
+    public static void coldToHot2() {
+        Consumer<Long> subscribe1 = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                System.out.println("subscriber1: " + aLong);
+            }
+        };
+
+        Consumer<Long> subscribe2 = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                System.out.println("subscriber2: " + aLong);
+            }
+        };
+
+        Consumer<Long> subscribe3 = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                System.out.println("subscriber3: " + aLong);
+            }
+        };
+
+        // ConnectableObservable 是线程安全的
+        // serializes the calls to the onSubscribe, onNext, onError and onComplete methods, making them thread-safe
+        Observable<Long> observable = Observable
+                .create(new ObservableOnSubscribe<Long>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<Long> emitter) throws Exception {
+                        Observable
+                                .interval(10, TimeUnit.MILLISECONDS, Schedulers.computation())
+                                .take(Integer.MAX_VALUE)
+                                .subscribe(emitter::onNext);
+                    }
+                })
+                .observeOn(Schedulers.newThread());
+
+        // PublishSubject 不是线程安全的
+        // Subject 既是 Observable，又是 Observer
+
+        // Subject 作为观察者，可以订阅目标 Cold Observable，是对方开始发送事件
+        // 同时他又作为 Observable 转发或者发送新的事件，让 Cold Observable 借助 Subject 转换为 Hot Observable
+
+        PublishSubject<Long> subject = PublishSubject.create();
+        // Subject 不是线程安全的，如果需要线程安全，可以使用 toSerialized() 方法
+        // Subject<Long> subject = PublishSubject.<Long>create().toSerialized();
+
+        // subject 充当观察者
+        observable.subscribe(subject);
+
+        // subject 充当发布者
+        subject.subscribe(subscribe1);
+        subject.subscribe(subscribe2);
+
+        try {
+            Thread.sleep(25);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // subscribe3 从当前流的位置开始订阅
+        // 而不会重头开始
+        subject.subscribe(subscribe3);
+
+        try {
+            Thread.sleep(105);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
