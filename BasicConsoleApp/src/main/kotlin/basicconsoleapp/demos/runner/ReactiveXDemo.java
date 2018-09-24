@@ -7,7 +7,10 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
+import io.reactivex.observables.ConnectableObservable;
 import io.reactivex.schedulers.Schedulers;
+
+import java.util.concurrent.TimeUnit;
 
 public class ReactiveXDemo {
     // SubscribeOn：specify the Scheduler on which an Observable will operate
@@ -97,5 +100,213 @@ public class ReactiveXDemo {
                         System.out.println("subscribe:" + Thread.currentThread().getName());
                     }
                 });
+    }
+
+    public static void refCount01() {
+
+        Consumer<Long> subscribe1 = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                System.out.println("subscriber1: " + aLong);
+            }
+        };
+
+        Consumer<Long> subscribe2 = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                System.out.println("subscriber2: " + aLong);
+            }
+        };
+
+        Consumer<Long> subscribe3 = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                System.out.println("subscriber3: " + aLong);
+            }
+        };
+
+
+        ConnectableObservable<Long> connectableObservable = Observable.create(new ObservableOnSubscribe<Long>() {
+            @Override
+            public void subscribe(ObservableEmitter<Long> emitter) throws Exception {
+
+                Observable
+                        .interval(10, TimeUnit.MILLISECONDS, Schedulers.computation())
+                        .take(Integer.MAX_VALUE)
+                        .subscribe(emitter::onNext);
+
+            }
+        }).observeOn(Schedulers.newThread()).publish();
+
+        // refConut 操作符把一个 ConnectableObservable  的连接和断开过程自动化了
+        // 它操作一个 ConnectableObservable，返回一个普通的 Observable
+        Observable<Long> observable = connectableObservable.refCount();
+
+        // 当第一个订阅者订阅这个 Observable 时，它连接到下层的 ConnectableObservable
+        Disposable disposable1 = observable.subscribe(subscribe1);
+        Disposable disposable2 = observable.subscribe(subscribe2);
+
+        try {
+            Thread.sleep(25);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // RefCount 跟踪有多少个订阅者观察它，直到最后一个订阅者完成，才断开与下层 ConnectableObservable 的连接
+        // 如果所有的订阅者都取消了订阅，则数据流停止
+        disposable1.dispose();
+        disposable2.dispose();
+
+        System.out.println("重新（重头）开始数据流");
+
+        // 如果重新订阅，则重新开放数据流
+        observable.subscribe(subscribe1);
+        observable.subscribe(subscribe2);
+
+        try {
+            Thread.sleep(25);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void refCount02() {
+
+        Consumer<Long> subscribe1 = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                System.out.println("subscriber1: " + aLong);
+            }
+        };
+
+        Consumer<Long> subscribe2 = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                System.out.println("subscriber2: " + aLong);
+            }
+        };
+
+        Consumer<Long> subscribe3 = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                System.out.println("subscriber3: " + aLong);
+            }
+        };
+
+        ConnectableObservable<Long> connectableObservable = Observable.create(new ObservableOnSubscribe<Long>() {
+            @Override
+            public void subscribe(ObservableEmitter<Long> emitter) throws Exception {
+
+                Observable
+                        .interval(10, TimeUnit.MILLISECONDS, Schedulers.computation())
+                        .take(Integer.MAX_VALUE)
+                        .subscribe(emitter::onNext);
+
+            }
+        }).observeOn(Schedulers.newThread()).publish();
+
+        // refConut 操作符把一个 ConnectableObservable  的连接和断开过程自动化了
+        // 它操作一个 ConnectableObservable，返回一个普通的 Observable
+        Observable<Long> observable = connectableObservable.refCount();
+
+        // 当第一个订阅者订阅这个 Observable 时，它连接到下层的 ConnectableObservable
+        Disposable disposable1 = observable.subscribe(subscribe1);
+        Disposable disposable2 = observable.subscribe(subscribe2);
+        observable.subscribe(subscribe3);  // 这个订阅不会被取消
+
+        try {
+            Thread.sleep(25);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // RefCount 跟踪有多少个订阅者观察它，直到最后一个订阅者完成，才断开与下层 ConnectableObservable 的连接
+        // 如果所有的订阅者都取消了订阅，则数据流停止
+        disposable1.dispose();
+        disposable2.dispose();
+        // subscribe3 不取消
+
+        System.out.println("继续数据流");
+
+        // 由于没有与原始 ConnectableObservable 的连接
+        // 再次订阅的时候，继续从当前流的位置开始
+        observable.subscribe(subscribe1);
+        observable.subscribe(subscribe2);
+
+        try {
+            Thread.sleep(25);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void share() {
+
+        Consumer<Long> subscribe1 = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                System.out.println("subscriber1: " + aLong);
+            }
+        };
+
+        Consumer<Long> subscribe2 = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                System.out.println("subscriber2: " + aLong);
+            }
+        };
+
+        Consumer<Long> subscribe3 = new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                System.out.println("subscriber3: " + aLong);
+            }
+        };
+
+        Observable<Long> observable = Observable
+                .create(new ObservableOnSubscribe<Long>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<Long> emitter) throws Exception {
+
+                        Observable
+                                .interval(10, TimeUnit.MILLISECONDS, Schedulers.computation())
+                                .take(Integer.MAX_VALUE)
+                                .subscribe(emitter::onNext);
+
+                    }
+                })
+                .observeOn(Schedulers.newThread())
+                // share 操作符封装了 publish().refCount() 调用
+                .share();
+
+        // 当第一个订阅者订阅这个 Observable 时，它连接到下层的 ConnectableObservable
+        Disposable disposable1 = observable.subscribe(subscribe1);
+        Disposable disposable2 = observable.subscribe(subscribe2);
+        observable.subscribe(subscribe3);  // 这个订阅不会被取消
+
+        try {
+            Thread.sleep(25);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // RefCount 跟踪有多少个订阅者观察它，直到最后一个订阅者完成，才断开与下层 ConnectableObservable 的连接
+        // 如果所有的订阅者都取消了订阅，则数据流停止
+        disposable1.dispose();
+        disposable2.dispose();
+        // subscribe3 不取消
+
+        System.out.println("继续数据流");
+
+        // 由于没有与原始 ConnectableObservable 的连接
+        // 再次订阅的时候，继续从当前流的位置开始
+        observable.subscribe(subscribe1);
+        observable.subscribe(subscribe2);
+
+        try {
+            Thread.sleep(25);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
