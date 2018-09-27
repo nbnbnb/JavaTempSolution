@@ -1,3 +1,5 @@
+apply plugin: "com.github.johnrengelman.shadow"
+
 description = 'BasicConsole App'
 
 dependencies {
@@ -10,3 +12,13 @@ dependencies {
     compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api'
 }
 
+shadowJar {
+    baseName = 'BasicConsoleApp'
+    classifier = null
+    version = null
+    manifest {
+        attributes 'Main-Class': 'basicconsoleapp.Main'
+    }
+}
+
+assemble.dependsOn(shadowJar)

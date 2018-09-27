@@ -2,6 +2,9 @@ allprojects {
 
     // 插件使用的都是 buildscript 中的依赖信息
 
+    // 如果有 Java 代码，则需要此插件
+    apply plugin: 'java'
+
     // 将 kotlin 编译为 JVM 平台代码
     apply plugin: 'kotlin'
 
@@ -85,6 +88,11 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlin_version"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBoot_version"
         classpath "io.spring.gradle:dependency-management-plugin:$springIO_version"
+
+        // 打包 jar 包（SpringBoot 插件自带此功能）
+        // https://github.com/johnrengelman/shadow/
+        // http://imperceptiblethoughts.com/shadow/
+        classpath "com.github.jengelman.gradle.plugins:shadow:+"
     }
 }
 
