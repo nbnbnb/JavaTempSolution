@@ -33,16 +33,19 @@ class ValidateTest {
         val bean = Student()
         bean.name = null
         bean.address = "北京"
-        bean.birthday = Date()
+        bean.birthday = Date(118, 0, 1)  // 2018-01-01
         bean.friendName = null
         bean.weight = BigDecimal(30)
-        bean.email = "xiaogangfan163.com"
+        bean.email = "kkking163.com"
+        bean.spellName = "KKKing"
         val res = validate(bean)
-        assertEquals(res[0], "地址应该在6-30字符之间")
-        assertEquals(res[1], "只能为true")
-        assertEquals(res[2], "生日必须在当前实践之前")
-        assertEquals(res[3], "多吃点饭吧")
-        assertEquals(res[4], "邮箱的格式不合法")
-        assertEquals(res[5], "名字不能为空")
+        assertEquals(res.size, 7)
+        assertTrue { res.contains("地址应该在6-30字符之间") }
+        assertTrue { res.contains("名字的拼音需要小写") }
+        assertTrue { res.contains("只能为true") }
+        assertTrue { res.contains("生日必须在当前时间之前") }
+        assertTrue { res.contains("多吃点饭吧") }
+        assertTrue { res.contains("邮箱的格式不合法") }
+        assertTrue { res.contains("名字不能为空") }
     }
 }

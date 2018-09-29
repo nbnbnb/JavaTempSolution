@@ -1,10 +1,28 @@
 package sbwebapp.entities
 
+import sbwebapp.validator.CaseMode
+import sbwebapp.validator.CheckCase
 import java.io.Serializable
 import java.math.BigDecimal
 import java.util.*
 import javax.validation.constraints.*
 
+
+/**
+ * @Null
+ * @NotNull
+ * @AssertTrue
+ * @AssertFalse
+ * @Min(value)
+ * @Max(value)
+ * @DecimalMin(value)
+ * @DecimalMax(value)
+ * @Size(max,min)
+ * @Digits(integer,fraction)
+ * @Past 被注释的元素必须是一个 "过去" 的日期
+ * @Future 被注释的元素必须是一个 "将来" 的日期
+ * @Pattern(value)
+ */
 
 class Student : Serializable {
     @NotNull(message = "名字不能为空")
@@ -22,9 +40,12 @@ class Student : Serializable {
         @AssertTrue
         get() = friendName != null
 
-    @Future(message = "生日必须在当前实践之前")
+    @Future(message = "生日必须在当前时间之前")
     var birthday: Date? = null
 
     @Pattern(regexp = "^(.+)@(.+)$", message = "邮箱的格式不合法")
     var email: String? = null
+
+    @CheckCase(value = CaseMode.LOWER, message = "名字的拼音需要小写")
+    var spellName: String? = null
 }
