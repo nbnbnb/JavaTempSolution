@@ -9,6 +9,24 @@ import javax.validation.constraints.*
 
 
 /**
+ *
+ * https://www.cnblogs.com/beiyan/p/5946345.html
+ * https://www.cnblogs.com/xiaogangfan/p/5987659.html
+ *
+<!--jsr 303-->
+<dependency>
+<groupId>javax.validation</groupId>
+<artifactId>validation-api</artifactId>
+<version>1.1.0.Final</version>
+</dependency>
+<!-- hibernate validator-->
+<dependency>
+<groupId>org.hibernate</groupId>
+<artifactId>hibernate-validator</artifactId>
+<version>5.2.0.Final</version>
+</dependency>
+ *
+ * JSR303
  * @Null
  * @NotNull
  * @AssertTrue
@@ -22,7 +40,16 @@ import javax.validation.constraints.*
  * @Past 被注释的元素必须是一个 "过去" 的日期
  * @Future 被注释的元素必须是一个 "将来" 的日期
  * @Pattern(value)
+ *
+ *
+ * Hibernate validator 在 JSR303 的基础上对校验注解进行了扩展
+ * @Email
+ * @Length
+ * @NotEmpty
+ * @Range
  */
+
+
 
 class Student : Serializable {
     @NotNull(message = "名字不能为空")
