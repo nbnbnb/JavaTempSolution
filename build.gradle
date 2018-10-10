@@ -1,4 +1,23 @@
-allprojects {
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:${kotlin_version}"
+        classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlin_version"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBoot_version"
+        classpath "io.spring.gradle:dependency-management-plugin:$springIO_version"
+
+        // 打包 jar 包（SpringBoot 插件自带此功能）
+        // https://github.com/johnrengelman/shadow/
+        // http://imperceptiblethoughts.com/shadow/
+        classpath "com.github.jengelman.gradle.plugins:shadow:+"
+    }
+}
+
+subprojects {
 
     // 插件使用的都是 buildscript 中的依赖信息
 
@@ -16,7 +35,6 @@ allprojects {
 
     // Spring IO 管理
     apply plugin: 'io.spring.dependency-management'
-
 
     apply plugin: "kotlin-allopen"
     apply plugin: 'kotlin-spring'
@@ -52,9 +70,7 @@ allprojects {
             jvmTarget = java_version
         }
     }
-}
 
-subprojects {
     dependencies {
         compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib'
         compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect'
@@ -77,23 +93,6 @@ subprojects {
     }
 }
 
-buildscript {
-    repositories {
-        mavenLocal()
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jetbrains.kotlin:kotlin-allopen:${kotlin_version}"
-        classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlin_version"
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBoot_version"
-        classpath "io.spring.gradle:dependency-management-plugin:$springIO_version"
 
-        // 打包 jar 包（SpringBoot 插件自带此功能）
-        // https://github.com/johnrengelman/shadow/
-        // http://imperceptiblethoughts.com/shadow/
-        classpath "com.github.jengelman.gradle.plugins:shadow:+"
-    }
-}
 
 
