@@ -22,3 +22,4 @@ shadowJar {
 }
 
 assemble.dependsOn(shadowJar)
+

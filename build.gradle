@@ -19,6 +19,13 @@ buildscript {
 
 subprojects {
 
+    // 自定义插件
+    // 此处指定的是类型名（gradle.build 内）
+    apply plugin: BuildGradlePlugin
+    // buildSrc 目录内自定义插件
+    apply plugin: me.zhangjin.plugins.BuildSrcGroovyPlugin
+    apply plugin: me.zhangjin.plugins.BuildSrcJavaPlugin
+
     // 插件使用的都是 buildscript 中的依赖信息
 
     // 如果有 Java 代码，则需要此插件
@@ -94,5 +101,22 @@ subprojects {
 }
 
 
+
+//region 自定义插件
+
+class BuildGradlePlugin implements Plugin<Project> {
+    @Override
+    void apply(Project project) {
+        project.task('hello01') {
+            group = "custom"
+            description = "build.gradle 自定义插件"
+            doLast {
+                println "Hello from the BuildGradlePlugin"
+            }
+        }
+    }
+}
+
+// endregion
 
 
