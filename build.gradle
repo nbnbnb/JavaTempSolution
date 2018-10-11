@@ -31,7 +31,6 @@ subprojects {
     // buildSrc 目录内自定义插件
     apply plugin: me.zhangjin.plugins.BuildSrcGroovyPlugin
     apply plugin: me.zhangjin.plugins.BuildSrcJavaPlugin
-    //apply plugin: me.zhangjin.plugins.BuildSrcKotlinPlugin
 
     // 通过本地仓库里面的 jar 包获取插件信息
     apply plugin: 'me.zhangjin.plugins'
@@ -63,7 +62,7 @@ subprojects {
     targetCompatibility = java_version
 
     tasks.withType(JavaCompile) {
-        options.encoding = 'UTF-8'
+        options.encoding = "UTF-8"
     }
 
     group = 'me.zhangjin.study'

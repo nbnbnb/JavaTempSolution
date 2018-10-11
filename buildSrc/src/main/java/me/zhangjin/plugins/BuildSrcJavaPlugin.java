@@ -14,7 +14,7 @@ class BuildSrcJavaPlugin implements Plugin<Project> {
     @Override
     public void apply(Project project) {
         Task task = project.task("hello03");
-        task.setDescription("buildSrc - Java ×Ô¶¨Òå²å¼þ");
+        task.setDescription("buildSrc - Java è‡ªå®šä¹‰æ’ä»¶");
         task.setGroup("custom");
         task.doLast(it -> System.out.println("Hello from the BuildSrcJavaPlugin"));
     }

@@ -6,13 +6,17 @@ dependencies {
     compile localGroovy()
 }
 
-// 这个就是 pluginid
+// 这个就是 plugin id
 group = 'me.zhangjin.plugins'
 
 version = '2.0.1'
 
 jar {
     baseName 'custom'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
 }
 
 uploadArchives {
