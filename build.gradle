@@ -71,6 +71,7 @@ subprojects {
     repositories {
         mavenLocal()
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        // mavenCentral()
         // maven { url "http://repo1.maven.org/maven2/" }
     }
 
@@ -95,12 +96,12 @@ subprojects {
         compile('com.fasterxml.jackson.module:jackson-module-kotlin')
         compile group: 'org.springframework', name: 'spring-context'
         compile("commons-io:commons-io")
-
-        implementation "io.reactivex.rxjava2:rxjava"
+        compile "io.reactivex.rxjava2:rxjava"
 
         testCompile group: 'org.springframework', name: 'spring-test'
         testCompile "org.jetbrains.kotlin:kotlin-test"
         testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit'
+
     }
 
     dependencyManagement {
@@ -116,7 +117,7 @@ subprojects {
 
 }
 
-//region 自定义插件
+// region 自定义插件
 
 class BuildGradlePlugin implements Plugin<Project> {
     @Override
@@ -133,4 +134,56 @@ class BuildGradlePlugin implements Plugin<Project> {
 
 // endregion
 
+// region 自定义配置
 
+configurations {
+    cargo {
+        description = 'Classpath for Cargo Ant tasks.'
+        visible = false
+    }
+}
+
+configurations.cargo.resolutionStrategy {
+    // 当有版本冲突时
+    // 设置构建策略为报告失败
+    failOnVersionConflict()
+    // 使用 force 强制指定顶层依赖版本，以及传递性依赖
+    force 'org.springframework:spring-context:5.0.0.RELEASE'
+
+    // 设置动态版本缓存 100s
+    cacheDynamicVersionsFor 100, 'seconds'
+
+    // 设置 SNAPSHOT 版本缓存 1000s
+    cacheChangingModulesFor 1000, java.util.concurrent.TimeUnit.SECONDS
+}
+
+task deployToLocalTomcal {
+    doLast {
+        FileTree cargoDeps = configurations.getByName('cargo').asFileTree
+        println "---Start Deploy---"
+        cargoDeps.each {
+            // 输出依赖文件路径
+            println it
+        }
+        println "--- End  Deploy---"
+    }
+}
+
+// Gradle 不会为你选择一个默认的仓库
+repositories {
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+}
+
+dependencies {
+    // 依赖最新版本 Spring
+    cargo('org.springframework:spring-context:+') {
+        // 排除所有传递性依赖
+        // transitive = false
+
+        // 排除指定的依赖（不需要指定版本）
+        // mudule 就是 name，可以单独指定，也可以一起指定
+        exclude group: 'org.springframework', module: 'spring-beans'
+    }
+}
+
+// endregion
