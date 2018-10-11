@@ -8,7 +8,7 @@ class BuildSrcGroovyPlugin implements Plugin<Project> {
     void apply(Project project) {
         project.task('hello02') {
             group = "custom"
-            description = "buildSrc - groovy 自定义插件"
+            description = "buildSrc - Groovy 自定义插件"
             doLast {
                 println "Hello from the BuildSrcGroovyPlugin"
             }

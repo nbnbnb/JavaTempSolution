@@ -1,8 +1,11 @@
 buildscript {
+
     repositories {
         mavenLocal()
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://plugins.gradle.org/m2/" }
     }
+
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-allopen:${kotlin_version}"
@@ -14,6 +17,9 @@ buildscript {
         // https://github.com/johnrengelman/shadow/
         // http://imperceptiblethoughts.com/shadow/
         classpath "com.github.jengelman.gradle.plugins:shadow:+"
+
+        classpath 'me.zhangjin.plugins:custom:+'
+
     }
 }
 
@@ -25,6 +31,10 @@ subprojects {
     // buildSrc 目录内自定义插件
     apply plugin: me.zhangjin.plugins.BuildSrcGroovyPlugin
     apply plugin: me.zhangjin.plugins.BuildSrcJavaPlugin
+    //apply plugin: me.zhangjin.plugins.BuildSrcKotlinPlugin
+
+    // 通过本地仓库里面的 jar 包获取插件信息
+    apply plugin: 'me.zhangjin.plugins'
 
     // 插件使用的都是 buildscript 中的依赖信息
 
@@ -62,6 +72,7 @@ subprojects {
     repositories {
         mavenLocal()
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "http://repo1.maven.org/maven2/" }
     }
 
     compileKotlin {
@@ -98,9 +109,13 @@ subprojects {
             mavenBom "io.spring.platform:platform-bom:${springPlatform_version}"
         }
     }
+
+    // jar 自定义插件构造
+    custom {
+        message = 'Custom Message'
+    }
+
 }
-
-
 
 //region 自定义插件
 
