@@ -14,7 +14,7 @@ buildscript {
         classpath "io.spring.gradle:dependency-management-plugin:$springIO_version"
 
         // 打包 jar 包（SpringBoot 插件自带此功能）
-        // https://github.com/johnrengelman/shadow/
+        // https://github.com/johnrengelman/shadow/java_version
         // http://imperceptiblethoughts.com/shadow/
         classpath "com.github.jengelman.gradle.plugins:shadow:+"
 
@@ -78,14 +78,14 @@ subprojects {
     compileKotlin {
         kotlinOptions {
             freeCompilerArgs = ["-Xjsr305=strict"]
-            jvmTarget = java_version
+            jvmTarget = '1.8'
         }
     }
 
     compileTestKotlin {
         kotlinOptions {
             freeCompilerArgs = ["-Xjsr305=strict"]
-            jvmTarget = java_version
+            jvmTarget = '1.8'
         }
     }
 

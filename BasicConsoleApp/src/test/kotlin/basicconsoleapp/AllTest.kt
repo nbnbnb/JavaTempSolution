@@ -1,7 +1,6 @@
 package basicconsoleapp
 
 import basicconsoleapp.helper.SerializerHelperTest
-import basicconsoleapp.rmi.client.RMIClientTest
 import basicconsoleapp.srpingdemo.ProfileSwichTest
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
@@ -11,6 +10,6 @@ import org.junit.runners.Suite
  */
 
 @RunWith(Suite::class)
-@Suite.SuiteClasses(SerializerHelperTest::class, ProfileSwichTest::class, RMIClientTest::class)
+@Suite.SuiteClasses(SerializerHelperTest::class, ProfileSwichTest::class)
 class AllTest
 

@@ -10,6 +10,9 @@ dependencies {
 group = 'me.zhangjin.plugins'
 version = '2.0.2'
 
+sourceCompatibility = 11
+targetCompatibility = 11
+
 jar {
     baseName 'custom'
 }

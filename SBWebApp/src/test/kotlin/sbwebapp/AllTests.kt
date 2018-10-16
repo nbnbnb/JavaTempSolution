@@ -3,9 +3,6 @@ package sbwebapp
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
 import org.springframework.test.context.ActiveProfiles
-import sbwebapp.rpc.HessianClientTest
-import sbwebapp.rpc.HttpInvokerClientTest
-import sbwebapp.rpc.JaxWsClientTest
 import sbwebapp.validator.ValidateTest
 
 /**`
@@ -15,10 +12,6 @@ import sbwebapp.validator.ValidateTest
  */
 
 @RunWith(Suite::class)
-@Suite.SuiteClasses(
-        HessianClientTest::class,
-        HttpInvokerClientTest::class,
-        JaxWsClientTest::class,
-        ValidateTest::class)
+@Suite.SuiteClasses(ValidateTest::class)
 @ActiveProfiles("test")
 class AllTests
