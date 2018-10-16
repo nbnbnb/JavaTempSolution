@@ -8,8 +8,7 @@ dependencies {
 
 // 这个就是 plugin id
 group = 'me.zhangjin.plugins'
-
-version = '2.0.1'
+version = '2.0.2'
 
 jar {
     baseName 'custom'

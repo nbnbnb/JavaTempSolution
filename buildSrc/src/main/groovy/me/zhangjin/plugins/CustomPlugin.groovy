@@ -14,7 +14,7 @@ class CustomPlugin implements Plugin<Project> {
             group = "custom"
             description = "jar - groovy 自定义插件"
             doLast {
-                println "Hello from the CustomPlugin 2.0.1"
+                println "Hello from the CustomPlugin 2.0.3"
                 println "Extension Message ${project.custom.message}"
             }
         }
