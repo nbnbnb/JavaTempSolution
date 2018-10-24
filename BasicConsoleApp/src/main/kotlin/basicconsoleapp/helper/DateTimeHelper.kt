@@ -6,6 +6,7 @@ import java.time.*
 import java.time.format.DateTimeFormatter
 import java.util.*
 
+
 object DateTimeHelper {
 
     // yyyy-MM-dd HH:mm:ss
@@ -13,7 +14,7 @@ object DateTimeHelper {
 
     private val localDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     private val localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-
+    private val zone = ZoneId.of("Asia/Shanghai")  // 默认中国时区
     /**
      * 获取当前时间 Timestamp
      *
@@ -37,7 +38,7 @@ object DateTimeHelper {
      * @return
      */
     fun toCalendar(timestamp: Timestamp): Calendar {
-        val tp = currentCalendar
+        val tp = Calendar.getInstance()
         tp.time = timestamp
         return tp
     }
@@ -50,7 +51,7 @@ object DateTimeHelper {
      * @param dateTimeFormat
      * @return
      */
-    fun parseDateTimeToTimestamp(dateTimeFormat: String): Timestamp = Timestamp.valueOf(parseToLocalDateTime(dateTimeFormat))
+    fun parseDateTimeToTimestamp(dateTimeFormat: String) = Timestamp.valueOf(parseToLocalDateTime(dateTimeFormat))
 
     /**
      * 格式化字符串时间为 Timestamp
@@ -60,7 +61,7 @@ object DateTimeHelper {
      * @param dateFormat
      * @return
      */
-    fun parseDateToTimestamp(dateFormat: String): Timestamp =
+    fun parseDateToTimestamp(dateFormat: String) =
             Timestamp.valueOf(dateToLocalDateTime(localDateToDate(parseToLocalDate(dateFormat))))
 
     /**
@@ -71,8 +72,7 @@ object DateTimeHelper {
      * @param dateTimeFormat
      * @return
      */
-    fun parseToLocalDateTime(dateTimeFormat: String): LocalDateTime =
-            LocalDateTime.parse(dateTimeFormat, localDateTimeFormatter)
+    fun parseToLocalDateTime(dateTimeFormat: String) = LocalDateTime.parse(dateTimeFormat, localDateTimeFormatter)
 
     /**
      * 格式化字符串时间为 LocalDate
@@ -82,66 +82,48 @@ object DateTimeHelper {
      * @param dateTimeFormat
      * @return
      */
-    fun parseToLocalDate(dateTimeFormat: String): LocalDate = LocalDate.parse(dateTimeFormat, localDateFormatter)
+    fun parseToLocalDate(dateTimeFormat: String) = LocalDate.parse(dateTimeFormat, localDateFormatter)
 
     /**
      * java.util.Date --> java.time.LocalDateTime
      */
-    fun dateToLocalDateTime(date: Date): LocalDateTime {
-        val instant = date.toInstant()
-        val zone = ZoneId.systemDefault()
-        return LocalDateTime.ofInstant(instant, zone)
-    }
+    fun dateToLocalDateTime(date: Date) = LocalDateTime.ofInstant(date.toInstant(), zone)
 
     /**
      * java.util.Date --> java.time.LocalDate
      */
-    fun dateToLocalDate(date: Date): LocalDate = dateToLocalDateTime(date).toLocalDate()
+    fun dateToLocalDate(date: Date) = dateToLocalDateTime(date).toLocalDate()
 
     /**
      * java.util.Date --> java.time.LocalTime
      */
-    fun dateToLocalTime(date: Date): LocalTime = dateToLocalDateTime(date).toLocalTime()
+    fun dateToLocalTime(date: Date) = dateToLocalDateTime(date).toLocalTime()
 
     /**
      * java.time.LocalDateTime --> java.util.Date
      */
-    fun localDateTimeToDate(localDateTime: LocalDateTime): Date {
-        val zone = ZoneId.systemDefault()
-        val instant = localDateTime.atZone(zone).toInstant()
-        return Date.from(instant)
-    }
+    fun localDateTimeToDate(localDateTime: LocalDateTime) = Date.from(localDateTime.atZone(zone).toInstant())
 
     /**
      * java.time.LocalDate --> java.util.Date
      */
-    fun localDateToDate(localDate: LocalDate): Date {
-        val zone = ZoneId.systemDefault()
-        val instant = localDate.atStartOfDay().atZone(zone).toInstant()
-        return Date.from(instant)
-    }
+    fun localDateToDate(localDate: LocalDate) = Date.from(localDate.atStartOfDay().atZone(zone).toInstant())
 
     /**
      * java.sql.Timestamp --> java.time.LocalDateTime
      */
-    fun timeStampToLocalDateTime(timeStamp: Timestamp): LocalDateTime =
-            LocalDateTime.ofInstant(Instant.ofEpochMilli(timeStamp.time), TimeZone.getDefault().toZoneId())
+    fun timestampToLocalDateTime(timeStamp: Timestamp) = LocalDateTime.ofInstant(Instant.ofEpochMilli(timeStamp.time), zone)
 
     /**
      * 将 Timestamp 按照自定义格式化
      */
-    fun timeStampToCustomString(timestamp: Timestamp, format: String): String {
-        val localDateTime = timeStampToLocalDateTime(timestamp)
-        return localDateTime.format(DateTimeFormatter.ofPattern(format))
-    }
+    fun timeStampToCustomString(timestamp: Timestamp, format: String) =
+            timestampToLocalDateTime(timestamp).format(DateTimeFormatter.ofPattern(format))
 
     /**
      * 将 Date 转换为指定格式的字符串
      *
      * @param format 默认格式为 yyyy-MM-dd HH:mm:ss
      */
-    fun dateToString(date: Date, format: String = "yyyy-MM-dd HH:mm:ss"): String {
-        val sdf = SimpleDateFormat(format)
-        return sdf.format(date)
-    }
+    fun dateToString(date: Date, format: String = "yyyy-MM-dd HH:mm:ss") = SimpleDateFormat(format).format(date)
 }
