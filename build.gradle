@@ -58,8 +58,8 @@ subprojects {
     apply plugin: "kotlin-noarg"
     apply plugin: "kotlin-jpa"
 
-    sourceCompatibility = java_version
-    targetCompatibility = java_version
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
