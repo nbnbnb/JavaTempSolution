@@ -1,7 +1,6 @@
 package java8consoleapp.demos;
 
 
-
 /**
  * Created by ZhangJin on 2017/11/23.
  */
