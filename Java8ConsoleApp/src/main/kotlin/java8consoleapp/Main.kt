@@ -10,9 +10,9 @@ import java8consoleapp.demos.KotlinDemo
 object Main {
     @JvmStatic
     fun main(args: Array<String>) {
-        println("----- start -----")
+        println("----- Java 8 start -----")
         temp()
-        println("-----  end  -----")
+        println("----- Java 8  end  -----")
     }
 
     private fun temp() {
