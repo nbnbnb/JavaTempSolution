@@ -12,9 +12,13 @@ object DateTimeHelper {
     // yyyy-MM-dd HH:mm:ss
     // yyyy-MM-dd HH:mm:ss.SSS  精确到毫秒（.NET 中是 yyyy-MM-dd HH:mm:ss.fff）
 
+    // 和老的 java.util.DateFormat 相比较，所有的 DateTimeFormat 实例都是线程安全的
+    // 所以，此处可以全局使用
     private val localDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     private val localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-    private val zone = ZoneId.of("Asia/Shanghai")  // 默认中国时区
+
+    // 新的 java.time.ZoneId 类是老版 java.util.TimeZone 的替代品
+    private val zone = ZoneId.of("Asia/Shanghai")  // 默认东八时区
     /**
      * 获取当前时间 Timestamp
      *
