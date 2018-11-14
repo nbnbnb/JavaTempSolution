@@ -92,6 +92,7 @@ subprojects {
         compile('com.fasterxml.jackson.module:jackson-module-kotlin')
         compile group: 'org.springframework', name: 'spring-context'
         compile "io.reactivex.rxjava2:rxjava"
+        compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinx_version}"
 
         testCompile group: 'org.springframework', name: 'spring-test'
         testCompile "org.jetbrains.kotlin:kotlin-test"
