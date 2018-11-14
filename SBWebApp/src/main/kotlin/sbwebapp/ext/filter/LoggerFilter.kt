@@ -1,10 +1,10 @@
 package sbwebapp.ext.filter
 
-import org.apache.commons.io.IOUtils
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
+import org.springframework.util.StreamUtils
 import org.springframework.web.util.ContentCachingRequestWrapper
 import org.springframework.web.util.ContentCachingResponseWrapper
 import java.net.URLDecoder
@@ -57,7 +57,7 @@ class LoggerFilter : Filter {
             for (headerName in responseWrapper.headerNames) {
                 responseHeaders.add(headerName, responseWrapper.getHeader(headerName))
             }
-            val responseBody = IOUtils.toString(responseWrapper.contentInputStream, UTF_8)
+            val responseBody = StreamUtils.copyToString(responseWrapper.contentInputStream, UTF_8)
 
             logger.info("Request-ContentType: ${requestWrapper.contentType}")
             logger.info("Request-Method: $httpMethod")

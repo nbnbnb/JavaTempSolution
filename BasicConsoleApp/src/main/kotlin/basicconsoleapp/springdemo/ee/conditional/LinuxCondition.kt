@@ -11,6 +11,6 @@ import org.springframework.core.type.AnnotatedTypeMetadata
 
 class LinuxCondition : Condition {
     override fun matches(context: ConditionContext, metadata: AnnotatedTypeMetadata): Boolean {
-        return context.environment["os.name"].contains("Linux")
+        return context.environment["os.name"]!!.contains("Linux")
     }
 }

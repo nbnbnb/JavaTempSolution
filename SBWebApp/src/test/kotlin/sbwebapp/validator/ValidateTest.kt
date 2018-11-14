@@ -8,6 +8,7 @@ import javax.validation.Validation.buildDefaultValidatorFactory
 import javax.validation.ValidatorFactory
 import sbwebapp.entities.Student
 import java.math.BigDecimal
+import java.time.LocalDate
 import java.util.*
 import javax.validation.Validation
 import kotlin.collections.ArrayList
@@ -33,7 +34,7 @@ class ValidateTest {
         val bean = Student()
         bean.name = null
         bean.address = "北京"
-        bean.birthday = Date(118, 0, 1)  // 2018-01-01
+        bean.birthday = LocalDate.of(2018, 1, 1)
         bean.friendName = null
         bean.weight = BigDecimal(30)
         bean.email = "kkking163.com"

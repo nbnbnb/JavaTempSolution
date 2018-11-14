@@ -17,14 +17,11 @@ import org.springframework.stereotype.Component
  * 则得到的结果为 debug=true, files=["logfile.txt"]
  */
 @Component
+@Suppress("UNUSED_VARIABLE")
 class InjectArguments @Autowired constructor(args: ApplicationArguments) {
     init {
-        // if run with "--debug logfile.txt" debug=true, files=["logfile.txt"]
-
-        @Suppress("UNUSED")
-        val debug = args.containsOption("debug")
-
-        @Suppress("unused")
-        val files = args.nonOptionArgs
+        // if run with "--debug logfile.txt"
+        val debug = args.containsOption("debug")  // true
+        val files = args.nonOptionArgs  // ["logfile.txt"]
     }
 }

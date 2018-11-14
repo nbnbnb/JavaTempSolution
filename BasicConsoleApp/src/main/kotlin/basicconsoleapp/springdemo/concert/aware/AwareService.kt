@@ -1,11 +1,12 @@
 package basicconsoleapp.springdemo.concert.aware
 
-import org.apache.commons.io.IOUtils
 import org.springframework.beans.factory.BeanNameAware
 import org.springframework.context.ResourceLoaderAware
 import org.springframework.core.io.ResourceLoader
 import org.springframework.stereotype.Service
+import org.springframework.util.StreamUtils
 import java.io.IOException
+import java.nio.charset.Charset
 
 /**
  * Created by ZhangJin on 2018/6/3.
@@ -29,7 +30,7 @@ class AwareService : BeanNameAware, ResourceLoaderAware {
         println("Bean 的名称为: $beanName")
         val resource = loader.getResource("test.txt")
         try {
-            println("ResourceLoader 加载的文件内容为: " + IOUtils.toString(resource.inputStream, "utf-8"))
+            println("ResourceLoader 加载的文件内容为: " + StreamUtils.copyToString(resource.inputStream, Charsets.UTF_8))
         } catch (e: IOException) {
             e.printStackTrace()
         }

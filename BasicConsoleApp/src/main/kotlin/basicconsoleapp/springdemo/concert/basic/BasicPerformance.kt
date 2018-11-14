@@ -17,6 +17,7 @@ class BasicPerformance : Performance {
     override fun showError() {
         println("execute before error")
         throw NullPointerException("Test null exception")
+        @Suppress("UNREACHABLE_CODE")
         println("execute after error")
     }
 

@@ -44,7 +44,8 @@ class CGlibFacadeImplProxy : MethodInterceptor {
         // 调用父类中的方法
         // 调用真正的业务方法
         // 注意 args 的解包操作
-        val result = method.invoke(target, *(args ?: arrayOfNulls<Any>(0)))
+        //val result = method.invoke(target, *(args ?: arrayOfNulls<Any>(0)))
+        val result = method.invoke(target, *args)
 
         println("调用后处理——————")
 

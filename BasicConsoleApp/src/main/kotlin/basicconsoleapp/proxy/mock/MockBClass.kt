@@ -1,3 +1,4 @@
 package basicconsoleapp.proxy.mock
 
-class MockBClass(a: MockAClass)
+
+class MockBClass(@Suppress("UNUSED_PARAMETER") a: MockAClass)

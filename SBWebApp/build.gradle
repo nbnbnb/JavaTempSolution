@@ -8,8 +8,6 @@ description = 'SpringBoot WebApp'
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
-    compile('com.caucho:hessian')
-    compile "org.apache.cxf:cxf-spring-boot-starter-jaxws:${cxf_jaxws_version}"
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 

@@ -11,15 +11,12 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-allopen:${kotlin_version}"
         classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlin_version"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBoot_version"
-        classpath "io.spring.gradle:dependency-management-plugin:$springIO_version"
 
         // 打包 jar 包（SpringBoot 插件自带此功能）
         // https://github.com/johnrengelman/shadow/java_version
         // http://imperceptiblethoughts.com/shadow/
         classpath "com.github.jengelman.gradle.plugins:shadow:+"
-
         classpath 'me.zhangjin.plugins:custom:+'
-
     }
 }
 
@@ -92,10 +89,8 @@ subprojects {
     dependencies {
         compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib'
         compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect'
-        compile group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: "$kotlinx_version"
         compile('com.fasterxml.jackson.module:jackson-module-kotlin')
         compile group: 'org.springframework', name: 'spring-context'
-        compile("commons-io:commons-io")
         compile "io.reactivex.rxjava2:rxjava"
 
         testCompile group: 'org.springframework', name: 'spring-test'
@@ -106,7 +101,8 @@ subprojects {
 
     dependencyManagement {
         imports {
-            mavenBom "io.spring.platform:platform-bom:${springPlatform_version}"
+            // 导入 Spring Boot POM 依赖
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBoot_version}"
         }
     }
 

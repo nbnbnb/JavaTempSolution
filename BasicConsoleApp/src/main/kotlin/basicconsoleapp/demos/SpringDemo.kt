@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_VARIABLE")
+
 package basicconsoleapp.demos
 
 import basicconsoleapp.config.AppConfig
@@ -13,9 +15,10 @@ import basicconsoleapp.springdemo.concert.introducer.Encoreable
 import basicconsoleapp.springdemo.concert.selector.IExecution
 import basicconsoleapp.springdemo.ee.conditional.ListService
 import basicconsoleapp.springdemo.ee.taskexecutor.AsyncTaskService
-import org.apache.commons.io.IOUtils
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.core.env.get
+import org.springframework.util.StreamUtils
+import java.nio.charset.Charset
 
 object SpringDemo {
 
@@ -60,8 +63,8 @@ object SpringDemo {
         println(elConfig.osNameString)
         println(elConfig.randomNumber)
         println(elConfig.fromAnother)
-        println(IOUtils.toString(elConfig.testFile.inputStream, "utf8"))
-        println(IOUtils.toString(elConfig.testUrl.inputStream, "utf8"))
+        println(StreamUtils.copyToString(elConfig.testFile.inputStream, Charsets.UTF_8))
+        println(StreamUtils.copyToString(elConfig.testUrl.inputStream, Charsets.UTF_8))
         println(elConfig.bookName)
         println(elConfig.env.getProperty("book.author"))
     }
@@ -122,7 +125,7 @@ object SpringDemo {
     /**
      * 启动 RMI 服务器
      */
-    fun rmiServer(){
+    fun rmiServer() {
         AnnotationConfigApplicationContext(AppConfig::class.java)
         println("服务已发布 rmi://localhost:1199/SpitterService")
     }

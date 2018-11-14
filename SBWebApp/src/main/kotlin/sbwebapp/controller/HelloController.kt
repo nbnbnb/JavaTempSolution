@@ -33,7 +33,7 @@ class HelloController {
     /**
      *  @Valid 是 javax.validation 包下的
      */
-    @RequestMapping(value = "/book", method = [RequestMethod.POST])
+    @RequestMapping("/book", method = [RequestMethod.POST])
     fun addBook(@RequestBody @Valid book: Book): String {
         return "ok"
     }
@@ -45,12 +45,12 @@ class HelloController {
      *
      * Default::class 表示是否验证没有设置 group 的字段
      */
-    @RequestMapping(value = "/bookA", method = [RequestMethod.POST])
+    @RequestMapping("/bookA", method = [RequestMethod.POST])
     fun addBookA(@RequestBody @Validated(value = [GroupA::class, Default::class]) book: Book): String {
         return "ok"
     }
 
-    @RequestMapping(value = "/bookB", method = [RequestMethod.POST])
+    @RequestMapping("/bookB", method = [RequestMethod.POST])
     fun addBookB(@RequestBody @Validated(value = [GroupB::class, Default::class]) book: Book): String {
         return "ok"
     }

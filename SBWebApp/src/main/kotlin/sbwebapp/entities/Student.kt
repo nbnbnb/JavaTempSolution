@@ -4,6 +4,7 @@ import sbwebapp.validator.CaseMode
 import sbwebapp.validator.CheckCase
 import java.io.Serializable
 import java.math.BigDecimal
+import java.time.LocalDate
 import java.util.*
 import javax.validation.constraints.*
 
@@ -68,7 +69,7 @@ class Student : Serializable {
         get() = friendName != null
 
     @Future(message = "生日必须在当前时间之前")
-    var birthday: Date? = null
+    var birthday: LocalDate? = null
 
     @Pattern(regexp = "^(.+)@(.+)$", message = "邮箱的格式不合法")
     var email: String? = null
