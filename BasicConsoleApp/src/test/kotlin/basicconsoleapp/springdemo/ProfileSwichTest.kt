@@ -1,4 +1,4 @@
-package basicconsoleapp.srpingdemo
+package basicconsoleapp.springdemo
 
 import basicconsoleapp.config.ProfileSwitchConfig
 import basicconsoleapp.springdemo.ee.entities.TestBean

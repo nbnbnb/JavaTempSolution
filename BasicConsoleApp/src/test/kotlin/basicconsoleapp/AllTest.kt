@@ -1,7 +1,7 @@
 package basicconsoleapp
 
 import basicconsoleapp.helper.SerializerHelperTest
-import basicconsoleapp.srpingdemo.ProfileSwichTest
+import basicconsoleapp.springdemo.ProfileSwichTest
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
 
