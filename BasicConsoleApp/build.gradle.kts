@@ -9,6 +9,11 @@ plugins {
 
 description = "BasicConsole App"
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
 dependencies {
     compile("com.microsoft.sqlserver:sqljdbc4:4.0")
     compile("org.aspectj:aspectjweaver")
