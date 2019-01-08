@@ -22,18 +22,6 @@ buildscript {
 
 subprojects {
 
-    // 自定义插件
-    // 此处指定的是类型名（gradle.build 内）
-    apply plugin: BuildGradlePlugin
-    // buildSrc 目录内自定义插件
-    apply plugin: me.zhangjin.plugins.BuildSrcGroovyPlugin
-    apply plugin: me.zhangjin.plugins.BuildSrcJavaPlugin
-
-    // 通过本地仓库里面的 jar 包获取插件信息
-    apply plugin: 'me.zhangjin.plugins'
-
-    // 插件使用的都是 buildscript 中的依赖信息
-
     // 如果有 Java 代码，则需要此插件
     apply plugin: 'java'
 
@@ -106,81 +94,4 @@ subprojects {
             mavenBom "org.springframework.boot:spring-boot-dependencies:${springBoot_version}"
         }
     }
-
-    // jar 自定义插件构造
-    custom {
-        message = 'Custom Message'
-    }
-
 }
-
-// region 自定义插件
-
-class BuildGradlePlugin implements Plugin<Project> {
-    @Override
-    void apply(Project project) {
-        project.task('hello01') {
-            group = "custom"
-            description = "build.gradle 自定义插件"
-            doLast {
-                println "Hello from the BuildGradlePlugin"
-            }
-        }
-    }
-}
-
-// endregion
-
-// region 自定义配置
-
-configurations {
-    cargo {
-        description = 'Classpath for Cargo Ant tasks.'
-        visible = false
-    }
-}
-
-configurations.cargo.resolutionStrategy {
-    // 当有版本冲突时
-    // 设置构建策略为报告失败
-    failOnVersionConflict()
-    // 使用 force 强制指定顶层依赖版本，以及传递性依赖
-    force 'org.springframework:spring-context:5.0.0.RELEASE'
-
-    // 设置动态版本缓存 100s
-    cacheDynamicVersionsFor 100, 'seconds'
-
-    // 设置 SNAPSHOT 版本缓存 1000s
-    cacheChangingModulesFor 1000, java.util.concurrent.TimeUnit.SECONDS
-}
-
-task deployToLocalTomcal {
-    doLast {
-        FileTree cargoDeps = configurations.getByName('cargo').asFileTree
-        println "---Start Deploy---"
-        cargoDeps.each {
-            // 输出依赖文件路径
-            println it
-        }
-        println "--- End  Deploy---"
-    }
-}
-
-// Gradle 不会为你选择一个默认的仓库
-repositories {
-    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-}
-
-dependencies {
-    // 依赖最新版本 Spring
-    cargo('org.springframework:spring-context:+') {
-        // 排除所有传递性依赖
-        // transitive = false
-
-        // 排除指定的依赖（不需要指定版本）
-        // mudule 就是 name，可以单独指定，也可以一起指定
-        exclude group: 'org.springframework', module: 'spring-beans'
-    }
-}
-
-// endregion
