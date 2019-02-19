@@ -2,14 +2,13 @@ package sbwebapp.controller
 
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
-import java.util.*
 import javax.validation.Valid
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestMapping
-import sbwebapp.entities.Book
-import sbwebapp.entities.GroupA
-import sbwebapp.entities.GroupB
+import sbwebapp.entity.Book
+import sbwebapp.entity.GroupA
+import sbwebapp.entity.GroupB
 import javax.validation.groups.Default
 
 

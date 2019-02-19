@@ -3,7 +3,7 @@ package sbwebapp.config
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import sbwebapp.ext.filter.LoggerFilter
+import sbwebapp.filter.LoggerFilter
 
 
 /**
@@ -13,7 +13,8 @@ import sbwebapp.ext.filter.LoggerFilter
 @Configuration
 class AppConfig {
 
-    @Bean
+    // 通过 Bean 的方式启用 Filter
+    // @Bean
     fun loggerFilterRegistration(): FilterRegistrationBean<*> {
         val registration = FilterRegistrationBean<LoggerFilter>()
         registration.filter = LoggerFilter()

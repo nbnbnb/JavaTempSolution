@@ -1,11 +1,10 @@
-package sbwebapp.entities
+package sbwebapp.entity
 
 import sbwebapp.validator.CaseMode
 import sbwebapp.validator.CheckCase
 import java.io.Serializable
 import java.math.BigDecimal
 import java.time.LocalDate
-import java.util.*
 import javax.validation.constraints.*
 
 

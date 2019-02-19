@@ -1,4 +1,4 @@
-package sbwebapp.ext.filter
+package sbwebapp.filter
 
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpHeaders
@@ -10,6 +10,7 @@ import org.springframework.web.util.ContentCachingResponseWrapper
 import java.net.URLDecoder
 import java.nio.charset.StandardCharsets.UTF_8
 import javax.servlet.*
+import javax.servlet.annotation.WebFilter
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletRequestWrapper
 import javax.servlet.http.HttpServletResponse
@@ -19,6 +20,10 @@ import javax.servlet.http.HttpServletResponse
  * Created by ZhangJin on 2018/6/12.
  */
 
+// 使用 @WebFilter 的方式设置 Filter
+// @WebFilter(urlPatterns = ["/*"], filterName = "loginFilter")
+
+// 不支持异步 IO（UploadServlet）
 class LoggerFilter : Filter {
 
     private val logger = LoggerFactory.getLogger(LoggerFilter::class.java)!!

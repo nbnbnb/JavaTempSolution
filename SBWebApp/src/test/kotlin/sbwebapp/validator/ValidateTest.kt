@@ -3,13 +3,9 @@ package sbwebapp.validator
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.test.context.junit4.SpringRunner
-import javax.validation.ConstraintViolation
-import javax.validation.Validation.buildDefaultValidatorFactory
-import javax.validation.ValidatorFactory
-import sbwebapp.entities.Student
+import sbwebapp.entity.Student
 import java.math.BigDecimal
 import java.time.LocalDate
-import java.util.*
 import javax.validation.Validation
 import kotlin.collections.ArrayList
 import kotlin.test.assertEquals

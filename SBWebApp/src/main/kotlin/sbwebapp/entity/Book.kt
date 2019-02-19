@@ -1,8 +1,7 @@
-package sbwebapp.entities
+package sbwebapp.entity
 
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.NotEmpty
-import javax.validation.constraints.NotNull
 
 class Book {
     @NotEmpty(message = "书名不能为空")
