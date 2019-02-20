@@ -1,5 +1,3 @@
-description = 'BasicConsole App'
-
 dependencies {
     compile group: 'com.microsoft.sqlserver', name: 'sqljdbc4', version: "$sqljdbc4_version"
     compile group: 'org.aspectj', name: 'aspectjweaver'

@@ -20,10 +20,36 @@ subprojects {
 
     if (name == 'BasicConsoleApp') {
         apply plugin: 'com.github.johnrengelman.shadow'
+
+        description = 'BasicConsole App'
     }
 
     if (name == 'Java8ConsoleApp') {
         apply plugin: 'com.github.johnrengelman.shadow'
+
+        description = 'Java8 ConsoleApp'
+
+    }
+
+    if (name == 'SBConsoleApp') {
+        apply plugin: 'org.springframework.boot'
+
+        description = 'SpringBoot ConsoleApp'
+        
+    }
+
+    if (name == 'SBWebApp') {
+        apply plugin: 'org.springframework.boot'
+        // 打包 war
+        // Tomcat 调试使用
+        apply plugin: 'war'
+
+        dependencies {
+            compile('org.springframework.boot:spring-boot-starter-web')
+            testCompile('org.springframework.boot:spring-boot-starter-test')
+        }
+
+        description = 'SpringBoot WebApp'
     }
 
     // 如果有 Java 代码，则需要此插件

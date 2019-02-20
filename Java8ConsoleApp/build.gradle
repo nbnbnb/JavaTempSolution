@@ -1,5 +1,3 @@
-description = 'Java8Console App'
-
 shadowJar {
     baseName = 'Java8ConsoleApp'
     classifier = null
