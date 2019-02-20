@@ -1,7 +1,4 @@
-apply plugin: "com.github.johnrengelman.shadow"
-
 description = 'Java8Console App'
-
 
 shadowJar {
     baseName = 'Java8ConsoleApp'

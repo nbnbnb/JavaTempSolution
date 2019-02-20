@@ -1,5 +1,3 @@
-apply plugin: "com.github.johnrengelman.shadow"
-
 description = 'BasicConsole App'
 
 dependencies {

@@ -18,14 +18,19 @@ plugins {
 
 subprojects {
 
+    if (name == 'BasicConsoleApp') {
+        apply plugin: 'com.github.johnrengelman.shadow'
+    }
+
+    if (name == 'Java8ConsoleApp') {
+        apply plugin: 'com.github.johnrengelman.shadow'
+    }
+
     // 如果有 Java 代码，则需要此插件
     apply plugin: 'java'
 
     // 将 kotlin 编译为 JVM 平台代码
     apply plugin: 'kotlin'
-
-    // JavaScript 平台
-    // apply plugin: "kotlin2js"
 
     // 使用 maven 仓库
     apply plugin: 'maven'
@@ -54,7 +59,6 @@ subprojects {
         mavenLocal()
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
         // mavenCentral()
-        // maven { url "http://repo1.maven.org/maven2/" }
     }
 
     compileKotlin {
