@@ -16,7 +16,7 @@ buildscript {
         // https://github.com/johnrengelman/shadow/java_version
         // http://imperceptiblethoughts.com/shadow/
         classpath "com.github.jengelman.gradle.plugins:shadow:+"
-        classpath 'me.zhangjin.plugins:custom:+'
+        // classpath 'me.zhangjin.plugins:custom:+'
     }
 }
 
@@ -34,7 +34,8 @@ subprojects {
     // 使用 maven 仓库
     apply plugin: 'maven'
 
-    // Spring IO 管理
+    // A Gradle plugin that provides Maven-like dependency management functionality
+    // https://github.com/spring-gradle-plugins/dependency-management-plugin
     apply plugin: 'io.spring.dependency-management'
 
     apply plugin: "kotlin-allopen"
