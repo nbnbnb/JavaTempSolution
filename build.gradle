@@ -22,6 +22,7 @@ subprojects {
         apply plugin: 'com.github.johnrengelman.shadow'
 
         description = 'BasicConsole App'
+
     }
 
     if (name == 'Java8ConsoleApp') {
@@ -35,7 +36,7 @@ subprojects {
         apply plugin: 'org.springframework.boot'
 
         description = 'SpringBoot ConsoleApp'
-        
+
     }
 
     if (name == 'SBWebApp') {
@@ -71,6 +72,7 @@ subprojects {
     apply plugin: "kotlin-noarg"
     apply plugin: "kotlin-jpa"
 
+
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
 
@@ -102,6 +104,22 @@ subprojects {
     }
 
     dependencies {
+
+        if (name == 'BasicConsoleApp') {
+            compile group: 'com.microsoft.sqlserver', name: 'sqljdbc4', version: "$sqljdbc4_version"
+            compile group: 'org.aspectj', name: 'aspectjweaver'
+            compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310'
+            compile group: 'org.springframework', name: 'spring-orm'
+        }
+
+        if (name == 'SBConsoleApp') {
+            compile group: 'org.springframework.boot', name: 'spring-boot-starter'
+            compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
+            compile group: 'mysql', name: 'mysql-connector-java'
+
+            testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+        }
+
         compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib'
         compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect'
         compile('com.fasterxml.jackson.module:jackson-module-kotlin')

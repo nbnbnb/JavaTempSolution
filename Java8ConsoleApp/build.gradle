@@ -7,9 +7,10 @@ shadowJar {
     }
 }
 
-// 覆盖项目 JDK 版本
+assemble.dependsOn(shadowJar)
+
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-assemble.dependsOn(shadowJar)
+
 
