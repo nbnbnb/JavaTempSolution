@@ -24,7 +24,6 @@ class AllTests {
     private lateinit var personRepository: PersonRepository
 
     @Test
-    @Ignore
     fun basicTest() {
         assertEquals(personRepository.findAll().size, 6)
         assertEquals(personRepository.findByAddress("北京").size, 1)

@@ -2,7 +2,7 @@
 
 spring:
   datasource:
-    url: jdbc:mysql://tcloud.zhangjin.tk:13306/BOOT?characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://tcloud.zhangjin.tk:13306/boot?characterEncoding=utf8&useSSL=false
     username: boot
     password: boot
   jpa:
