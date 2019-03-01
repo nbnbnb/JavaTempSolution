@@ -2,7 +2,6 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-
 plugins {
     maven
     java
@@ -10,6 +9,8 @@ plugins {
     // https://kotlinlang.org/docs/reference/using-gradle.html
     kotlin("jvm") version "1.3.21"
 
+    // noarg 和 allopen 需要 apply 之后，才能使用 allOpen 和 allOpen 配置
+    // 所以此处需要全局 apply
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.plugin.noarg
     id("org.jetbrains.kotlin.plugin.noarg") version "1.3.21"
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.plugin.allopen
@@ -29,6 +30,8 @@ plugins {
     id("com.github.johnrengelman.shadow") version "4.0.4" apply false
 }
 
+// 读取 kts 脚本相关的类文件
+// 需要这个仓库
 repositories {
     mavenLocal()
     maven { url = uri("http://maven.aliyun.com/nexus/content/groups/public/") }
@@ -174,7 +177,7 @@ subprojects {
         options.encoding = "UTF-8"
     }
 
-
+    // 项目中的类文件，需要这个仓库
     repositories {
         mavenLocal()
         maven { url = uri("http://maven.aliyun.com/nexus/content/groups/public/") }
