@@ -9,7 +9,7 @@ plugins {
     // https://kotlinlang.org/docs/reference/using-gradle.html
     kotlin("jvm") version "1.3.21"
 
-    // noarg 和 allopen 需要 apply 之后，才能使用 allOpen 和 allOpen 配置
+    // noarg 和 allopen 需要 apply 之后，才能使用 noArg 和 allOpen 配置
     // 所以此处需要全局 apply
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.plugin.noarg
     id("org.jetbrains.kotlin.plugin.noarg") version "1.3.21"
