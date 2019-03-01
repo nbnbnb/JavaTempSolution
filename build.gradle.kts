@@ -3,7 +3,7 @@ import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    maven
+    `maven-publish`
     java
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.jvm
     // https://kotlinlang.org/docs/reference/using-gradle.html

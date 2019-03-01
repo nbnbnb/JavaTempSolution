@@ -32,9 +32,16 @@ class AllTests {
         assertEquals(personRepository.withNameAndAddressQuery("AAA", "北京").address, "北京")
         assertEquals(personRepository.withNameAndAddressNamedQuery("AAA", "北京").address, "北京")
 
-        personRepository.save(Person(7, "GGG", 30, "天津"))
-        personRepository.save(Person(8, "HHH", 31, "重启"))
+        val person7 = Person(7, "GGG", 30, "天津")
+        val person8 = Person(8, "HHH", 31, "重启")
+        personRepository.save(person7)
+        personRepository.save(person8)
 
         assertEquals(personRepository.findAll().size, 8)
+
+        personRepository.delete(person7)
+        personRepository.delete(person8)
+
+        assertEquals(personRepository.findAll().size, 6)
     }
 }
