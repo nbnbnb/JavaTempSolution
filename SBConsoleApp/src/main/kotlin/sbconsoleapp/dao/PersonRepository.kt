@@ -3,7 +3,7 @@ package sbconsoleapp.dao
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
-import sbconsoleapp.demain.Person
+import sbconsoleapp.domain.Person
 
 /**
  * Created by ZhangJin on 2018/6/15.
