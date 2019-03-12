@@ -1,11 +1,17 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     // 替代原始的 maven 插件
+    // https://docs.gradle.org/current/userguide/publishing_maven.html
+    // https://docs.gradle.org/current/userguide/maven_plugin.html
     `maven-publish`
+
+    // https://docs.gradle.org/current/userguide/java_plugin.html
     java
+
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.jvm
     // https://kotlinlang.org/docs/reference/using-gradle.html
     kotlin("jvm") version "1.3.21"
@@ -42,10 +48,15 @@ repositories {
 subprojects {
     if (name == "SBConsoleApp") {
         description = "SpringBoot ConsoleApp"
+        // 需要 apply 这个插件
+        // 这样才会有 Spring Boot 的任务
+        // 例如，打包完整 jar 包任务：bootJar
+        apply(plugin = "org.springframework.boot")
     }
 
     if (name == "SBWebApp") {
         description = "SpringBoot WebApp"
+        apply(plugin = "org.springframework.boot")
     }
 
     if (name == "BasicConsoleApp") {
@@ -93,8 +104,8 @@ subprojects {
     // 将 kotlin 编译为 JVM 平台代码
     apply(plugin = "kotlin")
 
-    // 使用 maven 仓库
-    apply(plugin = "maven")
+    // 使用 maven-publish 插件
+    apply(plugin = "maven-publish")
 
     apply(plugin = "io.spring.dependency-management")
 
