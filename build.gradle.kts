@@ -100,18 +100,18 @@ subprojects {
         }
 
         if (name == "SBWebApp") {
-            dependencies {
-                compile("org.springframework.boot:spring-boot-starter-web")
-            }
+
+            compile("org.springframework.boot:spring-boot-starter-web")
+
         }
 
         if (name == "BasicConsoleApp") {
-            dependencies {
-                compile("com.microsoft.sqlserver:sqljdbc4:4.0")
-                compile("org.aspectj:aspectjweaver")
-                compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
-                compile("org.springframework:spring-orm")
-            }
+
+            compile("com.microsoft.sqlserver:sqljdbc4:4.0")
+            compile("org.aspectj:aspectjweaver")
+            compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+            compile("org.springframework:spring-orm")
+
 
             tasks.withType<ShadowJar> {
                 baseName = "BasicConsoleApp"
