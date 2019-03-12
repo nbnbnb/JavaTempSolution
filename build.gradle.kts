@@ -3,6 +3,7 @@ import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    // 替代原始的 maven 插件
     `maven-publish`
     java
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.jvm
@@ -50,11 +51,37 @@ subprojects {
     if (name == "BasicConsoleApp") {
         description = "BasicConsole WebApp"
         apply(plugin = "com.github.johnrengelman.shadow")
+
+        tasks.withType<ShadowJar> {
+            baseName = "BasicConsoleApp"
+            classifier = ""
+            version = ""
+            manifest {
+                attributes("Main-Class" to "basicconsoleapp.Main")
+            }
+        }
+
+        tasks.withType<Assemble> {
+            dependsOn("shadowJar")
+        }
     }
 
     if (name == "Java8ConsoleApp") {
         description = "Java8 Console WebApp"
         apply(plugin = "com.github.johnrengelman.shadow")
+
+        tasks.withType<ShadowJar> {
+            baseName = "Java8ConsoleApp"
+            classifier = ""
+            version = ""
+            manifest {
+                attributes("Main-Class" to "java8consoleapp.Main")
+            }
+        }
+
+        tasks.withType<Assemble> {
+            dependsOn("shadowJar")
+        }
     }
 
     group = "me.zhangjin.study"
@@ -100,48 +127,15 @@ subprojects {
         }
 
         if (name == "SBWebApp") {
-
             compile("org.springframework.boot:spring-boot-starter-web")
-
         }
 
         if (name == "BasicConsoleApp") {
-
             compile("com.microsoft.sqlserver:sqljdbc4:4.0")
             compile("org.aspectj:aspectjweaver")
             compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
             compile("org.springframework:spring-orm")
-
-
-            tasks.withType<ShadowJar> {
-                baseName = "BasicConsoleApp"
-                classifier = ""
-                version = ""
-                manifest {
-                    attributes("Main-Class" to "basicconsoleapp.Main")
-                }
-            }
-
-            tasks.withType<Assemble> {
-                dependsOn("shadowJar")
-            }
         }
-
-        if (name == "Java8ConsoleApp") {
-            tasks.withType<ShadowJar> {
-                baseName = "Java8ConsoleApp"
-                classifier = ""
-                version = ""
-                manifest {
-                    attributes("Main-Class" to "java8consoleapp.Main")
-                }
-            }
-
-            tasks.withType<Assemble> {
-                dependsOn("shadowJar")
-            }
-        }
-
 
         implementation(kotlin("stdlib-jdk8"))
 
@@ -158,6 +152,7 @@ subprojects {
         testCompile("org.jetbrains.kotlin:kotlin-test-junit")
     }
 
+    // 配置 Java 的字节码版本和源代码兼容 JDK 版本
     configure<JavaPluginConvention> {
         if (name == "Java8ConsoleApp") {
             sourceCompatibility = JavaVersion.VERSION_1_8
@@ -168,15 +163,21 @@ subprojects {
         }
     }
 
+    // 所有子项目
+    // kotlin 的目标 JVM 字节码版本
+    // 自定义参数
     tasks.withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "1.8"
         kotlinOptions.freeCompilerArgs = listOf("-Xjsr305=strict")
     }
 
+    // 所有子项目
+    // Java 源代码编码格式
     tasks.withType<JavaCompile> {
         options.encoding = "UTF-8"
     }
 
+    // 所有子项目
     // 项目中的类文件，需要这个仓库
     repositories {
         mavenLocal()
@@ -184,7 +185,11 @@ subprojects {
         //mavenCentral()
     }
 
+    // 所有子项目
     // 使用 SpringBoot 的包依赖管理
+
+    // spring-boot-dependencies 自带的版本
+    // https://github.com/spring-projects/spring-boot/blob/v2.1.3.RELEASE/spring-boot-project/spring-boot-dependencies/pom.xml
     the<DependencyManagementExtension>().apply {
         imports {
             mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
