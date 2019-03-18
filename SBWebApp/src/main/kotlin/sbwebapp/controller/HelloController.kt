@@ -42,8 +42,11 @@ class HelloController {
      *
      * @Validated 可以替代 @Valid
      *
+     * @Validated 相比 @Valid 添加了验证组的功能
+     *
      * Default::class 表示是否验证没有设置 group 的字段
      */
+
     @RequestMapping("/bookA", method = [RequestMethod.POST])
     fun addBookA(@RequestBody @Validated(value = [GroupA::class, Default::class]) book: Book): String {
         return "ok"
@@ -53,4 +56,5 @@ class HelloController {
     fun addBookB(@RequestBody @Validated(value = [GroupB::class, Default::class]) book: Book): String {
         return "ok"
     }
+
 }

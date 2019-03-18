@@ -7,13 +7,17 @@ import kotlin.reflect.KClass
 import javax.validation.ConstraintValidatorContext
 import javax.validation.ConstraintValidator
 
+/**
+ * 约束
+ * 关联验证类
+ */
 @Target(AnnotationTarget.FUNCTION, AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention
 @Constraint(validatedBy = [CheckCaseValidator::class])
 @MustBeDocumented
 annotation class CheckCase(val value: CaseMode,
                            val message: String = "{sbwebapp.validator.CheckCase}",
-                           val groups: Array<KClass<*>> = [],
+                           val groups: Array<KClass<*>> = [],// Model 验证时可以传递 Group 信息，根据这些信息，可以做一些自定义逻辑，例如实施不同的验证
                            val payload: Array<KClass<out Payload>> = [])
 
 /**
@@ -38,6 +42,7 @@ class CheckCaseValidator : ConstraintValidator<CheckCase, String> {
             obj == obj.toUpperCase()
         else
             obj == obj.toLowerCase()
+
     }
 }
 
