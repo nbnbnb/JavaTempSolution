@@ -1,8 +1,8 @@
 package basicconsoleapp.demos
 
-object KotlinDemo {
+object KotlinTemp {
     fun test() {
-        SpringDemo.basic()
+
     }
 }
 
