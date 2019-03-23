@@ -66,7 +66,6 @@ object SpringDemo {
         println(StreamUtils.copyToString(elConfig.testFile.inputStream, Charsets.UTF_8))
         println(StreamUtils.copyToString(elConfig.testUrl.inputStream, Charsets.UTF_8))
         println(elConfig.bookName)
-        println(elConfig.env.getProperty("book.author"))
     }
 
     fun aware() {
@@ -79,14 +78,20 @@ object SpringDemo {
         val context = AnnotationConfigApplicationContext(AppConfig::class.java)
         val asyncTaskService = context.getBean(AsyncTaskService::class.java)
 
+        println("Async Task Started...")
+
         for (i in 0..10) {
-            asyncTaskService.executeAsyncTask(i)
-            asyncTaskService.executeAsyncTaskPlus(i)
+            asyncTaskService.executeAsyncTaskOne(i)
+            asyncTaskService.executeAsyncTaskTwo(i)
+            asyncTaskService.executeAsyncTaskThree(i)
         }
+
+        println("Async Task Ended...")
 
         context.close()
     }
 
+    // 在 AppConfig 中开启 @EnableScheduling
     fun schedule() {
         // 启动了 Spring 框架，就会启动 Scheduler
         val context = AnnotationConfigApplicationContext(AppConfig::class.java)
