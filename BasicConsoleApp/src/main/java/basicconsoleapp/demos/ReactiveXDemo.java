@@ -14,10 +14,10 @@ import java.util.concurrent.TimeUnit;
 
 public class ReactiveXDemo {
     // SubscribeOn：specify the Scheduler on which an Observable will operate
-    // 指定 Observable 自身在哪个调度器上执行
+    // 指定一个 Observable(可观察对象) 将在其上操作的调度程序
 
     // ObserveOn：specify the Scheduler on which an observer will observe this Observable
-    // 指定一个观察者在哪个调度器上观察这个 Observable
+    // 指定 Observer(观察者) 将在其上观察此 Observable(可观察对象) 的调度程序
 
     // Schedulers.io() = RxCachedThreadSchedule
     // Schedulers.computation() = RxComputationThreadPool
@@ -29,33 +29,35 @@ public class ReactiveXDemo {
     // RxJava 的链式操作中，数据的处理是 “自下而上”的，这点与数据发射正好相反
     // 如果多次调用 subscribeOn，则最上面的线程切换最晚执行，所以就变成了只有第一次切换线程才有效
 
+    // 执行 doOnSubscribe（从下到上）
+    // 执行 create
+    // 执行 map（从上到下）
     public static void threadSwitch() {
-
-        Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
-            @Override
-            public void subscribe(ObservableEmitter<Integer> observableEmitter) throws Exception {
-                // 使用 Schedulers.single()
-                // 通过 subscribeOn(Schedulers.single()) 指定
-                System.out.println("create:" + Thread.currentThread().getName());
-                observableEmitter.onNext(1);
-                observableEmitter.onComplete();
-            }
-        }).doOnSubscribe(new Consumer<Disposable>() {
-            // 使用 Schedulers.single()
-            // 通过 subscribeOn(Schedulers.single()) 指定
-            @Override
-            public void accept(@NonNull Disposable disposable) throws Exception {
-                System.out.println("doOnSubscribe 02:" + Thread.currentThread().getName());
-            }
-        });
-
-        observable
+        Observable
+                .create(new ObservableOnSubscribe<Integer>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<Integer> observableEmitter) throws Exception {
+                        // 使用 Schedulers.single()
+                        // 通过 subscribeOn(Schedulers.single()) 指定
+                        System.out.println("create: " + Thread.currentThread().getName());
+                        observableEmitter.onNext(1);
+                        observableEmitter.onComplete();
+                    }
+                })
                 .doOnSubscribe(new Consumer<Disposable>() {
                     // 使用 Schedulers.single()
                     // 通过 subscribeOn(Schedulers.single()) 指定
                     @Override
                     public void accept(@NonNull Disposable disposable) throws Exception {
-                        System.out.println("doOnSubscribe 03:" + Thread.currentThread().getName());
+                        System.out.println("doOnSubscribe 02: " + Thread.currentThread().getName());
+                    }
+                })
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    // 使用 Schedulers.single()
+                    // 通过 subscribeOn(Schedulers.single()) 指定
+                    @Override
+                    public void accept(@NonNull Disposable disposable) throws Exception {
+                        System.out.println("doOnSubscribe 03: " + Thread.currentThread().getName());
                     }
                 })
                 .subscribeOn(Schedulers.single())  // 设置 Observable.create 的线程，第一次有效，影响他上面的 create 和 doOnSubscribe
@@ -70,7 +72,7 @@ public class ReactiveXDemo {
                     // 由于在主线程中，没有线程切换，01 一般是最先输出的
                     @Override
                     public void accept(@NonNull Disposable disposable) throws Exception {
-                        System.out.println("doOnSubscribe 01:" + Thread.currentThread().getName());
+                        System.out.println("doOnSubscribe 01: " + Thread.currentThread().getName());
                     }
                 })
                 .observeOn(Schedulers.io())  // 切换到 Schedulers.io()，后面的 map 使用这个线程处理
@@ -78,8 +80,8 @@ public class ReactiveXDemo {
                     // 使用 Schedulers.io()
                     @Override
                     public Integer apply(@NonNull Integer integer) throws Exception {
-                        System.out.println("map:-1" + Thread.currentThread().getName());
-                        return integer;
+                        System.out.println("map:-1 " + Thread.currentThread().getName());
+                        return integer + 10;
                     }
                 })
                 .observeOn(Schedulers.computation())  // 切换 map2 到 Schedulers.computation()
@@ -87,17 +89,17 @@ public class ReactiveXDemo {
                     // 使用 Schedulers.computation()
                     @Override
                     public Integer apply(@NonNull Integer integer) throws Exception {
-                        System.out.println("map:-2" + Thread.currentThread().getName());
-                        return integer;
+                        System.out.println("map:-2 " + Thread.currentThread().getName());
+                        return integer + 100;
                     }
                 })
                 // 切换 subscribe 到 Schedulers.newThread()
-                // 如果不指定，则使用最近一次的 observeOn
+                // 如果不指定，则使用最近一次的 observeOn 指定的调度器
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Consumer<Integer>() {
                     @Override
                     public void accept(@NonNull Integer integer) throws Exception {
-                        System.out.println("subscribe:" + Thread.currentThread().getName());
+                        System.out.println("subscribe: " + Thread.currentThread().getName() + "Result: " + integer);
                     }
                 });
 
@@ -416,10 +418,10 @@ public class ReactiveXDemo {
                 .observeOn(Schedulers.newThread());
 
         // PublishSubject 不是线程安全的
-        // Subject 既是 Observable，又是 Observer
+        // Subject 既是 Observable（可观察的），又是 Observer（观察者）
 
-        // Subject 作为观察者，可以订阅目标 Cold Observable，是对方开始发送事件
-        // 同时他又作为 Observable 转发或者发送新的事件，让 Cold Observable 借助 Subject 转换为 Hot Observable
+        // Subject 作为 Observer（观察者），可以订阅目标 Cold Observable，使对方开始发送事件
+        // 同时他又作为 Observable（可观察的）转发或者发送新的事件，让 Cold Observable 借助 Subject 转换为 Hot Observable
 
         PublishSubject<Long> subject = PublishSubject.create();
         // Subject 不是线程安全的，如果需要线程安全，可以使用 toSerialized() 方法
