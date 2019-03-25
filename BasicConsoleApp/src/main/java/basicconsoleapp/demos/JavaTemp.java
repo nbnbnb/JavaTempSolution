@@ -7,7 +7,7 @@ package basicconsoleapp.demos;
 public class JavaTemp {
 
     public static void test() throws Exception {
-        ReactiveXDemo.coldToHot2();
+        ReactiveXDemo.threadSwitch();
     }
 }
 

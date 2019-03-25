@@ -7,6 +7,7 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.observables.ConnectableObservable;
+import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.*;
 
@@ -25,7 +26,7 @@ public class ReactiveXDemo {
     // Schedulers.trampoline() = RxComputationThreadPool
     // Schedulers.newThread() = RxNewThreadScheduler
 
-    // 默认情况下，Observable 和 Observer 处于同一线程中
+    // 默认情况下，Observable（可观察对象） 和 Observer（观察者） 处于同一线程中
     // RxJava 的链式操作中，数据的处理是 “自下而上”的，这点与数据发射正好相反
     // 如果多次调用 subscribeOn，则最上面的线程切换最晚执行，所以就变成了只有第一次切换线程才有效
 
@@ -46,15 +47,77 @@ public class ReactiveXDemo {
                         observableEmitter.onComplete();
                     }
                 })
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(@NonNull Disposable disposable) throws Exception {
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        // chedulers.single()
+                        System.out.println("doOnSubscribe 06: " + Thread.currentThread().getName());
+                    }
+                })
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(@NonNull Disposable disposable) throws Exception {
+                        try {
+                            Thread.sleep(30);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        // chedulers.single()
+                        System.out.println("doOnSubscribe 07: " + Thread.currentThread().getName());
+                    }
+                })
+                // 再次将上面的代码切换到 schedulers.single() 运行
+                // 由于这是最后一个，所以“事件发出者”最终在这个线程中运行
                 .subscribeOn(Schedulers.single())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(@NonNull Disposable disposable) throws Exception {
+                        try {
+                            Thread.sleep(50);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        // Schedulers.newThread()
+                        System.out.println("doOnSubscribe 04: " + Thread.currentThread().getName());
+                    }
+                })
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(@NonNull Disposable disposable) throws Exception {
+                        try {
+                            Thread.sleep(70);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        // Schedulers.newThread()
+                        System.out.println("doOnSubscribe 05: " + Thread.currentThread().getName());
+                    }
+                })
+                // -------------------------------------------------------------------------------
+                // 第一次执行 subscribeOn 的线程切换
+                // 由于默认线程在 main 中，所以下面的 doOnSubscribe 都会在 main 中执行
+                // 因为链式操作是由下往上执行的，所有整体的 doOnSubscribe 是由下往上
+                // 但是在每个 doOnSubscribe（同一线程）范围内，顺序是从上到下的
+                .subscribeOn(Schedulers.newThread())
+                // doOnSubscribe 都会在主线程中执行
                 .doOnSubscribe(new Consumer<Disposable>() {
                     // 使用 main，当前控制台的主线程
                     // 它在 subscribeOn(Schedulers.single()) 后指定
-                    // 此时使用了当前控制台的默认线程
+                    // 此时使用了当前控制台的线程
 
                     // 由于在主线程中，没有线程切换，01 一般是最先输出的
                     @Override
                     public void accept(@NonNull Disposable disposable) throws Exception {
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         System.out.println("doOnSubscribe 01: " + Thread.currentThread().getName());
                     }
                 })
@@ -63,6 +126,11 @@ public class ReactiveXDemo {
                     // 通过 subscribeOn(Schedulers.single()) 指定
                     @Override
                     public void accept(@NonNull Disposable disposable) throws Exception {
+                        try {
+                            Thread.sleep(50);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         System.out.println("doOnSubscribe 02: " + Thread.currentThread().getName());
                     }
                 })
@@ -71,40 +139,56 @@ public class ReactiveXDemo {
                     // 通过 subscribeOn(Schedulers.single()) 指定
                     @Override
                     public void accept(@NonNull Disposable disposable) throws Exception {
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         System.out.println("doOnSubscribe 03: " + Thread.currentThread().getName());
                     }
                 })
+                // -------------------------------------------------------------------------------
                 .observeOn(Schedulers.io())  // 切换到 Schedulers.io()，后面的 map 使用这个线程处理
                 .map(new Function<Integer, Integer>() {
-                    // 使用 Schedulers.io()
                     @Override
                     public Integer apply(@NonNull Integer integer) throws Exception {
+                        // Schedulers.io()
                         System.out.println("map:-1 " + Thread.currentThread().getName());
                         return integer + 10;
                     }
                 })
+                // -------------------------------------------------------------------------------
                 .observeOn(Schedulers.computation())  // 切换 map2 到 Schedulers.computation()
                 .map(new Function<Integer, Integer>() {
                     // 使用 Schedulers.computation()
                     @Override
                     public Integer apply(@NonNull Integer integer) throws Exception {
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        // Schedulers.computation()
                         System.out.println("map:-2 " + Thread.currentThread().getName());
                         return integer + 100;
                     }
                 })
-                // 切换 subscribe 到 Schedulers.newThread()
+                // -------------------------------------------------------------------------------
+                // 切换消费者线程到 Schedulers.newThread()
                 // 如果不指定，则使用最近一次的 observeOn 指定的调度器
                 .observeOn(Schedulers.newThread())
-                // 订阅
+                // 触发 doOnSubscribe 回调
+                // 这个回调将会在 subscribe 方法发送数据前执行
                 .subscribe(new Consumer<Integer>() {
                     @Override
                     public void accept(@NonNull Integer integer) throws Exception {
+                        // Schedulers.newThread()
                         System.out.println("subscribe: " + Thread.currentThread().getName() + "Result: " + integer);
                     }
                 });
 
         try {
-            Thread.sleep(25);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -479,17 +563,19 @@ public class ReactiveXDemo {
         Single.create(new SingleOnSubscribe<String>() {
             @Override
             public void subscribe(SingleEmitter<String> emitter) throws Exception {
-                emitter.onSuccess("test");
+                //emitter.onSuccess("success");
+                emitter.onError(new IllegalArgumentException("error"));
             }
         }).subscribe(new Consumer<String>() {  // onSuccess
             @Override
             public void accept(String s) throws Exception {
-                System.out.println(s);
+                System.out.println("onSuccess: " + s);
             }
         }, new Consumer<Throwable>() {  // onError
             @Override
             public void accept(Throwable throwable) throws Exception {
-                throwable.printStackTrace();
+                //throwable.printStackTrace();
+                System.out.println("onError: " + throwable.getMessage());
             }
         });
     }
@@ -500,19 +586,37 @@ public class ReactiveXDemo {
      */
     public static void completable() {
 
-        Completable.fromAction(new Action() {  // onComplete
-            @Override
-            public void run() throws Exception {
-                System.out.println("Hello World");
-            }
-        }).subscribe();
+        RxJavaPlugins.setErrorHandler((err) -> {
+            System.out.println("Custom ErrorHandler");
+            err.printStackTrace();
+        });
+
+        Completable
+                .fromAction(new Action() {  // onComplete
+                    @Override
+                    public void run() throws Exception {
+                        System.out.println("do Complete");
+
+                        // 异常将会触发 RxJavaPlugins.onError
+                        // 通过 RxJavaPlugins.setErrorHandler 自定义 onError
+                        // throw new IllegalArgumentException("kkking");
+                    }
+                })
+                // .onErrorComplete() // 可以捕获 Action 中的异常
+                .subscribe(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        System.out.println("do after Complete");
+                    }
+                });
 
         Completable
                 .create(new CompletableOnSubscribe() {
                     @Override
                     public void subscribe(CompletableEmitter emitter) throws Exception {
                         try {
-                            TimeUnit.SECONDS.sleep(5);
+                            TimeUnit.SECONDS.sleep(1);
+                            System.out.println("Ready to complete...");
                             emitter.onComplete();  // onComplete 调用后，执行 andThen
                         } catch (InterruptedException e) {
                             emitter.onError(e);
@@ -566,17 +670,17 @@ public class ReactiveXDemo {
                         emitter.onSuccess("testA");
                     }
                 })
-                .subscribe(new Consumer<String>() {
+                .subscribe(new Consumer<String>() {   // onSuccess
                     @Override
                     public void accept(String s) throws Exception {
                         System.out.println("s=" + s);
                     }
-                }, new Consumer<Throwable>() {
+                }, new Consumer<Throwable>() {  // onError
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         throwable.printStackTrace();
                     }
-                }, new Action() {
+                }, new Action() {  // onComplete
                     @Override
                     public void run() throws Exception {
                         System.out.println("Maybe onComplete");
@@ -589,34 +693,53 @@ public class ReactiveXDemo {
      */
     public static void asyncSubject() {
 
+        // A Subject that emits the very last value followed by a completion event or the received error to Observers.
         AsyncSubject<String> subject = AsyncSubject.create();
 
         subject.onNext("test1");
-        subject.onNext("test2");  // 只会输出 test2
+        subject.onNext("test2");
 
         // OnComplete 之前的最后一个数据
+        // 此处存在 subject 中最后一个待处理数据是 test2
+        // 在消费时，只会发射这一个数据
+
         // 如果不调用 onComplete，则什么都不会输出
         subject.onComplete();
 
-        subject.subscribe(new Consumer<String>() {
-            @Override
-            public void accept(String s) throws Exception {
-                System.out.println(s);
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                throwable.printStackTrace();
-            }
-        }, new Action() {
-            @Override
-            public void run() throws Exception {
-                System.out.println("asyncSubject:complete");
-            }
-        });
+        subject
+                .subscribe(new Consumer<String>() {   // onNext
+                    @Override
+                    public void accept(String s) throws Exception {
+                        System.out.println(s);
+                    }
+                }, new Consumer<Throwable>() {   // onError
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                    }
+                }, new Action() {   // onComplete
+                    @Override
+                    public void run() throws Exception {
+                        System.out.println("asyncSubject:complete");
+                    }
+                });
 
+
+        try {
+            Thread.sleep(25);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // onNext 回调不会触发
         subject.onNext("test3");
         subject.onNext("test4");
+
+        try {
+            Thread.sleep(25);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -625,24 +748,30 @@ public class ReactiveXDemo {
      */
     public static void behaviorSubject() {
 
-        // 如果订阅之前没有数据，可以指定默认值
+
+        // 如果被订阅之前，没有写入数据
+        // 则指定默认值
         BehaviorSubject<String> subject = BehaviorSubject.createDefault("Default Value");
 
         subject.onNext("behaviorSubject 1");
-        // 被订阅前的最后一个数据
         subject.onNext("behaviorSubject 2");
 
-        subject.subscribe(new Consumer<String>() {
+        // 默认设置
+        // 订阅之前
+        // 只缓存一条数据
+        subject.onNext("behaviorSubject 3");
+
+        subject.subscribe(new Consumer<String>() {  // onNext
             @Override
             public void accept(String s) throws Exception {
                 System.out.println(s);
             }
-        }, new Consumer<Throwable>() {
+        }, new Consumer<Throwable>() {   // onError
             @Override
             public void accept(Throwable throwable) throws Exception {
                 throwable.printStackTrace();
             }
-        }, new Action() {
+        }, new Action() {  // onComplete
             @Override
             public void run() throws Exception {
                 System.out.println("behaviorSubject:complete");
@@ -650,9 +779,9 @@ public class ReactiveXDemo {
         });
 
         // 订阅之后的数据
-        // 正常输出
-        subject.onNext("behaviorSubject 3");
+        // 继续输出
         subject.onNext("behaviorSubject 4");
+        subject.onNext("behaviorSubject 5");
 
         subject.onComplete();
     }
@@ -663,32 +792,41 @@ public class ReactiveXDemo {
      */
     public static void replaySubject() {
 
+        // 缓存所有的数据（不指定容器大小）
+        // 在 onComplete 时，全部发射出去
         ReplaySubject<String> subject = ReplaySubject.create();
 
         subject.onNext("replaySubject 1");
         subject.onNext("replaySubject 2");
 
-        subject.subscribe(new Consumer<String>() {
-            @Override
-            public void accept(String s) throws Exception {
-                System.out.println(s);
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                throwable.printStackTrace();
-            }
-        }, new Action() {
-            @Override
-            public void run() throws Exception {
-                System.out.println("replaySubject:complete");
-            }
-        });
+        subject
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        System.out.println(s);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        System.out.println("replaySubject:complete");
+                    }
+                });
 
         subject.onNext("replaySubject 3");
         subject.onNext("replaySubject 4");
 
         subject.onComplete();
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -696,32 +834,42 @@ public class ReactiveXDemo {
      */
     public static void replaySubject2() {
 
-        ReplaySubject<String> subject = ReplaySubject.createWithSize(1);
+        // 缓存指定大小的数据
+        ReplaySubject<String> subject = ReplaySubject.createWithSize(2);
 
-        subject.onNext("replaySubject 1");
-        subject.onNext("replaySubject 2");  // 只缓存这一条数据
+        subject.onNext("replaySubject 1");  // 超过容量，前面的丢弃
+        subject.onNext("replaySubject 2");  // 缓存
+        // 存储这个的时候，丢弃第一条数据
+        subject.onNext("replaySubject 3");  // 缓存
 
-        subject.subscribe(new Consumer<String>() {
-            @Override
-            public void accept(String s) throws Exception {
-                System.out.println(s);
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                throwable.printStackTrace();
-            }
-        }, new Action() {
-            @Override
-            public void run() throws Exception {
-                System.out.println("replaySubject:complete");
-            }
-        });
+        subject
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        System.out.println(s);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        System.out.println("replaySubject:complete");
+                    }
+                });
 
-        subject.onNext("replaySubject 3");
         subject.onNext("replaySubject 4");
+        subject.onNext("replaySubject 5");
 
         subject.onComplete();
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -737,34 +885,45 @@ public class ReactiveXDemo {
 
         // 订阅前端的数据都丢弃
 
-        subject.subscribe(new Consumer<String>() {
-            @Override
-            public void accept(String s) throws Exception {
-                System.out.println(s);
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                throwable.printStackTrace();
-            }
-        }, new Action() {
-            @Override
-            public void run() throws Exception {
-                System.out.println("publishSubject:complete");
-            }
-        });
+        subject
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        System.out.println(s);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        System.out.println("publishSubject:complete");
+                    }
+                });
 
         subject.onNext("publishSubject 3");
         subject.onNext("publishSubject 4");
 
         subject.onComplete();
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
     public static void publishSubjectHack() {
+
         PublishSubject<String> subject = PublishSubject.create();
 
-        subject.subscribeOn(Schedulers.io())
+        // 正常情况下
+        // 订阅之后，发送给 subject 的内容就会被消费
+        subject
+                .subscribeOn(Schedulers.io())   // 此处指定在 io 线程中消费
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
@@ -783,12 +942,21 @@ public class ReactiveXDemo {
                 });
 
         // subject 发射元素被指派到了 I/O 线程
-        // 此时 I/O 线程正在初始化还没起来，subject 发射前，Foo 和 Bar 这两个元素还在主线程中
-        // 从而从主线程往 I/O 线程转发的过程中，由于 I/O 线程还没有起来，所以就被丢弃了
+        // 此时 I/O 线程正在初始化还没起来，subject 发射前，Foo 还在主线程中
+        // 在从主线程往 I/O 线程转发的过程中，由于 I/O 线程还没有起来，所以就被丢弃了
 
         // 解决办法很简单，用 Observable.create() 替代 PublishSubject.create()
+        // 或者不指定 io 线程
 
+        // 由于 subject 中不存储数据
+        // 发送后不管消费方有没有处理掉
         subject.onNext("Foo");
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // io 线程起来后，可以正常的消费
         subject.onNext("Bar");
 
         subject.onComplete();
