@@ -29,12 +29,14 @@ public class ReactiveXDemo {
     // RxJava 的链式操作中，数据的处理是 “自下而上”的，这点与数据发射正好相反
     // 如果多次调用 subscribeOn，则最上面的线程切换最晚执行，所以就变成了只有第一次切换线程才有效
 
-    // 执行 doOnSubscribe（从下到上）
+    // 执行 doOnSubscribe
     // 执行 create
-    // 执行 map（从上到下）
+    // 执行 map
     public static void threadSwitch() {
         Observable
                 .create(new ObservableOnSubscribe<Integer>() {
+                    // 订阅时
+                    // 执行这个方法
                     @Override
                     public void subscribe(ObservableEmitter<Integer> observableEmitter) throws Exception {
                         // 使用 Schedulers.single()
@@ -42,6 +44,18 @@ public class ReactiveXDemo {
                         System.out.println("create: " + Thread.currentThread().getName());
                         observableEmitter.onNext(1);
                         observableEmitter.onComplete();
+                    }
+                })
+                .subscribeOn(Schedulers.single())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    // 使用 main，当前控制台的主线程
+                    // 它在 subscribeOn(Schedulers.single()) 后指定
+                    // 此时使用了当前控制台的默认线程
+
+                    // 由于在主线程中，没有线程切换，01 一般是最先输出的
+                    @Override
+                    public void accept(@NonNull Disposable disposable) throws Exception {
+                        System.out.println("doOnSubscribe 01: " + Thread.currentThread().getName());
                     }
                 })
                 .doOnSubscribe(new Consumer<Disposable>() {
@@ -58,21 +72,6 @@ public class ReactiveXDemo {
                     @Override
                     public void accept(@NonNull Disposable disposable) throws Exception {
                         System.out.println("doOnSubscribe 03: " + Thread.currentThread().getName());
-                    }
-                })
-                .subscribeOn(Schedulers.single())  // 设置 Observable.create 的线程，第一次有效，影响他上面的 create 和 doOnSubscribe
-                .doOnSubscribe(new Consumer<Disposable>() {
-                    // 使用 main，当前控制台的主线程
-                    // 它在 subscribeOn(Schedulers.single()) 后指定
-                    // 此时使用了当前控制台的默认线程
-
-                    // 因为数据处理是“自下而上”的，所以此处最先执行
-                    // 然后 subscribeOn 才进行线程切换
-
-                    // 由于在主线程中，没有线程切换，01 一般是最先输出的
-                    @Override
-                    public void accept(@NonNull Disposable disposable) throws Exception {
-                        System.out.println("doOnSubscribe 01: " + Thread.currentThread().getName());
                     }
                 })
                 .observeOn(Schedulers.io())  // 切换到 Schedulers.io()，后面的 map 使用这个线程处理
@@ -96,6 +95,7 @@ public class ReactiveXDemo {
                 // 切换 subscribe 到 Schedulers.newThread()
                 // 如果不指定，则使用最近一次的 observeOn 指定的调度器
                 .observeOn(Schedulers.newThread())
+                // 订阅
                 .subscribe(new Consumer<Integer>() {
                     @Override
                     public void accept(@NonNull Integer integer) throws Exception {
@@ -160,6 +160,7 @@ public class ReactiveXDemo {
             e.printStackTrace();
         }
 
+        // 由于是 Hot
         // subscribe3 从当前流的位置开始订阅
         // 而不会重头开始
         observable.subscribe(subscribe3);
@@ -194,16 +195,19 @@ public class ReactiveXDemo {
             }
         };
 
-
-        ConnectableObservable<Long> connectableObservable = Observable.create(new ObservableOnSubscribe<Long>() {
-            @Override
-            public void subscribe(ObservableEmitter<Long> emitter) throws Exception {
-                Observable
-                        .interval(10, TimeUnit.MILLISECONDS, Schedulers.computation())
-                        .take(Integer.MAX_VALUE)
-                        .subscribe(emitter::onNext);
-            }
-        }).observeOn(Schedulers.newThread()).publish();
+        ConnectableObservable<Long> connectableObservable = Observable
+                .create(new ObservableOnSubscribe<Long>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<Long> emitter) throws Exception {
+                        Observable
+                                .interval(10, TimeUnit.MILLISECONDS, Schedulers.computation())
+                                .take(Integer.MAX_VALUE)
+                                .subscribe(emitter::onNext);
+                    }
+                })
+                .observeOn(Schedulers.newThread())
+                // 使用 publish 操作符，将 （Cold）Observable 转换为 （Hot）ConnectableObservable
+                .publish();
 
         // refConut 操作符把一个 ConnectableObservable  的连接和断开过程自动化了
         // 它操作一个 ConnectableObservable，返回一个普通的 Observable
@@ -214,7 +218,7 @@ public class ReactiveXDemo {
         Disposable disposable2 = observable.subscribe(subscribe2);
 
         try {
-            Thread.sleep(25);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -223,6 +227,12 @@ public class ReactiveXDemo {
         // 如果所有的订阅者都取消了订阅，则数据流停止
         disposable1.dispose();
         disposable2.dispose();
+
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         System.out.println("重新（重头）开始数据流");
 
@@ -260,17 +270,19 @@ public class ReactiveXDemo {
             }
         };
 
-        ConnectableObservable<Long> connectableObservable = Observable.create(new ObservableOnSubscribe<Long>() {
-            @Override
-            public void subscribe(ObservableEmitter<Long> emitter) throws Exception {
-
-                Observable
-                        .interval(10, TimeUnit.MILLISECONDS, Schedulers.computation())
-                        .take(Integer.MAX_VALUE)
-                        .subscribe(emitter::onNext);
-
-            }
-        }).observeOn(Schedulers.newThread()).publish();
+        ConnectableObservable<Long> connectableObservable = Observable
+                .create(new ObservableOnSubscribe<Long>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<Long> emitter) throws Exception {
+                        Observable
+                                .interval(10, TimeUnit.MILLISECONDS, Schedulers.computation())
+                                .take(Integer.MAX_VALUE)
+                                .subscribe(emitter::onNext);
+                    }
+                })
+                .observeOn(Schedulers.newThread())
+                // 使用 publish 操作符，将 （Cold）Observable 转换为 （Hot）ConnectableObservable
+                .publish();
 
         // refConut 操作符把一个 ConnectableObservable  的连接和断开过程自动化了
         // 它操作一个 ConnectableObservable，返回一个普通的 Observable
@@ -282,7 +294,7 @@ public class ReactiveXDemo {
         observable.subscribe(subscribe3);  // 这个订阅不会被取消
 
         try {
-            Thread.sleep(25);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -293,9 +305,14 @@ public class ReactiveXDemo {
         disposable2.dispose();
         // subscribe3 不取消
 
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("继续数据流");
 
-        // 由于没有与原始 ConnectableObservable 的连接
+        // 由于 subscribe3 没有与原始 ConnectableObservable 的连接
         // 再次订阅的时候，继续从当前流的位置开始
         observable.subscribe(subscribe1);
         observable.subscribe(subscribe2);
@@ -334,12 +351,10 @@ public class ReactiveXDemo {
                 .create(new ObservableOnSubscribe<Long>() {
                     @Override
                     public void subscribe(ObservableEmitter<Long> emitter) throws Exception {
-
                         Observable
                                 .interval(10, TimeUnit.MILLISECONDS, Schedulers.computation())
                                 .take(Integer.MAX_VALUE)
                                 .subscribe(emitter::onNext);
-
                     }
                 })
                 .observeOn(Schedulers.newThread())
@@ -352,7 +367,7 @@ public class ReactiveXDemo {
         observable.subscribe(subscribe3);  // 这个订阅不会被取消
 
         try {
-            Thread.sleep(25);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -363,6 +378,11 @@ public class ReactiveXDemo {
         disposable2.dispose();
         // subscribe3 不取消
 
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("继续数据流");
 
         // 由于没有与原始 ConnectableObservable 的连接
@@ -421,7 +441,7 @@ public class ReactiveXDemo {
         // Subject 既是 Observable（可观察的），又是 Observer（观察者）
 
         // Subject 作为 Observer（观察者），可以订阅目标 Cold Observable，使对方开始发送事件
-        // 同时他又作为 Observable（可观察的）转发或者发送新的事件，让 Cold Observable 借助 Subject 转换为 Hot Observable
+        // Subject 作为 Observable（可观察的）转发或者发送新的事件，让 Cold Observable 借助 Subject 转换为 Hot Observable
 
         PublishSubject<Long> subject = PublishSubject.create();
         // Subject 不是线程安全的，如果需要线程安全，可以使用 toSerialized() 方法
@@ -435,17 +455,17 @@ public class ReactiveXDemo {
         subject.subscribe(subscribe2);
 
         try {
-            Thread.sleep(25);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        System.out.println("subscribe3 开始订阅");
         // subscribe3 从当前流的位置开始订阅
         // 而不会重头开始
         subject.subscribe(subscribe3);
 
         try {
-            Thread.sleep(105);
+            Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -739,6 +759,7 @@ public class ReactiveXDemo {
 
         subject.onComplete();
     }
+
 
     public static void publishSubjectHack() {
         PublishSubject<String> subject = PublishSubject.create();
