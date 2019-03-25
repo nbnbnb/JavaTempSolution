@@ -1,7 +1,7 @@
 package basicconsoleapp
 
-import basicconsoleapp.demos.JavaDemo
-import basicconsoleapp.demos.KotlinDemo
+import basicconsoleapp.demos.JavaTemp
+import basicconsoleapp.demos.KotlinTemp
 
 
 /**
@@ -15,8 +15,8 @@ fun main() {
 
 private fun temp() {
     try {
-        KotlinDemo.test()
-        JavaDemo.test()
+        KotlinTemp.test()
+        JavaTemp.test()
     } catch (e: Exception) {
         e.printStackTrace()
     }

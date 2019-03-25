@@ -1,4 +1,4 @@
-package basicconsoleapp.demos.runner;
+package basicconsoleapp.demos;
 
 import io.reactivex.*;
 import io.reactivex.annotations.NonNull;

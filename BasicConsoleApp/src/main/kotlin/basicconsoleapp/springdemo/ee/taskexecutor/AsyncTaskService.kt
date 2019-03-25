@@ -12,14 +12,19 @@ open class AsyncTaskService {
 
     // @Async 表示这是个异步方法
     // 如果在类级别，则表明该类的所有方法都是异步方法
-    // 这里的方法别自动注入使用 ThreadPoolTaskExecutor 作为 TaskExecutor
+    // 这里的方法被自动注入使用 ThreadPoolTaskExecutor 作为 TaskExecutor
     @Async
-    open fun executeAsyncTask(i: Int) {
-        println("执行异步任务： $i")
+    open fun executeAsyncTaskOne(i: Int) {
+        println("执行异步任务 executeAsyncTaskOne： $i")
     }
 
     @Async
-    open fun executeAsyncTaskPlus(i: Int) {
-        println("执行异步任务+1 ${i + 1}")
+    open fun executeAsyncTaskTwo(i: Int) {
+        println("执行异步任务 executeAsyncTaskTwo ${i}")
+    }
+
+    @Async
+    open fun executeAsyncTaskThree(i: Int) {
+        println("执行异步任务 executeAsyncTaskThree ${i}")
     }
 }
