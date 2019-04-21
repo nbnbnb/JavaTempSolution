@@ -14,19 +14,19 @@ plugins {
 
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.jvm
     // https://kotlinlang.org/docs/reference/using-gradle.html
-    kotlin("jvm") version "1.3.21"
+    kotlin("jvm") version "1.3.30"
 
     // noarg 和 allopen 需要 apply 之后，才能使用 noArg 和 allOpen 配置
     // 所以此处需要全局 apply
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.plugin.noarg
-    id("org.jetbrains.kotlin.plugin.noarg") version "1.3.21"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.3.30"
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.plugin.allopen
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.3.21"
+    id("org.jetbrains.kotlin.plugin.allopen") version "1.3.30"
 
     // https://plugins.gradle.org/plugin/org.springframework.boot
-    id("org.springframework.boot") version "2.1.3.RELEASE" apply false
+    id("org.springframework.boot") version "2.1.4.RELEASE" apply false
     // https://kotlinlang.org/docs/reference/compiler-plugins.html
-    id("org.jetbrains.kotlin.plugin.spring") version "1.3.21" apply false
+    id("org.jetbrains.kotlin.plugin.spring") version "1.3.30" apply false
     // A Gradle plugin that provides Maven-like dependency management functionality
     // https://github.com/spring-gradle-plugins/dependency-management-plugin
     id("io.spring.dependency-management") version "1.0.6.RELEASE" apply false
@@ -142,6 +142,7 @@ subprojects {
         }
 
         if (name == "BasicConsoleApp") {
+            // version
             compile("com.microsoft.sqlserver:sqljdbc4:4.0")
             compile("org.aspectj:aspectjweaver")
             compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
@@ -155,7 +156,8 @@ subprojects {
 
         compile("org.jetbrains.kotlin:kotlin-stdlib")
         compile("org.jetbrains.kotlin:kotlin-reflect")
-        compile("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1")
+        // version
+        compile("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.0")
 
         compile("org.springframework:spring-context")
 
