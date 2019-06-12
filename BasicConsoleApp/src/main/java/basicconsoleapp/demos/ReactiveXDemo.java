@@ -51,7 +51,7 @@ public class ReactiveXDemo {
                     @Override
                     public void accept(@NonNull Disposable disposable) throws Exception {
                         try {
-                            Thread.sleep(10);
+                            Thread.sleep(30);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -63,7 +63,7 @@ public class ReactiveXDemo {
                     @Override
                     public void accept(@NonNull Disposable disposable) throws Exception {
                         try {
-                            Thread.sleep(30);
+                            Thread.sleep(10);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -71,9 +71,9 @@ public class ReactiveXDemo {
                         System.out.println("doOnSubscribe 07: " + Thread.currentThread().getName());
                     }
                 })
-                // 再次将上面的代码切换到 schedulers.single() 运行
+                // 再次将上面的代码切换到 Schedulers.computation() 运行
                 // 由于这是最后一个，所以“事件发出者”最终在这个线程中运行
-                .subscribeOn(Schedulers.single())
+                .subscribeOn(Schedulers.computation())
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(@NonNull Disposable disposable) throws Exception {
@@ -140,7 +140,7 @@ public class ReactiveXDemo {
                     @Override
                     public void accept(@NonNull Disposable disposable) throws Exception {
                         try {
-                            Thread.sleep(10);
+                            Thread.sleep(200);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -149,6 +149,7 @@ public class ReactiveXDemo {
                 })
                 // -------------------------------------------------------------------------------
                 .observeOn(Schedulers.io())  // 切换到 Schedulers.io()，后面的 map 使用这个线程处理
+                // 消费回调
                 .map(new Function<Integer, Integer>() {
                     @Override
                     public Integer apply(@NonNull Integer integer) throws Exception {
@@ -159,6 +160,7 @@ public class ReactiveXDemo {
                 })
                 // -------------------------------------------------------------------------------
                 .observeOn(Schedulers.computation())  // 切换 map2 到 Schedulers.computation()
+                // 消费回调
                 .map(new Function<Integer, Integer>() {
                     // 使用 Schedulers.computation()
                     @Override
@@ -177,13 +179,13 @@ public class ReactiveXDemo {
                 // 切换消费者线程到 Schedulers.newThread()
                 // 如果不指定，则使用最近一次的 observeOn 指定的调度器
                 .observeOn(Schedulers.newThread())
-                // 触发 doOnSubscribe 回调
+                // 消费回调
                 // 这个回调将会在 subscribe 方法发送数据前执行
                 .subscribe(new Consumer<Integer>() {
                     @Override
                     public void accept(@NonNull Integer integer) throws Exception {
                         // Schedulers.newThread()
-                        System.out.println("subscribe: " + Thread.currentThread().getName() + "Result: " + integer);
+                        System.out.println("subscribe: " + Thread.currentThread().getName() + " Result: " + integer);
                     }
                 });
 
