@@ -258,6 +258,9 @@ public class ReactiveXDemo {
         }
     }
 
+    /**
+     *
+     */
     public static void refCount01() {
 
         Consumer<Long> subscribe1 = new Consumer<Long>() {
@@ -282,6 +285,7 @@ public class ReactiveXDemo {
         };
 
         ConnectableObservable<Long> connectableObservable = Observable
+                // 当订阅的时候执行
                 .create(new ObservableOnSubscribe<Long>() {
                     @Override
                     public void subscribe(ObservableEmitter<Long> emitter) throws Exception {
@@ -295,6 +299,7 @@ public class ReactiveXDemo {
                 // 使用 publish 操作符，将 （Cold）Observable 转换为 （Hot）ConnectableObservable
                 .publish();
 
+        // 返回一个可观察对象，只要该可观察对象至少有一个订阅，该可观察对象就保持与该可观察对象的连接
         // refConut 操作符把一个 ConnectableObservable  的连接和断开过程自动化了
         // 它操作一个 ConnectableObservable，返回一个普通的 Observable
         Observable<Long> observable = connectableObservable.refCount();
@@ -370,14 +375,14 @@ public class ReactiveXDemo {
                 // 使用 publish 操作符，将 （Cold）Observable 转换为 （Hot）ConnectableObservable
                 .publish();
 
-        // refConut 操作符把一个 ConnectableObservable  的连接和断开过程自动化了
-        // 它操作一个 ConnectableObservable，返回一个普通的 Observable
+        // 返回一个可观察对象，只要该可观察对象至少有一个订阅，该可观察对象就保持与该可观察对象的连接
         Observable<Long> observable = connectableObservable.refCount();
 
         // 当第一个订阅者订阅这个 Observable 时，它连接到下层的 ConnectableObservable
         Disposable disposable1 = observable.subscribe(subscribe1);
         Disposable disposable2 = observable.subscribe(subscribe2);
-        observable.subscribe(subscribe3);  // 这个订阅不会被取消
+        // subscribe3 不取消
+        observable.subscribe(subscribe3);
 
         try {
             Thread.sleep(100);
@@ -593,6 +598,7 @@ public class ReactiveXDemo {
             err.printStackTrace();
         });
 
+        System.out.println("Demo01 ------------");
         Completable
                 .fromAction(new Action() {  // onComplete
                     @Override
@@ -612,7 +618,10 @@ public class ReactiveXDemo {
                     }
                 });
 
+        System.out.println("Demo02 ------------");
+
         Completable
+                // 订阅的时候调用
                 .create(new CompletableOnSubscribe() {
                     @Override
                     public void subscribe(CompletableEmitter emitter) throws Exception {
@@ -702,7 +711,7 @@ public class ReactiveXDemo {
         subject.onNext("test2");
 
         // OnComplete 之前的最后一个数据
-        // 此处存在 subject 中最后一个待处理数据是 test2
+        // 此处存储在 subject 中最后一个待处理数据是 test2
         // 在消费时，只会发射这一个数据
 
         // 如果不调用 onComplete，则什么都不会输出
@@ -925,7 +934,9 @@ public class ReactiveXDemo {
         // 正常情况下
         // 订阅之后，发送给 subject 的内容就会被消费
         subject
-                .subscribeOn(Schedulers.io())   // 此处指定在 io 线程中消费
+                // 此处指定在 io 线程中消费
+                // 如果注释掉后，可以消费 Foo
+                .subscribeOn(Schedulers.io())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
