@@ -1,7 +1,6 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     // 替代原始的 maven 插件
@@ -14,27 +13,27 @@ plugins {
 
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.jvm
     // https://kotlinlang.org/docs/reference/using-gradle.html
-    kotlin("jvm") version "1.3.30"
+    kotlin("jvm") version "1.3.41"
 
     // noarg 和 allopen 需要 apply 之后，才能使用 noArg 和 allOpen 配置
     // 所以此处需要全局 apply
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.plugin.noarg
-    id("org.jetbrains.kotlin.plugin.noarg") version "1.3.30"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.3.41"
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.plugin.allopen
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.3.30"
+    id("org.jetbrains.kotlin.plugin.allopen") version "1.3.41"
 
     // https://plugins.gradle.org/plugin/org.springframework.boot
-    id("org.springframework.boot") version "2.1.4.RELEASE" apply false
+    id("org.springframework.boot") version "2.1.6.RELEASE" apply false
     // https://kotlinlang.org/docs/reference/compiler-plugins.html
-    id("org.jetbrains.kotlin.plugin.spring") version "1.3.30" apply false
+    id("org.jetbrains.kotlin.plugin.spring") version "1.3.41" apply false
     // A Gradle plugin that provides Maven-like dependency management functionality
     // https://github.com/spring-gradle-plugins/dependency-management-plugin
     id("io.spring.dependency-management") version "1.0.6.RELEASE" apply false
 
-    // 打包 jar 包（SpringBoot 插件自带此功能）
+    // 打包完整可运行 jar 包（SpringBoot 插件自带此功能）
     // https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow
     // BasicConsoleApp 和 Java8ConsoleApp 使用此插件打包完整 jar
-    id("com.github.johnrengelman.shadow") version "4.0.4" apply false
+    id("com.github.johnrengelman.shadow") version "5.1.0" apply false
 }
 
 // 读取 kts 脚本相关的类文件
@@ -156,8 +155,9 @@ subprojects {
 
         compile("org.jetbrains.kotlin:kotlin-stdlib")
         compile("org.jetbrains.kotlin:kotlin-reflect")
-        // version
-        compile("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.0")
+
+        // https://github.com/Kotlin/kotlinx.coroutines
+        compile("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1")
 
         compile("org.springframework:spring-context")
 
