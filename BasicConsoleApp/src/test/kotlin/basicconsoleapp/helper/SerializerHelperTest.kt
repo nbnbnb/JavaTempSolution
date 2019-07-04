@@ -4,6 +4,7 @@ import basicconsoleapp.entities.DateTimeClass
 import org.junit.Test
 import java.util.*
 import kotlin.test.assertEquals
+import java.util.Calendar
 
 
 /**
@@ -14,21 +15,21 @@ import kotlin.test.assertEquals
 class SerializerHelperTest {
 
     private var testTime: DateTimeClass = DateTimeClass().apply {
-        val now = 1507790279000L
+        val time = 1507790279000L  // 2017-10-12T14:37:59
         val calendar = Calendar.getInstance()
-        calendar.timeInMillis = now
-        a = Date(now)
+        calendar.timeInMillis = time
+        a = Date(time)
         b = calendar
         c = DateTimeHelper.dateToLocalDate(a)
         d = DateTimeHelper.dateToLocalDateTime(a)
-
+        e = DateTimeHelper.dateToLocalDateTime(a)
     }
 
     @Test
     fun toJsonStringTest() {
 
         // Arrange
-        val jsonString = "{\"a\":\"2017-10-12 14:37:59\",\"b\":\"2017-10-12 14:37:59\",\"c\":\"2017-10-12\",\"d\":\"2017-10-12T14:37:59\"}"
+        val jsonString = "{\"a\":\"2017-10-12 14:37:59\",\"b\":\"2017-10-12 14:37:59\",\"c\":\"2017-10-12\",\"d\":\"2017-10-12T14:37:59\",\"e\":\"2017-10-12T14:37:59\"}"
 
         // Act
         val jsonStringNew = SerializerHelper.toJsonString(testTime)
@@ -46,7 +47,8 @@ class SerializerHelperTest {
                 "a": "2017-10-12 14:37:59",
                 "b": "2017-10-12 14:37:59",
                 "c": "2017-10-12",
-                "d": "2017-10-12T14:37:59"
+                "d": "/Date(1507790279000-0000)/",
+                "e": "2017-10-12T14:37:59"
             }
             """
         // Act
@@ -62,7 +64,15 @@ class SerializerHelperTest {
         assertEquals(jsonObjectValue.d, testTime.d)
     }
 
+    @Test
+    fun dotNetDateTimeTest() {
+
+    }
+
 }
+
+
+
 
 
 

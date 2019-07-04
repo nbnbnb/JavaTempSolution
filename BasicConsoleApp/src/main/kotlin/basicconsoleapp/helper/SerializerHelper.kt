@@ -1,5 +1,6 @@
 package basicconsoleapp.helper
 
+import basicconsoleapp.ext.NetDateTimeDeserializer
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.SerializationFeature
@@ -20,7 +21,15 @@ object SerializerHelper {
 
     init {
         val javaTimeModule = JavaTimeModule()
+
+        // 默认方式
+        // 2019-06-27T14:48:27
         javaTimeModule.addDeserializer(LocalDateTime::class.java, LocalDateTimeDeserializer(DateTimeFormatter.ISO_DATE_TIME))
+
+        // 使用注解方式
+        // /Date(1507790279000-0000)/
+        // javaTimeModule.addDeserializer(LocalDateTime::class.java, NetDateTimeDeserializer())
+
         mapper.registerModule(javaTimeModule)
         mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true)
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)

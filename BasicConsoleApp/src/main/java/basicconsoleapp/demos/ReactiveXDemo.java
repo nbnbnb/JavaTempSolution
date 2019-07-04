@@ -883,7 +883,6 @@ public class ReactiveXDemo {
         }
     }
 
-
     /**
      * 只接收 PublishSubject 被订阅之后发送的数据
      */
@@ -925,7 +924,6 @@ public class ReactiveXDemo {
             e.printStackTrace();
         }
     }
-
 
     public static void publishSubjectHack() {
 
@@ -979,5 +977,9 @@ public class ReactiveXDemo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void temp() {
+
     }
 }
