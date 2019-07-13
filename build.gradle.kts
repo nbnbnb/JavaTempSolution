@@ -13,19 +13,19 @@ plugins {
 
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.jvm
     // https://kotlinlang.org/docs/reference/using-gradle.html
-    kotlin("jvm") version "1.3.40"
+    kotlin("jvm") version "1.3.41"
 
     // noarg 和 allopen 需要 apply 之后，才能使用 noArg 和 allOpen 配置
     // 所以此处需要全局 apply
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.plugin.noarg
-    id("org.jetbrains.kotlin.plugin.noarg") version "1.3.40"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.3.41"
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.plugin.allopen
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.3.40"
+    id("org.jetbrains.kotlin.plugin.allopen") version "1.3.41"
 
     // https://plugins.gradle.org/plugin/org.springframework.boot
     id("org.springframework.boot") version "2.1.6.RELEASE" apply false
     // https://kotlinlang.org/docs/reference/compiler-plugins.html
-    id("org.jetbrains.kotlin.plugin.spring") version "1.3.40" apply false
+    id("org.jetbrains.kotlin.plugin.spring") version "1.3.41" apply false
     // A Gradle plugin that provides Maven-like dependency management functionality
     // https://github.com/spring-gradle-plugins/dependency-management-plugin
     id("io.spring.dependency-management") version "1.0.6.RELEASE" apply false
