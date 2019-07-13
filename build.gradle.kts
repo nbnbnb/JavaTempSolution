@@ -156,6 +156,9 @@ subprojects {
         compile("org.jetbrains.kotlin:kotlin-stdlib")
         compile("org.jetbrains.kotlin:kotlin-reflect")
 
+        // https://mvnrepository.com/artifact/com.ning/async-http-client
+        compile("com.ning:async-http-client:1.9.40")
+
         // https://github.com/Kotlin/kotlinx.coroutines
         // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
         compile("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.2")
