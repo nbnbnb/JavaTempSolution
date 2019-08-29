@@ -13,19 +13,19 @@ plugins {
 
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.jvm
     // https://kotlinlang.org/docs/reference/using-gradle.html
-    kotlin("jvm") version "1.3.41"
+    kotlin("jvm") version "1.3.50"
 
     // noarg 和 allopen 需要 apply 之后，才能使用 noArg 和 allOpen 配置
-    // 所以此处需要全局 apply
+    // 所以此处需要全局 apply（默认 true，此处显示设置）
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.plugin.noarg
-    id("org.jetbrains.kotlin.plugin.noarg") version "1.3.41"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.3.50" apply true
     // https://plugins.gradle.org/plugin/org.jetbrains.kotlin.plugin.allopen
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.3.41"
+    id("org.jetbrains.kotlin.plugin.allopen") version "1.3.50" apply true
 
     // https://plugins.gradle.org/plugin/org.springframework.boot
-    id("org.springframework.boot") version "2.1.6.RELEASE" apply false
+    id("org.springframework.boot") version "2.1.7.RELEASE" apply false
     // https://kotlinlang.org/docs/reference/compiler-plugins.html
-    id("org.jetbrains.kotlin.plugin.spring") version "1.3.41" apply false
+    id("org.jetbrains.kotlin.plugin.spring") version "1.3.50" apply false
     // A Gradle plugin that provides Maven-like dependency management functionality
     // https://github.com/spring-gradle-plugins/dependency-management-plugin
     id("io.spring.dependency-management") version "1.0.6.RELEASE" apply false
@@ -161,7 +161,7 @@ subprojects {
 
         // https://github.com/Kotlin/kotlinx.coroutines
         // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
-        compile("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.2")
+        compile("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0")
 
         compile("org.springframework:spring-context")
 
